@@ -1,6 +1,11 @@
 import { createTheme } from '@mui/material/styles';
 
-const defaultTheme = createTheme({
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#fff',
+    },
+  },
   typography: {
     fontFamily: [
       '-apple-system',
@@ -17,4 +22,4 @@ const defaultTheme = createTheme({
   },
 });
 
-export default defaultTheme;
+export default theme;
