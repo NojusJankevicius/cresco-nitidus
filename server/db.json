@@ -1,0 +1,31 @@
+{
+  "products": [
+    {
+      "id:": "1",
+      "name": "oyster mushroom starter kit",
+      "categoryId": "1"
+    }
+  ],
+  "courses": [
+    {
+      "id:": "1",
+      "name": "mushroom course"
+    }    
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "title": "starterkit"
+    }
+  ],
+  "users": [
+    {
+      "id:": "1",
+      "name": "Aldona",
+      "surname": "Juodpusytė",
+      "email": "blackpussy69@gmail.com",
+      "subscribed": false,
+      "password": "katyte"
+    }    
+  ]
+}
