@@ -12,8 +12,13 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import StyledNavLink from './styled-nav-link';
 
-const pages = ['Kursai', 'Parduotuvė', 'Mūsų misija'];
+const pages = [
+  { page: 'Kursai', link: '/courses' },
+  { page: 'Parduotuvė', link: '/shop' },
+  { page: 'Mūsų misija', link: '/mission' },
+];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const ResponsiveAppBar = () => {
@@ -46,14 +51,18 @@ const ResponsiveAppBar = () => {
             alignItems: { md: 'center' },
           }}
           >
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ mr: 2 }}
+            <StyledNavLink
+              to="/"
             >
-              cresco - nitidus
-            </Typography>
+              <Typography
+                variant="h6"
+                noWrap
+                component="div"
+                sx={{ mr: 2 }}
+              >
+                cresco - nitidus
+              </Typography>
+            </StyledNavLink>
             <Box>
               <IconButton>
                 <ShoppingCartOutlinedIcon />
@@ -123,10 +132,15 @@ const ResponsiveAppBar = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
+              {pages.map(({ page, link }) => (
+                <StyledNavLink
+                  to={link}
+                  key={page}
+                >
+                  <MenuItem onClick={handleCloseNavMenu}>
+                    <Typography textAlign="center">{page}</Typography>
+                  </MenuItem>
+                </StyledNavLink>
               ))}
             </Menu>
             <Typography
@@ -177,14 +191,18 @@ const ResponsiveAppBar = () => {
             justifyContent: 'space-around',
           }}
           >
-            {pages.map((page) => (
-              <Button
+            {pages.map(({ page, link }) => (
+              <StyledNavLink
+                to={link}
                 key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ color: 'common.black', display: 'block' }}
               >
-                {page}
-              </Button>
+                <Button
+                  onClick={handleCloseNavMenu}
+                  sx={{ color: 'inherit', display: 'block' }}
+                >
+                  {page}
+                </Button>
+              </StyledNavLink>
             ))}
           </Box>
         </Toolbar>

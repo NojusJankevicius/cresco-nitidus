@@ -22,4 +22,17 @@ const theme = createTheme({
   },
 });
 
-export default theme;
+export const customTheme = createTheme(theme, {
+  mixins: {
+    toolbar: {
+      [theme.breakpoints.up('xs')]: {
+        height: 64,
+      },
+      [theme.breakpoints.up('md')]: {
+        height: 76.5,
+      },
+    },
+  },
+});
+
+export default customTheme;
