@@ -15,6 +15,7 @@ const ErrorPage = () => (
     <Typography>
       Page not found
     </Typography>
+    <img src="/error-page.jpg" alt="" />
   </Box>
 );
 

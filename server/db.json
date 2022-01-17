@@ -9,8 +9,19 @@
   "courses": [
     {
       "id:": "1",
-      "name": "mushroom course"
-    }    
+      "name": "mushroom course",
+      "price": 29.99
+    },
+    {
+      "id": "2",
+      "name": "hydroponics course",
+      "price": 29.99
+    },
+    {
+      "id": "3",
+      "name": "both courses",
+      "price": 49.99
+    }
   ],
   "categories": [
     {
