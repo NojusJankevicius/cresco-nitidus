@@ -1,10 +1,10 @@
 import { Typography } from '@mui/material';
 import React from 'react';
 
-const Course = () => (
+const UserProfilePage = () => (
   <Typography>
-    Sign In
+    UserProfile
   </Typography>
 );
 
-export default Course;
+export default UserProfilePage;

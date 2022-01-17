@@ -1,10 +1,10 @@
 import { Typography } from '@mui/material';
 import React from 'react';
 
-const Shop = () => (
+const ShopPage = () => (
   <Typography>
-    home page
+    Shop page
   </Typography>
 );
 
-export default Shop;
+export default ShopPage;

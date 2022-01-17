@@ -1,10 +1,10 @@
 import { Typography } from '@mui/material';
 import React from 'react';
 
-const AdminDashboard = () => (
+const WishlistPage = () => (
   <Typography>
-    Sign In
+    WishlistPage
   </Typography>
 );
 
-export default AdminDashboard;
+export default WishlistPage;

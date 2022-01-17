@@ -1,27 +1,19 @@
 import React from 'react';
 
-import {
-  BrowserRouter as RouterProvider,
-  Routes,
-  Route,
-} from 'react-router-dom';
+import { Provider as ReduxProvider } from 'react-redux';
 import { ThemeProvider, CssBaseline } from '@mui/material';
+import store from './store';
 import theme from './styles/theme';
-import PageLayout from './components/layouts/page-layout';
-import HomePage from './pages/home-page';
+import PageRouter from './routing/page-router';
 
 const App = () => (
-  <ThemeProvider theme={theme}>
-    <CssBaseline>
-      <RouterProvider>
-        <Routes>
-          <Route path="/" element={<PageLayout />}>
-            <Route index element={<HomePage />} />
-          </Route>
-        </Routes>
-      </RouterProvider>
-    </CssBaseline>
-  </ThemeProvider>
+  <ReduxProvider store={store}>
+    <ThemeProvider theme={theme}>
+      <CssBaseline>
+        <PageRouter />
+      </CssBaseline>
+    </ThemeProvider>
+  </ReduxProvider>
 );
 
 export default App;

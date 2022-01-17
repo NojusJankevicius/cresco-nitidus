@@ -1,10 +1,10 @@
 import { Typography } from '@mui/material';
 import React from 'react';
 
-const SignUp = () => (
+const ProductPage = () => (
   <Typography>
-    Sign In
+    Product page
   </Typography>
 );
 
-export default SignUp;
+export default ProductPage;
