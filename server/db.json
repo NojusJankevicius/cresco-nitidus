@@ -36,7 +36,9 @@
       "surname": "Juodpusytė",
       "email": "blackpussy69@gmail.com",
       "subscribed": false,
-      "password": "katyte"
+      "password": "katyte",
+      "cityId": "1",
+      "address": "verkių g. 1"
     }    
   ]
 }
