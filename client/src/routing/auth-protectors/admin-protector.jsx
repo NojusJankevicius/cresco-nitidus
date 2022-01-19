@@ -8,12 +8,12 @@ const AdminProtector = ({ children }) => {
   const { pathname } = useLocation();
   const auth = useSelector(authSelector);
 
-  if (!auth.loggedIn) {
+  if (!auth.signedIn) {
     return <Navigate to={`${routes.SignInPage}?redirectTo=${pathname}`} />;
   }
 
   if (auth.user.role !== 'admin') {
-    return <Navigate to={routes.UserProfilePage} />;
+    return <Navigate to={routes.ProfilePage} />;
   }
 
   return children;

@@ -7,9 +7,9 @@ const anonymRequester = axios.create({
   },
 });
 
-const login = async ({ email, password }) => {
+const signIn = async ({ email, password }) => {
   try {
-    const { data } = await anonymRequester.post('/auth/login', { email, password });
+    const { data } = await anonymRequester.post('/auth/sign-in', { email, password });
     return data;
   } catch (error) {
     throw new Error(error.response.data.message);
@@ -25,12 +25,12 @@ const checkEmail = async (email) => {
   }
 };
 
-const register = async () => {
+const signUp = async () => {
 
 };
 
 export default {
-  login,
-  register,
+  signIn,
+  signUp,
   checkEmail,
 };

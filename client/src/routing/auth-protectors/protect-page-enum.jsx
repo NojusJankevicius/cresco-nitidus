@@ -1,21 +1,21 @@
 import React from 'react';
 import {
-  PUBLIC_ONLY,
-  AUTH,
-  USER,
   ADMIN,
+  AUTH,
+  PUBLIC_ONLY,
+  USER,
 } from '../auth-types';
 
-import PublicOnlyProtector from './public-only-protector';
-import AuthProtector from './auth-protector';
-import UserProtector from './user-protector';
 import AdminProtector from './admin-protector';
+import AuthProtector from './auth-protector';
+import PublicOnlyProtector from './public-only-protector';
+import UserProtector from './user-protector';
 
 const protectPageEnum = {
-  [PUBLIC_ONLY]: (Page) => <PublicOnlyProtector><Page /></PublicOnlyProtector>,
-  [AUTH]: (Page) => <AuthProtector><Page /></AuthProtector>,
-  [USER]: (Page) => <UserProtector><Page /></UserProtector>,
   [ADMIN]: (Page) => <AdminProtector><Page /></AdminProtector>,
+  [AUTH]: (Page) => <AuthProtector><Page /></AuthProtector>,
+  [PUBLIC_ONLY]: (Page) => <PublicOnlyProtector><Page /></PublicOnlyProtector>,
+  [USER]: (Page) => <UserProtector><Page /></UserProtector>,
 };
 
 export default protectPageEnum;

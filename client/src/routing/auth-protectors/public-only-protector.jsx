@@ -7,7 +7,7 @@ import routes from '../routes';
 const PublicOnlyProtector = ({ children }) => {
   const auth = useSelector(authSelector);
 
-  if (auth.loggedIn) {
+  if (auth.signedIn) {
     return <Navigate to={auth.redirectTo ?? routes.HomePage} />;
   }
 

@@ -8,8 +8,8 @@ const AuthProtector = ({ children }) => {
   const { pathname } = useLocation();
   const auth = useSelector(authSelector);
 
-  if (!auth.loggedIn) {
-    return <Navigate to={`${routes.SinginPage}?redirectTo=${pathname}`} />;
+  if (!auth.signedIn) {
+    return <Navigate to={`${routes.SignInPage}?redirectTo=${pathname}`} />;
   }
 
   return children;

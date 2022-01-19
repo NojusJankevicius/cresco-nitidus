@@ -1,5 +1,5 @@
 import {
-  // AUTH,
+  AUTH,
   USER,
   ADMIN,
   PUBLIC_ONLY,
@@ -26,11 +26,10 @@ const routeStructure = [
     path: '/dashboard',
     pageName: 'DashboardLayout',
     childRoutes: [
-      // { index: true, pageName: 'ProfilePage', auth: AUTH },
-      { path: 'user-profile', pageName: 'UserProfilePage', auth: USER },
+      { index: true, pageName: 'ProfilePage', auth: AUTH },
       { path: 'course/:id', pageName: 'CoursePage', auth: USER },
       { path: 'wishlist', pageName: 'WishlistPage', auth: USER },
-      { path: 'admin/dashboard', pageName: 'AdminDashboardPage', auth: ADMIN },
+      { path: 'admin', pageName: 'AdminPage', auth: ADMIN },
       // { path: 'admin/products', pageName: 'ProductPanelPage', auth: ADMIN },
       // { path: 'admin/users', pageName: 'UserPanelPage', auth: ADMIN },
     ],
