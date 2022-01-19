@@ -3,6 +3,7 @@
     {
       "id:": "1",
       "name": "oyster mushroom starter kit",
+      "price": 15.99,
       "categoryId": "1"
     }
   ],
@@ -40,5 +41,11 @@
       "cityId": "1",
       "address": "verkių g. 1"
     }    
+  ],
+  "cities": [
+    {
+      "id":"1",
+      "name": "Vilnius"
+    }
   ]
 }

@@ -21,7 +21,7 @@ const Hero = () => (
     }}
     >
       <Box sx={{ width: { sm: '90%', md: '50%' } }}>
-        <Typography variant="h4" component="h2" align="center" color="common.white">
+        <Typography variant="h5" component="h2" align="center" color="common.white">
           Jei mėgstate sodinti, bet nemėgstate purvo, jūs vis dar galite turėti sodą
         </Typography>
       </Box>
