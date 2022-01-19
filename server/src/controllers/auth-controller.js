@@ -2,6 +2,8 @@ const UserModel = require('../models/user-model');
 const UserViewModel = require('../view-models/user-view-model')
 const { hashPasswordAsync, comparePasswordsAsync } = require('../helpers/hash')
 
+const createFakeToken = ({ email, role }) => 'sad.vaas21gsdv.sadfgr2sr';
+
 const signUp = async (req, res) => {
   console.log(req.body)
   const { name, surname, email, password, repeatPassword } = req.body;
@@ -14,11 +16,11 @@ const signUp = async (req, res) => {
       password,
     });
 
-    // užšifruoti splatažodį
+    const user = new UserViewModel(userDoc);
 
     res.status(200).json({
-      message: 'Registracija sėkminga',
-      user: userDoc,
+      user,
+      token: createFakeToken({email, role: userDoc.role}),
     });
 
     const hashedPassword = await hashPasswordAsync(password);
@@ -40,7 +42,10 @@ const signIn = async (req, res) => {
       const passwordsAreEqual = await comparePasswordsAsync(password, userDoc.password)
       if(passwordsAreEqual){
         const user = new UserViewModel(userDoc);
-        res.status(200).json(user)
+        res.status(200).json({
+          user,
+          token: createFakeToken({email, role: userDoc.role}),
+        });
       } else {
         res.status(400).json({
           message: 'neteisingas slaptažodis'
