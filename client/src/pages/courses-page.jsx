@@ -23,6 +23,7 @@ const tiers = [
     ],
     buttonText: 'Registruotis',
     buttonVariant: 'outlined',
+    buttonColor: 'inherit',
   },
   {
     title: 'Visi kursai',
@@ -36,6 +37,7 @@ const tiers = [
     ],
     buttonText: 'Registruotis',
     buttonVariant: 'contained',
+    buttonColor: 'success',
   },
   {
     title: 'Grybų auginimas',
@@ -48,6 +50,7 @@ const tiers = [
     ],
     buttonText: 'Registruotis',
     buttonVariant: 'outlined',
+    buttonColor: 'inherit',
   },
 ];
 
@@ -86,7 +89,7 @@ const CoursesPage = () => (
                 title={tier.title}
                 subheader={tier.subheader}
                 titleTypographyProps={{ align: 'center' }}
-                action={tier.title === 'Pro' ? <StarIcon /> : null}
+                action={tier.title === 'Visi kursai' ? <StarIcon /> : null}
                 subheaderTypographyProps={{
                   align: 'center',
                 }}
@@ -121,7 +124,7 @@ const CoursesPage = () => (
                 </ul>
               </CardContent>
               <CardActions>
-                <Button fullWidth variant={tier.buttonVariant} color="inherit">
+                <Button fullWidth variant={tier.buttonVariant} color={tier.buttonColor}>
                   {tier.buttonText}
                 </Button>
               </CardActions>
