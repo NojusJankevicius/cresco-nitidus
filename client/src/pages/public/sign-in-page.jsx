@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
@@ -33,14 +34,13 @@ const SignInPage = () => {
   const onSubmit = async ({ email, password }) => {
     setError(null);
     try {
-      const { user, token } = await ApiService.signIn({
+      const user = await ApiService.signIn({
         email,
         password,
       });
       const redirectTo = urlSearchParams.get('redirectTo');
       const signInSuccessAction = signIn({
         user,
-        token,
         redirectTo,
       });
       dispatch(signInSuccessAction);

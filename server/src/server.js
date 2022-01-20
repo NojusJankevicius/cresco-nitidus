@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const Mongoose = require('mongoose');
+const cors = require('cors');
 require('dotenv').config();
 const courseRouter = require('./routes/course-router');
 const authRouter = require('./routes/auth-router');
@@ -9,10 +10,16 @@ const userRouter = require('./routes/user-router');
 const server = express();
 const { SERVER_PORT, DB_CONNECTION } = process.env;
 
+const corsOptions ={
+  origin: 'http://localhost:3000',
+  optionSuccessStatus: 200
+};
+
 // middlewares
 server.use(morgan('tiny'));
 server.use(express.static('public'));
 server.use(express.json());
+server.use(cors(corsOptions));
 
 //  response handlers
 server.use('/api/courses', courseRouter);
