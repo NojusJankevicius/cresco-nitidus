@@ -5,8 +5,10 @@ const {
   signIn
 } = require('../controllers/auth-controller')
 
-const router = express.Router();
+const authConfigureMiddleware = require('../middlewares/auth-configure-middleware');
 
+const router = express.Router();
+router.use(authConfigureMiddleware);
 // POST - /api/auth/sign-up
 router.post('/sign-up', signUp )
 
