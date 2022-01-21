@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
@@ -8,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { Alert, Grid, TextField } from '@mui/material';
 import AuthForm from '../../components/auth-form';
 import routes from '../../routing/routes';
-import ApiService from '../../services/api-service';
+import AuthService from '../../services/auth-service';
 import { signIn } from '../../store/auth';
 
 const validationSchema = yup.object({
@@ -34,7 +33,7 @@ const SignInPage = () => {
   const onSubmit = async ({ email, password }) => {
     setError(null);
     try {
-      const user = await ApiService.signIn({
+      const user = await AuthService.signIn({
         email,
         password,
       });

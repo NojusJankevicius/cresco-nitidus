@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
+import { useDispatch } from 'react-redux';
 
 import {
   CircularProgress,
@@ -12,21 +13,8 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ErrorIcon from '@mui/icons-material/Error';
 import AuthForm from '../../components/auth-form';
 import routes from '../../routing/routes';
-import apiService from '../../services/api-service';
-
-const API = {
-  register: () => new Promise((success) => {
-    setTimeout(() => {
-      success({
-        token: 'sdgfisghfsd',
-        user: {
-          name: 'Banys',
-          role: 'Gangster',
-        },
-      });
-    }, 2000);
-  }),
-};
+import AuthService from '../../services/auth-service';
+import { signIn } from '../../store/auth';
 
 const validationSchema = yup.object({
   name: yup
@@ -70,17 +58,26 @@ const initialValues = {
   surname: '',
   email: '',
   password: '',
-  passwordConfirmation: '',
+  repeatPassword: '',
   emailChecked: false,
   emailAvailable: false,
 };
 
 const SignUpPage = () => {
+  const dispatch = useDispatch;
   const [emailCheckLoading, setEmailCheckLoading] = useState(false);
 
-  const onSubmit = async () => {
-    const result = await API.register();
-    console.log(result);
+  const onSubmit = async ({
+    name, surname, email, password, repeatPassword,
+  }) => {
+    const user = await AuthService.signUp({
+      name,
+      surname,
+      email,
+      password,
+      repeatPassword,
+    });
+    dispatch(signIn({ user }));
   };
 
   const {
@@ -121,7 +118,7 @@ const SignUpPage = () => {
       (async () => {
         try {
           setEmailCheckLoading(true);
-          const emailAvailable = await apiService.checkEmail(values.email);
+          const emailAvailable = await AuthService.checkEmail(values.email);
           setFieldValue('emailAvailable', emailAvailable);
         } catch (error) {
           setFieldValue('emailAvailable', false);
@@ -224,9 +221,9 @@ const SignUpPage = () => {
             label="Pakartokite slaptažodį"
             onChange={handleChange}
             onBlur={handleBlur}
-            value={values.passwordConfirmation}
-            error={touched.passwordConfirmation && Boolean(errors.passwordConfirmation)}
-            helperText={touched.passwordConfirmation && errors.passwordConfirmation}
+            value={values.repeatPassword}
+            error={touched.repeatPassword && Boolean(errors.repeatPassword)}
+            helperText={touched.repeatPassword && errors.repeatPassword}
             disabled={isSubmitting}
             fullWidth
             variant="outlined"
