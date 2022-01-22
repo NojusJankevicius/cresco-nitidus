@@ -9,6 +9,7 @@ import AuthForm from '../../components/auth-form';
 import routes from '../../routing/routes';
 import AuthService from '../../services/auth-service';
 import { signIn } from '../../store/auth';
+import BackgroundImageContainer from '../../components/containers/background-image-container';
 
 const validationSchema = yup.object({
   email: yup
@@ -65,54 +66,64 @@ const SignInPage = () => {
   });
 
   return (
-    <AuthForm
-      title="Prisijungti"
-      linkTo={routes.SignUpPage}
-      linkTitle="Neturite paskyros? Registruokitės"
-      onSubmit={handleSubmit}
-      isValid={isValid && dirty}
-      loading={isSubmitting}
+    <BackgroundImageContainer sx={{
+      backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/home-page.jfif)',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'space-around',
+    }}
     >
-      <Alert severity="error" sx={{ my: 2, visibility: error ? 'visible' : 'hidden' }}>
-        {error}
-      </Alert>
-      <Grid container spacing={4}>
-        <Grid item xs={12}>
-          <TextField
-            name="email"
-            variant="outlined"
-            label="El. paštas"
-            value={values.email}
-            error={touched.email && Boolean(errors.email)}
-            helperText={touched.email && errors.email}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            disabled={isSubmitting}
-            fullWidth
-            autoComplete="email"
-            autoFocus
-            color="success"
-          />
+
+      <AuthForm
+        title="Prisijungti"
+        linkTo={routes.SignUpPage}
+        linkTitle="Neturite paskyros? Registruokitės"
+        onSubmit={handleSubmit}
+        isValid={isValid && dirty}
+        loading={isSubmitting}
+      >
+        <Alert severity="error" sx={{ my: 2, visibility: error ? 'visible' : 'hidden' }}>
+          {error}
+        </Alert>
+        <Grid container spacing={4}>
+          <Grid item xs={12}>
+            <TextField
+              name="email"
+              variant="outlined"
+              label="El. paštas"
+              value={values.email}
+              error={touched.email && Boolean(errors.email)}
+              helperText={touched.email && errors.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              disabled={isSubmitting}
+              fullWidth
+              autoComplete="email"
+              autoFocus
+              color="success"
+            />
+          </Grid>
+          <Grid item xs={12} sx={{ mb: 4 }}>
+            <TextField
+              name="password"
+              variant="outlined"
+              label="slaptažodis"
+              type="password"
+              value={values.password}
+              error={touched.password && Boolean(errors.password)}
+              helperText={touched.password && errors.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              disabled={isSubmitting}
+              fullWidth
+              autoComplete="current-password"
+              color="success"
+            />
+          </Grid>
         </Grid>
-        <Grid item xs={12} sx={{ mb: 4 }}>
-          <TextField
-            name="password"
-            variant="outlined"
-            label="slaptažodis"
-            type="password"
-            value={values.password}
-            error={touched.password && Boolean(errors.password)}
-            helperText={touched.password && errors.password}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            disabled={isSubmitting}
-            fullWidth
-            autoComplete="current-password"
-            color="success"
-          />
-        </Grid>
-      </Grid>
-    </AuthForm>
+      </AuthForm>
+    </BackgroundImageContainer>
   );
 };
 

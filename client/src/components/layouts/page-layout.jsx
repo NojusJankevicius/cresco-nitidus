@@ -8,7 +8,15 @@ import Navbar from '../partials/navbar';
 const PageLayout = () => (
   <Box>
     <Navbar />
-    <Box component="main">
+    <Box
+      component="main"
+      sx={(theme) => ({
+        height: {
+          xs: `calc(100vh - ${theme.mixins.toolbar[theme.breakpoints.up('xs')].height}px)`,
+          md: `calc(100vh - ${theme.mixins.toolbar[theme.breakpoints.up('md')].height}px)`,
+        },
+      })}
+    >
       <Outlet />
     </Box>
   </Box>

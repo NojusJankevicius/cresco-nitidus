@@ -14,6 +14,7 @@ import { signIn } from '../../store/auth';
 import AuthForm from '../../components/auth-form';
 import AuthService from '../../services/auth-service';
 import routes from '../../routing/routes';
+import BackgroundImageContainer from '../../components/containers/background-image-container';
 
 const validationSchema = yup.object({
   name: yup.string()
@@ -66,7 +67,7 @@ const SignUpPage = () => {
   const onSubmit = async ({
     email, name, surname, password, passwordConfirmation,
   }) => {
-    const user = await AuthService.register({
+    const user = await AuthService.signUp({
       email,
       name,
       surname,
@@ -138,102 +139,111 @@ const SignUpPage = () => {
   }
 
   return (
-    <AuthForm
-      title="Registruotis"
-      linkTo={routes.SignInPage}
-      linkTitle="Jau turite paskyrą? Prisijunkite"
-      onSubmit={handleSubmit}
-      isValid={isValid && dirty}
-      loading={isSubmitting}
+    <BackgroundImageContainer sx={{
+      backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/home-page.jfif)',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'space-around',
+    }}
     >
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            name="name"
-            label="Vardas"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.name}
-            error={touched.name && Boolean(errors.name)}
-            helperText={touched.name && errors.name}
-            disabled={isSubmitting}
-            fullWidth
-            autoFocus
-            variant="outlined"
-            color="success"
-          />
+      <AuthForm
+        title="Registruotis"
+        linkTo={routes.SignInPage}
+        linkTitle="Jau turite paskyrą? Prisijunkite"
+        onSubmit={handleSubmit}
+        isValid={isValid && dirty}
+        loading={isSubmitting}
+      >
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              name="name"
+              label="Vardas"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.name}
+              error={touched.name && Boolean(errors.name)}
+              helperText={touched.name && errors.name}
+              disabled={isSubmitting}
+              fullWidth
+              autoFocus
+              variant="outlined"
+              color="success"
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              name="surname"
+              label="Pavardė"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.surname}
+              error={touched.surname && Boolean(errors.surname)}
+              helperText={touched.surname && errors.surname}
+              disabled={isSubmitting}
+              fullWidth
+              variant="outlined"
+              color="success"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              name="email"
+              label="El. paštas"
+              onChange={handleEmailChange}
+              onBlur={handleEmailBlur}
+              value={values.email}
+              error={touched.email && Boolean(errors.email)}
+              helperText={touched.email && errors.email}
+              disabled={isSubmitting}
+              fullWidth
+              variant="outlined"
+              color="success"
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    {emailEndornment}
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              name="password"
+              label="Slaptažodis"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.password}
+              error={touched.password && Boolean(errors.password)}
+              helperText={touched.password && errors.password}
+              disabled={isSubmitting}
+              fullWidth
+              variant="outlined"
+              type="password"
+              color="success"
+            />
+          </Grid>
+          <Grid item xs={12} sx={{ mb: 2 }}>
+            <TextField
+              name="passwordConfirmation"
+              label="Slaptažodžio pakartojimas"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.passwordConfirmation}
+              error={touched.passwordConfirmation && Boolean(errors.passwordConfirmation)}
+              helperText={touched.passwordConfirmation && errors.passwordConfirmation}
+              disabled={isSubmitting}
+              fullWidth
+              variant="outlined"
+              type="password"
+              color="success"
+            />
+          </Grid>
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            name="surname"
-            label="Pavardė"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.surname}
-            error={touched.surname && Boolean(errors.surname)}
-            helperText={touched.surname && errors.surname}
-            disabled={isSubmitting}
-            fullWidth
-            variant="outlined"
-            color="success"
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            name="email"
-            label="El. paštas"
-            onChange={handleEmailChange}
-            onBlur={handleEmailBlur}
-            value={values.email}
-            error={touched.email && Boolean(errors.email)}
-            helperText={touched.email && errors.email}
-            disabled={isSubmitting}
-            fullWidth
-            variant="outlined"
-            color="success"
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  {emailEndornment}
-                </InputAdornment>
-              ),
-            }}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            name="password"
-            label="Slaptažodis"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.password}
-            error={touched.password && Boolean(errors.password)}
-            helperText={touched.password && errors.password}
-            disabled={isSubmitting}
-            fullWidth
-            variant="outlined"
-            type="password"
-            color="success"
-          />
-        </Grid>
-        <Grid item xs={12} sx={{ mb: 2 }}>
-          <TextField
-            name="passwordConfirmation"
-            label="Slaptažodžio pakartojimas"
-            onChange={handleChange}
-            onBlur={handleBlur}
-            value={values.passwordConfirmation}
-            error={touched.passwordConfirmation && Boolean(errors.passwordConfirmation)}
-            helperText={touched.passwordConfirmation && errors.passwordConfirmation}
-            disabled={isSubmitting}
-            fullWidth
-            variant="outlined"
-            type="password"
-            color="success"
-          />
-        </Grid>
-      </Grid>
-    </AuthForm>
+      </AuthForm>
+    </BackgroundImageContainer>
   );
 };
 
