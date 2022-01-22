@@ -68,10 +68,10 @@ const SignInPage = () => {
     <AuthForm
       title="Prisijungti"
       linkTo={routes.SignUpPage}
-      linktTitle="Neturite paskyros? Registruokitės"
-      loading={isSubmitting}
-      isValid={isValid && dirty}
+      linkTitle="Neturite paskyros? Registruokitės"
       onSubmit={handleSubmit}
+      isValid={isValid && dirty}
+      loading={isSubmitting}
     >
       <Alert severity="error" sx={{ my: 2, visibility: error ? 'visible' : 'hidden' }}>
         {error}
