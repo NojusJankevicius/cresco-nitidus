@@ -4,8 +4,6 @@ const { hashPasswordAsync, comparePasswordsAsync } = require('../helpers/hash')
 const generateToken = require('../helpers/generate-token');
 const jwt = require('jsonwebtoken');
 
-const createFakeToken = ({ email, role }) => 'sad.vaas21gsdv.sadfgr2sr';
-
 const signUp = async (req, res) => {
   const { name, surname, email, password, repeatPassword } = req.body;
   console.log(req.body)
@@ -22,7 +20,7 @@ const signUp = async (req, res) => {
 
     res.status(200).json({
       user,
-      token: createFakeToken({ email, role: userDoc.role }),
+      token: generateToken({ email, role: userDoc.role }),
     });
 
     const hashedPassword = await hashPasswordAsync(password);
@@ -32,7 +30,7 @@ const signUp = async (req, res) => {
   } catch (error) {
     res.status(400).json({
       message: error.message,
-    })
+    });
   };
 };
 

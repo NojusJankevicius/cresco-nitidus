@@ -3,6 +3,7 @@ import SessionService from './session-service';
 import reduxStore from '../store/index';
 import { signIn, signOut } from '../store/auth';
 
+// Singleton
 const AuthService = new (class AuthService {
   constructor() {
     const token = SessionService.get('auth_token');
@@ -34,13 +35,13 @@ const AuthService = new (class AuthService {
 
   signOut() {
     SessionService.clear('auth_token');
-    delete this.this.requester.defaults.headers.common.Authorization;
+    delete this.requester.defaults.headers.common.Authorization;
     reduxStore.dispatch(signOut());
   }
 
-  async signUp() {
+  async signUp(formData) {
     try {
-      const response = await this.requester.post('/sign-up', FormData);
+      const response = await this.requester.post('/sign-up', formData);
       const { user, token } = response.data;
       SessionService.set('auth_token', token);
       this.setAuth(token);
