@@ -12,10 +12,10 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    signIn(state, payload) {
+    signIn(state, action) {
       state.signedIn = true;
-      state.user = payload.user;
-      state.redirectTo = payload.redirectTo;
+      state.user = action.payload.user;
+      state.redirectTo = action.payload.redirectTo;
     },
     signOut(state) {
       state.signedIn = false;
