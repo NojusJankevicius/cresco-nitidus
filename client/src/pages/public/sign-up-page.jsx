@@ -18,33 +18,33 @@ import BackgroundImageContainer from '../../components/containers/background-ima
 
 const validationSchema = yup.object({
   name: yup.string()
-    .required('Is required')
-    .min(2, 'At least 2 letters')
-    .max(32, 'Most 32 letters')
+    .required('Privalomas laukas')
+    .min(2, 'Vardas negali būti trumpesnis nei 2 raidės')
+    .max(32, 'Vardas negali būti ilgesnis nei 32 raidės')
     .matches(/^[A-ZĄČĘĖĮŠŲŪŽ]+[a-ząčęėįšųūž]*$/, 'Vardas privalo būti iš didžiosios raidės'),
   surname: yup.string()
-    .required('Is required')
-    .min(2, 'At least 2 letters')
-    .max(32, 'Most 32 letters')
+    .required('Privalomas laukas')
+    .min(2, 'Pavardė negali būti trumpesnė nei 2 raidės')
+    .max(32, 'Pavardė negali būti ilgesnė nei 32 raidės')
     .matches(/^[A-ZĄČĘĖĮŠŲŪŽ]+[a-ząčęėįšųūž]*$/, 'Pavardė privalo būti iš didžiosios raidės'),
   email: yup.string()
-    .required('Is required')
-    .email('Is not valid email')
-    .test('email-validator', 'Email unavailable', (_, context) => {
+    .required('Privalomas laukas')
+    .email('Neteisingas pašto formatas')
+    .test('email-validator', 'Paštas jau užimtas', (_, context) => {
       const { emailChecked, emailAvailable } = context.parent;
       if (!emailChecked) return true;
 
       return emailAvailable;
     }),
   password: yup.string()
-    .required('Is required')
-    .min(6, 'At least 6 symbols')
-    .max(32, 'Most 32 symbols')
-    .matches(/^.*[A-ZĄČĘĖĮŠŲŪŽ]+.*$/, 'Atleast one capital letter')
-    .matches(/^.*\d+.*$/, 'Atleast one number'),
+    .required('Privalomas laukas')
+    .min(6, 'Slaptažodis negali būti trumpesnis nei 6 simboliai')
+    .max(32, 'Slaptažodis negali būti ilgesnis nei 32 simboliai')
+    .matches(/^.*[A-ZĄČĘĖĮŠŲŪŽ]+.*$/, 'Privalo būti bent viena didžioji raidė')
+    .matches(/^.*\d+.*$/, 'Privalo būti bent vienas skaičius'),
   passwordConfirmation: yup.string()
-    .required('Is required')
-    .oneOf([yup.ref('password')], 'Passwords must match'),
+    .required('Privalomas laukas')
+    .oneOf([yup.ref('password')], 'Slaptažodžai turi sutapti'),
   emailChecked: yup.boolean().oneOf([true]),
   emailAvailable: yup.boolean().oneOf([true]),
 });

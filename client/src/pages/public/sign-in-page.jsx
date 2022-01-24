@@ -18,7 +18,7 @@ const validationSchema = yup.object({
     .email('Neteisingas pašto formatas'),
   password: yup
     .string()
-    .required('Privalommas laukas'),
+    .required('Privalomas laukas'),
 });
 
 const initialValues = {

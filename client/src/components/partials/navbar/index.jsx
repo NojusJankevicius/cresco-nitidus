@@ -21,10 +21,10 @@ const pages = [
   { page: 'Mūsų misija', link: '/mission' },
 ];
 const settings = [
-  { setting: 'Profile', link: '/dashboard' },
-  { setting: 'Wishlist', link: '/dashboard/wishlist' },
-  { setting: 'My courses', link: '/dashboard/course/1' },
-  { setting: 'Logout', link: '/' },
+  { setting: 'Profilis', link: '/dashboard' },
+  { setting: 'Mėgstamos prekės', link: '/dashboard/wishlist' },
+  { setting: 'Mano kursai', link: '/dashboard/course/1' },
+  { setting: 'Atsijungti', link: '/' },
 ];
 
 const ResponsiveAppBar = () => {
