@@ -1,9 +1,13 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Container from '@mui/material/Container';
-import { Box, Typography } from '@mui/material';
+import {
+  AppBar,
+  Toolbar,
+  Container,
+  Box,
+  Divider,
+  Typography,
+} from '@mui/material';
 import Mobile from './mobile';
 import Desktop from './desktop';
 import UserMenu from './user-menu';
@@ -36,7 +40,7 @@ const ResponsiveAppBar = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ backgroundColor: 'white' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Desktop
@@ -49,6 +53,7 @@ const ResponsiveAppBar = () => {
             pages={pages}
             anchorElNav={anchorElNav}
           />
+          <Divider orientation="vertical" variant="middle" flexItem sx={{ mr: 2 }} />
           {
             !auth.signedIn ? (
               <Box sx={{ display: 'flex', flexDirection: 'column' }}>

@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import { Link } from 'react-router-dom';
+import StyledLink from '../../../styles/styled-link';
 
 const UserMenu = ({ handleCloseNavMenu, settings }) => {
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -48,11 +48,11 @@ const UserMenu = ({ handleCloseNavMenu, settings }) => {
         onClose={handleCloseUserMenu}
       >
         {settings.map(({ setting, link }) => (
-          <Link key={setting} to={link}>
+          <StyledLink key={setting} to={link}>
             <MenuItem key={setting} onClick={handleCloseNavMenu}>
               <Typography textAlign="center">{setting}</Typography>
             </MenuItem>
-          </Link>
+          </StyledLink>
         ))}
       </Menu>
     </Box>

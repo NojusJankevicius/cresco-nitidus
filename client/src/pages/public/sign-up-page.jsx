@@ -169,7 +169,6 @@ const SignUpPage = () => {
               fullWidth
               autoFocus
               variant="outlined"
-              color="success"
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -184,7 +183,6 @@ const SignUpPage = () => {
               disabled={isSubmitting}
               fullWidth
               variant="outlined"
-              color="success"
             />
           </Grid>
           <Grid item xs={12}>
@@ -199,7 +197,6 @@ const SignUpPage = () => {
               disabled={isSubmitting}
               fullWidth
               variant="outlined"
-              color="success"
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
@@ -222,7 +219,6 @@ const SignUpPage = () => {
               fullWidth
               variant="outlined"
               type="password"
-              color="success"
             />
           </Grid>
           <Grid item xs={12} sx={{ mb: 2 }}>
@@ -238,7 +234,6 @@ const SignUpPage = () => {
               fullWidth
               variant="outlined"
               type="password"
-              color="success"
             />
           </Grid>
         </Grid>

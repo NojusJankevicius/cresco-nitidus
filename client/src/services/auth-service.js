@@ -1,7 +1,7 @@
 import axios from 'axios';
 import SessionService from './session-service';
 import reduxStore from '../store/index';
-import { signIn, signOut } from '../store/auth';
+import { authFailed, signIn, signOut } from '../store/auth';
 
 // Singleton
 const AuthService = new (class AuthService {
@@ -14,6 +14,8 @@ const AuthService = new (class AuthService {
     });
     if (token) {
       this.authenticate(token);
+    } else {
+      reduxStore.dispatch(authFailed());
     }
   }
 
@@ -57,7 +59,7 @@ const AuthService = new (class AuthService {
       reduxStore.dispatch(signIn({ user }));
       this.setAuth(token);
     } catch (error) {
-      console.error('invalid token');
+      reduxStore.dispatch(authFailed());
     }
   }
 

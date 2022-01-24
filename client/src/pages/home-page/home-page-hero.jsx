@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Box } from '@mui/material';
+import { Typography, Container } from '@mui/material';
 
 import BackgroundImageContainer from '../../components/containers/background-image-container';
 
@@ -13,16 +13,16 @@ const Hero = () => (
     justifyContent: 'space-around',
   }}
   >
-    <Box sx={{ width: { sm: '90%', md: '50%' } }}>
+    <Container sx={{ width: { sm: '90%', md: '50%' } }}>
       <Typography variant="h5" component="h2" align="center" color="common.white">
         Jei mėgstate sodinti, bet nemėgstate purvo, jūs vis dar galite turėti sodą
       </Typography>
-    </Box>
-    <Box sx={{ width: { sm: '90%', md: '50%' } }}>
+    </Container>
+    <Container sx={{ width: { sm: '90%', md: '50%' } }}>
       <Typography variant="h3" component="h1" align="center" color="common.white">
         Auginkite daržoves ir grybus namuose be jokios žemės
       </Typography>
-    </Box>
+    </Container>
   </BackgroundImageContainer>
 );
 

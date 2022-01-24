@@ -101,7 +101,6 @@ const SignInPage = () => {
               fullWidth
               autoComplete="email"
               autoFocus
-              color="success"
             />
           </Grid>
           <Grid item xs={12} sx={{ mb: 4 }}>
@@ -118,7 +117,6 @@ const SignInPage = () => {
               disabled={isSubmitting}
               fullWidth
               autoComplete="current-password"
-              color="success"
             />
           </Grid>
         </Grid>

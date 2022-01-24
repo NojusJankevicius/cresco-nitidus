@@ -37,7 +37,7 @@ const tiers = [
     ],
     buttonText: 'Registruotis',
     buttonVariant: 'contained',
-    buttonColor: 'success',
+    buttonColor: 'primary',
   },
   {
     title: 'Grybų auginimas',
