@@ -1,22 +1,23 @@
-import { Box, Typography } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 import React from 'react';
 
 const ErrorPage = () => (
-  <Box sx={{
+  <Container sx={{
+    height: '70vh',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column',
   }}
   >
-    <Typography>
-      Oops
-    </Typography>
-    <Typography>
-      Page not found
-    </Typography>
     <img src="/error-page.jpg" alt="" />
-  </Box>
+    <Typography variant="h2" align="center">
+      O ne :(
+    </Typography>
+    <Typography variant="h2" align="center">
+      Toks puslapis neužaugintas
+    </Typography>
+  </Container>
 );
 
 export default ErrorPage;

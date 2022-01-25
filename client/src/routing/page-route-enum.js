@@ -11,8 +11,8 @@ import CoursesPage from '../pages/courses-page';
 import MissionPage from '../pages/mission-page';
 import ErrorPage from '../pages/error-page';
 // public-only
-import SignInPage from '../pages/public/sign-in-page';
-import SignUpPage from '../pages/public/sign-up-page';
+import SignInPage from '../pages/public-only/sign-in-page';
+import SignUpPage from '../pages/public-only/sign-up-page';
 // auth
 import ProfilePage from '../pages/auth/profile-page';
 // user
