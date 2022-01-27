@@ -24,10 +24,18 @@ const authSlice = createSlice({
       state.user = null;
       state.redirectTo = null;
     },
+    updateUser(state, { payload }) {
+      state.user = payload.user;
+    },
   },
 });
 
-export const { authFailed, signIn, signOut } = authSlice.actions;
+export const {
+  authFailed,
+  signIn,
+  signOut,
+  updateUser,
+} = authSlice.actions;
 
 export const authSelector = (state) => state.auth;
 export const signedInSelector = (state) => state.auth.signedIn;

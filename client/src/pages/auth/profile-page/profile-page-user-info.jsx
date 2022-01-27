@@ -1,22 +1,137 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
+import * as yup from 'yup';
+import { useFormik } from 'formik';
 import {
   Box,
   Typography,
   TextField,
+  CircularProgress,
+  InputAdornment,
+  Button,
 } from '@mui/material';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import ErrorIcon from '@mui/icons-material/Error';
+import AuthService from '../../../services/auth-service';
+import ProfileService from '../../../services/profile-service';
 
-const ProfilePageUserInfo = ({ formik }) => {
-  const { values, handleChange } = formik;
-  const userFieldsData = [
-    { name: 'name', label: 'Vardas', value: values.name },
-    { name: 'surname', label: 'Pavardė', value: values.surname },
-    { name: 'email', label: 'El. paštas', value: values.email },
-    // {name: 'city', label: 'Miestas', value: values.city },
-    // {name: 'number', label: 'Telefono numeris', value: values.mobile },
-  ];
+const validationSchema = yup.object({
+  name: yup.string()
+    .required('Privalomas laukas')
+    .min(2, 'Vardas negali būti trumpesnis nei 2 raidės')
+    .max(32, 'Vardas negali būti ilgesnis nei 32 raidės')
+    .matches(/^[A-ZĄČĘĖĮŠŲŪŽ]+[a-ząčęėįšųūž]*$/, 'Vardas privalo būti iš didžiosios raidės'),
+  surname: yup.string()
+    .required('Privalomas laukas')
+    .min(2, 'Pavardė negali būti trumpesnė nei 2 raidės')
+    .max(32, 'Pavardė negali būti ilgesnė nei 32 raidės')
+    .matches(/^[A-ZĄČĘĖĮŠŲŪŽ]+[a-ząčęėįšųūž]*$/, 'Pavardė privalo būti iš didžiosios raidės'),
+  email: yup.string()
+    .required('Privalomas laukas')
+    .email('Neteisingas pašto formatas')
+    .test('email-validator', 'Paštas jau užimtas', (_, context) => {
+      const { emailChecked, emailAvailable } = context.parent;
+      if (!emailChecked) return true;
+      return emailAvailable;
+    }),
+  emailChecked: yup.boolean().oneOf([true]),
+  emailAvailable: yup.boolean().oneOf([true]),
+});
+
+const ProfilePageUserInfo = ({ user }) => {
+  const [emailCheckLoading, setEmailCheckLoading] = useState(false);
+
+  const initialValues = useMemo(() => ({
+    name: user.name,
+    surname: user.surname,
+    email: user.email,
+    emailChecked: true,
+    emailAvailable: true,
+  }), [user]);
+
+  const onSubmit = async (values) => {
+    const body = Object.entries(values)
+      .reduce((oldResult, [name, value]) => {
+        const newResult = { ...oldResult };
+        if (values !== initialValues[name]) {
+          newResult[name] = value;
+        }
+        return newResult;
+      }, {});
+    await ProfileService.updateUserData(body);
+  };
+
+  const {
+    values,
+    errors,
+    touched,
+    isSubmitting,
+    dirty,
+    isValid,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+    setValues,
+    setFieldValue,
+  } = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit,
+    enableReinitialize: true,
+  });
+
+  const handleEmailChange = (e) => {
+    if (values.emailChecked) {
+      setValues({
+        ...values,
+        email: e.target.value,
+        emailChecked: false,
+        emailAvailable: false,
+      }, true);
+    } else {
+      handleChange(e);
+    }
+  };
+
+  const handleEmailBlur = (e) => {
+    if (e.target.value === initialValues.email) {
+      setValues({
+        ...values,
+        email: initialValues.email,
+        emailChecked: true,
+        emailAvailable: true,
+      }, true);
+      return;
+    }
+    handleBlur(e);
+    if (!errors.email) {
+      (async () => {
+        try {
+          setEmailCheckLoading(true);
+          const emailAvailable = await AuthService.checkEmail(values.email);
+          setFieldValue('emailAvailable', emailAvailable);
+        } catch (error) {
+          setFieldValue('emailAvailable', false);
+        } finally {
+          setFieldValue('emailChecked', true, true);
+          setEmailCheckLoading(false);
+        }
+      })();
+    }
+  };
+
+  let emailEndornment;
+  if (emailCheckLoading) {
+    emailEndornment = <CircularProgress size={24} />;
+  } else if (!values.emailChecked) {
+    emailEndornment = null;
+  } else if (values.emailAvailable) {
+    emailEndornment = <CheckCircleIcon color="success" />;
+  } else {
+    emailEndornment = <ErrorIcon color="error" />;
+  }
 
   return (
-    <Box>
+    <Box component="form" onSubmit={handleSubmit}>
       <Box sx={{ py: 5 }}>
         <Typography variant="h6">Vartotojo informacija</Typography>
       </Box>
@@ -26,21 +141,54 @@ const ProfilePageUserInfo = ({ formik }) => {
         flexDirection: 'column',
       }}
       >
-        {userFieldsData.map(({ name, value, label }) => (
-          <TextField
-            key={name}
-            fullWidth
-            id="outlined-size-small"
-            label={label}
-            size="small"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            name={name}
-            value={value}
-            onChange={handleChange}
-          />
-        ))}
+        <TextField
+          name="name"
+          label="Vardas"
+          onChange={handleChange}
+          onBlur={handleBlur}
+          value={values.name}
+          error={touched.name && Boolean(errors.name)}
+          helperText={touched.name && errors.name}
+          disabled={isSubmitting}
+          fullWidth
+          variant="outlined"
+        />
+        <TextField
+          name="surname"
+          label="Pavardė"
+          onChange={handleChange}
+          onBlur={handleBlur}
+          value={values.surname}
+          error={touched.surname && Boolean(errors.surname)}
+          helperText={touched.surname && errors.surname}
+          disabled={isSubmitting}
+          fullWidth
+          variant="outlined"
+        />
+        <TextField
+          name="email"
+          label="El. paštas"
+          onChange={handleEmailChange}
+          onBlur={handleEmailBlur}
+          value={values.email}
+          error={touched.email && Boolean(errors.email)}
+          helperText={touched.email && errors.email}
+          disabled={isSubmitting}
+          fullWidth
+          variant="outlined"
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                {emailEndornment}
+              </InputAdornment>
+            ),
+          }}
+        />
+      </Box>
+      <Box>
+        <Button variant="outlined" sx={{ mt: 3 }} type="submit" disabled={!dirty || !isValid}>
+          Išsaugoti
+        </Button>
       </Box>
     </Box>
   );

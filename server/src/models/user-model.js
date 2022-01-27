@@ -1,6 +1,6 @@
 const Mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
-const validator = require('validator');
+const { isEmail } = require('validator');
 
 const userSchema = new Mongoose.Schema({
   name: {
@@ -15,7 +15,7 @@ const userSchema = new Mongoose.Schema({
     type: 'string',
     required: true,
     validate: {
-      validator: (value) => validator.isEmail(value),
+      validator: isEmail,
       message: 'Neteisingas el. paštas'
     },
     unique: true,
@@ -24,23 +24,11 @@ const userSchema = new Mongoose.Schema({
     type: 'string',
     required: true,
     validate: [
-      {
-        validator: (value) => value.length >= 8,
-        message: 'mažiausiai 8 skaitliukai'
-      },
-      {
-        validator: (value) => value.length <= 32,
-        message: 'ne daugiau 32 skaitliukų'
-      },
-      {
-        validator: (value) => /^.*[0-9].*$/.test(value) ,
-        message: 'skaičiuko reikia dar'
-      },
-      {
-        validator: (value) => /^.*[A-ZĄČĘĖĮŠŲŪŽ].*$/.test(value) ,
-        message: 'Didesnės raidytės reikia dar'
-      }
-    ]
+      {validator: (value) => value.length >= 8, message: 'mažiausiai 8 skaitliukai'},
+      {validator: (value) => value.length <= 32, message: 'ne daugiau 32 skaitliukų'},
+      {validator: (value) => /^.*[0-9].*$/.test(value), message: 'skaičiuko reikia dar'},
+      {validator: (value) => /^.*[A-ZĄČĘĖĮŠŲŪŽ].*$/.test(value), message: 'Didesnės raidytės reikia dar'},
+    ],
   },
   role: {
     type: 'string',
