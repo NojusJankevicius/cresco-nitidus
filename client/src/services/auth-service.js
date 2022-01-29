@@ -77,8 +77,4 @@ const AuthService = new (class AuthService {
     }
   }
 })();
-
-// const deleteAuth = (token) => {
-//   delete requester.defaults.headers.common.Authorization;
-// };
 export default AuthService;

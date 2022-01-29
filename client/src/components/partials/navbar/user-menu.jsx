@@ -11,7 +11,7 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import StyledLink from '../../../styles/styled-link';
 
-const UserMenu = ({ handleCloseNavMenu, settings }) => {
+const UserMenu = ({ settings }) => {
   const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenUserMenu = (event) => {
@@ -47,12 +47,17 @@ const UserMenu = ({ handleCloseNavMenu, settings }) => {
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}
       >
-        {settings.map(({ setting, link }) => (
+        {settings.map(({ setting, link, onClick }) => (
           <StyledLink key={setting} to={link}>
-            <MenuItem key={setting} onClick={handleCloseNavMenu}>
+            <MenuItem key={setting} onClick={onClick}>
               <Typography textAlign="center">{setting}</Typography>
             </MenuItem>
           </StyledLink>
+          // ? signOut onClick'ui nereikia linko
+          // ! banždiau perduoti su if'ais bet reikia return statement?
+          // ! <MenuItem key={setting} onClick={onClick}>
+          // !  <Typography textAlign="center">{setting}</Typography>
+          // ! </MenuItem>
         ))}
       </Menu>
     </Box>
