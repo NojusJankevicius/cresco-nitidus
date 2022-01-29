@@ -11,7 +11,7 @@ const ProfilePage = () => {
   const user = useSelector(userSelector);
   return (
     <Container
-      maxWidth="lg"
+      maxWidth="md"
     >
       <ProfilePageUserInfo user={user} />
     </Container>
