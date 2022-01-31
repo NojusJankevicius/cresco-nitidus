@@ -16,7 +16,6 @@ const routeStructure = [
       { path: 'cart', pageName: 'CartPage' },
       { path: 'checkout', pageName: 'CheckoutPage' },
       { path: 'courses', pageName: 'CoursesPage' },
-      { path: 'mission', pageName: 'MissionPage' },
       { path: 'sign-in', pageName: 'SignInPage', auth: PUBLIC_ONLY },
       { path: 'sign-up', pageName: 'SignUpPage', auth: PUBLIC_ONLY },
       { path: '*', pageName: 'ErrorPage' },

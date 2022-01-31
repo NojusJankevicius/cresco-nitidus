@@ -18,8 +18,7 @@ import AuthService from '../../../services/auth-service';
 
 const pages = [
   { page: 'Kursai', link: '/courses' },
-  { page: 'Parduotuvė', link: '/shop' },
-  { page: 'Mūsų misija', link: '/mission' }, //! Ar reikia pakeisti links į routes? Kaip patogiau, kai neleidžia masyve išrašyt?
+  { page: 'Parduotuvė', link: '/shop' }, //! Ar reikia pakeisti links į routes? Kaip patogiau, kai neleidžia masyve išrašyt?
 ];
 
 const ResponsiveAppBar = () => {

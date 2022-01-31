@@ -34,7 +34,7 @@ const Desktop = ({
     </Box>
     <Box sx={{
       flexGrow: 1,
-      width: '100%',
+      width: '40%',
       display: { xs: 'none', md: 'flex' },
       justifyContent: 'space-around',
     }}

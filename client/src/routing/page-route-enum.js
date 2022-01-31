@@ -8,7 +8,6 @@ import ProductPage from '../pages/product-page';
 import CartPage from '../pages/cart-page';
 import CheckoutPage from '../pages/checkout-page';
 import CoursesPage from '../pages/courses-page';
-import MissionPage from '../pages/mission-page';
 import ErrorPage from '../pages/error-page';
 // public-only
 import SignInPage from '../pages/public-only/sign-in-page';
@@ -32,7 +31,6 @@ export default {
   CartPage,
   CheckoutPage,
   CoursesPage,
-  MissionPage,
   ErrorPage,
   SignInPage,
   SignUpPage,
