@@ -10,6 +10,8 @@ import {
   Typography,
 } from '@mui/material';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import StyledLink from '../styles/styled-link';
+import routes from '../routing/routes';
 
 const CartPage = () => (
   <Container>
@@ -37,7 +39,7 @@ const CartPage = () => (
                   width="160px"
                 />
 
-                <Box sx={{ width: 'calc(100% - 310px)', pl: 2 }}>
+                <Box sx={{ width: 'calc(100% - 230px)', pl: 2 }}>
                   <Typography gutterBottom variant="h6">
                     Grey Oyster Mushroom Grow Kit
                   </Typography>
@@ -46,22 +48,22 @@ const CartPage = () => (
                   </Typography>
                 </Box>
 
-                <Box sx={{ width: '150px' }}>
-                  <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <Box sx={{ width: '80px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                  <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                     <FormControl>
                       <TextField
                         value="1"
                         size="small"
-                        inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+                        // inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
                         type="number"
                       />
                     </FormControl>
-                    <Typography variant="subtitle2" color="text.secondary" sx={{ ml: '1rem' }}>
+                    <Typography variant="subtitle2" color="text.secondary" textAlign="center" sx={{ my: '0.5rem' }}>
                       16.99 eur.
                     </Typography>
                   </Box>
-                  <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-                    <Button color="error">
+                  <Box sx={{ alignSelf: 'flex-end', justifySelf: 'flex-end' }}>
+                    <Button color="error" size="small">
                       <DeleteOutlineIcon />
                     </Button>
                   </Box>
@@ -76,7 +78,7 @@ const CartPage = () => (
             <Typography variant="h5">
               Iš viso:
             </Typography>
-            <Typography variant="h5">
+            <Typography variant="h4">
               16.99 eur.
             </Typography>
           </Box>
@@ -84,11 +86,13 @@ const CartPage = () => (
             Contrary to popular belief,
             Lorem Ipsum is not simply random text.
             It has roots in a piece of classical Latin literature from 45 BC,
-            making it over 2000 years old. Richard McClintock.
+            making it over 2000 years old.
           </Typography>
-          <Button fullWidth variant="contained">
-            Patvirtinti užsakymą
-          </Button>
+          <StyledLink to={routes.CheckoutPage}>
+            <Button fullWidth variant="contained">
+              Patvirtinti užsakymą
+            </Button>
+          </StyledLink>
         </Grid>
       </Grid>
     </Box>

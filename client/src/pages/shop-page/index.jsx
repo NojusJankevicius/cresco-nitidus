@@ -32,8 +32,8 @@ const ShopPage = () => {
         Parduotuvė
       </Typography>
       <Box sx={{ display: 'flex', justifyContent: { xs: 'space-between', md: 'flex-end' }, my: 2 }}>
-        <Button sx={{ display: { md: 'none' } }}>
-          <MenuIcon onClick={ToggleDrawer(true)} />
+        <Button sx={{ display: { md: 'none' } }} onClick={ToggleDrawer(true)}>
+          <MenuIcon />
         </Button>
         <Box>
           <Button>
