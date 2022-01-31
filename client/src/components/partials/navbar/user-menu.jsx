@@ -10,6 +10,8 @@ import {
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import StyledLink from '../../../styles/styled-link';
+import StyledNavbarLink from './navbar-link-button';
+import routes from '../../../routing/routes';
 
 const UserMenu = ({ settings }) => {
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -23,9 +25,11 @@ const UserMenu = ({ settings }) => {
   };
   return (
     <Box sx={{ flexGrow: 0, display: 'flex' }}>
-      <IconButton>
-        <ShoppingCartOutlinedIcon />
-      </IconButton>
+      <StyledNavbarLink to={routes.CartPage}>
+        <IconButton>
+          <ShoppingCartOutlinedIcon />
+        </IconButton>
+      </StyledNavbarLink>
       <Tooltip title="Open settings">
         <IconButton onClick={handleOpenUserMenu} sx={{ py: 1 }}>
           <PersonOutlineOutlinedIcon />
