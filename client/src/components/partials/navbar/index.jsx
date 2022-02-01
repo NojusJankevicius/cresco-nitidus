@@ -38,7 +38,7 @@ const ResponsiveAppBar = () => {
     AuthService.SignOut();
   };
   const settings = [
-    { setting: 'Profilis', link: '/dashboard', onclick: { handleCloseNavMenu } },
+    { setting: 'Profilis', link: '/profile', onclick: { handleCloseNavMenu } },
     { setting: 'Mėgstamos prekės', link: '/dashboard/wishlist', onclick: { handleCloseNavMenu } },
     { setting: 'Mano kursai', link: '/dashboard/course/1', onclick: { handleCloseNavMenu } },
     { setting: 'Atsijungti', link: '/', onclick: { handleSignOut } }, //! ar gera praktika taip perduoti onClick? banždiau perduoti su if'ais bet reikia return statement?
