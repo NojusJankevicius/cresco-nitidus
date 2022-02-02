@@ -8,19 +8,19 @@ import {
   Divider,
   Typography,
 } from '@mui/material';
-import Mobile from './mobile';
-import Desktop from './desktop';
-import UserMenu from './user-menu';
-import StyledNavbarLink from './navbar-link-button';
 import routes from '../../../routing/routes';
 import { authSelector } from '../../../store/auth';
+import Mobile from './navbar-mobile';
+import Desktop from './navbar-desktop';
+import UserMenu from './navbar-user-menu';
+import LinkButton from './navbar-link-button';
 
 const pages = [
   { page: 'Kursai', link: '/courses' },
   { page: 'Parduotuvė', link: '/shop' }, //! Ar reikia pakeisti links į routes? Kaip patogiau, kai neleidžia masyve išrašyt?
 ];
 
-const ResponsiveAppBar = () => {
+const Navbar = () => {
   const auth = useSelector(authSelector);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
@@ -56,12 +56,12 @@ const ResponsiveAppBar = () => {
           {
             !auth.signedIn ? (
               <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                <StyledNavbarLink to={routes.SignInPage}>
+                <LinkButton to={routes.SignInPage}>
                   <Typography variant="button" display="block">Prisijungti</Typography>
-                </StyledNavbarLink>
-                <StyledNavbarLink to={routes.SignUpPage}>
+                </LinkButton>
+                <LinkButton to={routes.SignUpPage}>
                   <Typography variant="button" display="block">Registruotis</Typography>
-                </StyledNavbarLink>
+                </LinkButton>
               </Box>
             ) : (
               <UserMenu
@@ -74,4 +74,4 @@ const ResponsiveAppBar = () => {
     </AppBar>
   );
 };
-export default ResponsiveAppBar;
+export default Navbar;

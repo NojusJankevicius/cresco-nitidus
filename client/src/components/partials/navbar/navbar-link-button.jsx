@@ -1,7 +1,7 @@
 import { styled } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 
-const StyledNavbarLink = styled(NavLink)(({ theme }) => ({
+const NavbarLinkButton = styled(NavLink)(({ theme }) => ({
   textDecoration: 'none',
   color: theme.palette.common.black,
   '&.active': {
@@ -9,4 +9,4 @@ const StyledNavbarLink = styled(NavLink)(({ theme }) => ({
   },
 }));
 
-export default StyledNavbarLink;
+export default NavbarLinkButton;

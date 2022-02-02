@@ -8,9 +8,9 @@ import {
   Typography,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import StyledNavbarLink from './navbar-link-button';
+import LinkButton from './navbar-link-button';
 
-const Mobile = ({
+const NavbarMobile = ({
   handleOpenNavMenu,
   handleCloseNavMenu,
   anchorElNav,
@@ -53,17 +53,17 @@ const Mobile = ({
       }}
     >
       {pages.map(({ page, link }) => (
-        <StyledNavbarLink
+        <LinkButton
           to={link}
           key={page}
         >
           <MenuItem onClick={handleCloseNavMenu}>
             <Typography textAlign="center">{page}</Typography>
           </MenuItem>
-        </StyledNavbarLink>
+        </LinkButton>
       ))}
     </Menu>
-    <StyledNavbarLink
+    <LinkButton
       to="/"
     >
       <Typography
@@ -74,7 +74,7 @@ const Mobile = ({
       >
         cresco - nitidus
       </Typography>
-    </StyledNavbarLink>
+    </LinkButton>
   </Box>
 );
-export default Mobile;
+export default NavbarMobile;

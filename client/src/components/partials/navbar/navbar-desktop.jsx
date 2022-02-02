@@ -5,9 +5,9 @@ import {
   Button,
   Typography,
 } from '@mui/material';
-import StyledNavbarLink from './navbar-link-button';
+import LinkButton from './navbar-link-button';
 
-const Desktop = ({
+const NavbarDesktop = ({
   handleCloseNavMenu,
   pages,
 }) => (
@@ -19,7 +19,7 @@ const Desktop = ({
       alignItems: { md: 'center' },
     }}
     >
-      <StyledNavbarLink
+      <LinkButton
         to="/"
       >
         <Typography
@@ -30,7 +30,7 @@ const Desktop = ({
         >
           cresco - nitidus
         </Typography>
-      </StyledNavbarLink>
+      </LinkButton>
     </Box>
     <Box sx={{
       flexGrow: 1,
@@ -40,7 +40,7 @@ const Desktop = ({
     }}
     >
       {pages.map(({ page, link }) => (
-        <StyledNavbarLink
+        <LinkButton
           to={link}
           key={page}
         >
@@ -50,10 +50,10 @@ const Desktop = ({
           >
             {page}
           </Button>
-        </StyledNavbarLink>
+        </LinkButton>
       ))}
     </Box>
   </>
 );
 
-export default Desktop;
+export default NavbarDesktop;

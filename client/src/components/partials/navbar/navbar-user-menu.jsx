@@ -9,12 +9,12 @@ import {
 } from '@mui/material';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import StyledLink from '../../../styles/styled-link';
-import StyledNavbarLink from './navbar-link-button';
 import routes from '../../../routing/routes';
 import AuthService from '../../../services/auth-service';
+import StyledLink from '../../../styles/styled-link';
+import LinkButton from './navbar-link-button';
 
-const UserMenu = ({ settings }) => {
+const NavbarUserMenu = ({ settings }) => {
   const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenUserMenu = (event) => {
@@ -36,11 +36,11 @@ const UserMenu = ({ settings }) => {
 
   return (
     <Box sx={{ flexGrow: 0, display: 'flex' }}>
-      <StyledNavbarLink to={routes.CartPage}>
+      <LinkButton to={routes.CartPage}>
         <IconButton>
           <ShoppingCartOutlinedIcon />
         </IconButton>
-      </StyledNavbarLink>
+      </LinkButton>
       <Tooltip title="Open settings">
         <IconButton onClick={handleOpenUserMenu} sx={{ py: 1 }}>
           <PersonOutlineOutlinedIcon />
@@ -77,4 +77,4 @@ const UserMenu = ({ settings }) => {
   );
 };
 
-export default UserMenu;
+export default NavbarUserMenu;
