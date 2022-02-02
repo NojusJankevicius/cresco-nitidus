@@ -14,7 +14,6 @@ import UserMenu from './user-menu';
 import StyledNavbarLink from './navbar-link-button';
 import routes from '../../../routing/routes';
 import { authSelector } from '../../../store/auth';
-import AuthService from '../../../services/auth-service';
 
 const pages = [
   { page: 'Kursai', link: '/courses' },
@@ -33,17 +32,12 @@ const ResponsiveAppBar = () => {
     setAnchorElNav(null);
   };
 
-  const handleSignOut = () => {
-    handleCloseNavMenu();
-    AuthService.SignOut();
-  };
   const settings = [
     { setting: 'Profilis', link: '/profile', onclick: { handleCloseNavMenu } },
     { setting: 'Mėgstamos prekės', link: '/dashboard/wishlist', onclick: { handleCloseNavMenu } },
     { setting: 'Mano kursai', link: '/dashboard/course/1', onclick: { handleCloseNavMenu } },
-    { setting: 'Atsijungti', link: '/', onclick: { handleSignOut } }, //! ar gera praktika taip perduoti onClick? banždiau perduoti su if'ais bet reikia return statement?
   ];
-  //! Ar reikia pakeisti links į routes? Kaip patogiau, kai neleidžia masyve išrašyt?
+  //! Ar reikia pakeisti links į routes? Kaip?
   return (
     <AppBar position="static" sx={{ backgroundColor: 'white' }}>
       <Container maxWidth="xl">

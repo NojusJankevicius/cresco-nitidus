@@ -12,6 +12,7 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import StyledLink from '../../../styles/styled-link';
 import StyledNavbarLink from './navbar-link-button';
 import routes from '../../../routing/routes';
+import AuthService from '../../../services/auth-service';
 
 const UserMenu = ({ settings }) => {
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -23,6 +24,16 @@ const UserMenu = ({ settings }) => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElUser(null);
+  };
+
+  const handleSignOut = () => {
+    handleCloseNavMenu();
+    AuthService.signOut();
+  };
+
   return (
     <Box sx={{ flexGrow: 0, display: 'flex' }}>
       <StyledNavbarLink to={routes.CartPage}>
@@ -57,12 +68,10 @@ const UserMenu = ({ settings }) => {
               <Typography textAlign="center">{setting}</Typography>
             </MenuItem>
           </StyledLink>
-          // ? signOut onClick'ui nereikia linko
-          // ! banždiau perduoti su if'ais bet reikia return statement?
-          // ! <MenuItem key={setting} onClick={onClick}>
-          // !  <Typography textAlign="center">{setting}</Typography>
-          // ! </MenuItem>
         ))}
+        <MenuItem onClick={handleSignOut}>
+          <Typography>Atsijungti</Typography>
+        </MenuItem>
       </Menu>
     </Box>
   );
