@@ -9,9 +9,9 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Check from '@mui/icons-material/Check';
 import { styled } from '@mui/material';
-import AddressForm from './AddressForm';
-import PaymentForm from './PaymentForm';
-import Review from './Review';
+import AddressForm from './checkout-page-address-form';
+import PaymentForm from './checkout-page-payment-form';
+import Review from './checkout-page-review';
 
 const steps = ['Adresas', 'Mokėjimo duomenys', 'Užsakymo peržiūra'];
 

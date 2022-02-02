@@ -6,7 +6,7 @@ import TextField from '@mui/material/TextField';
 // import Checkbox from '@mui/material/Checkbox';
 
 // eslint-disable-next-line arrow-body-style
-const AddressForm = () => {
+const CheckoutPageAddressForm = () => {
   return (
     <>
       <Typography variant="h6" gutterBottom>
@@ -79,4 +79,4 @@ const AddressForm = () => {
   );
 };
 
-export default AddressForm;
+export default CheckoutPageAddressForm;

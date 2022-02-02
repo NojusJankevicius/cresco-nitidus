@@ -27,7 +27,7 @@ const payments = [
   { name: 'Galiojimo data', detail: '04/2024' },
 ];
 
-const Review = () => (
+const CheckoutPageReview = () => (
   <>
     <Typography variant="h6" gutterBottom>
       Jūsų užsakymas
@@ -76,4 +76,4 @@ const Review = () => (
   </>
 );
 
-export default Review;
+export default CheckoutPageReview;

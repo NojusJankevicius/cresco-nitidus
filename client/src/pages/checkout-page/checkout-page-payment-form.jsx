@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
-const PaymentForm = () => (
+const CheckoutPagePaymentForm = () => (
   <>
     <Typography variant="h6" gutterBottom>
       Mokėjimas
@@ -62,4 +62,4 @@ const PaymentForm = () => (
   </>
 );
 
-export default PaymentForm;
+export default CheckoutPagePaymentForm;
