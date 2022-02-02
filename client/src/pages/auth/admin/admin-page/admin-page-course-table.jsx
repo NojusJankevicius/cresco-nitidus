@@ -12,56 +12,41 @@ import {
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 
-const createData = (id, product, category, price) => ({
+const createData = (id, course, price) => ({
   id,
-  product,
-  category,
+  course,
   price,
 });
 
 const rows = [
   createData(
     0,
-    'oyster mushroom starter kit',
-    'starter kit',
-    '16.99',
-  ),
-  createData(
-    0,
-    'oyster mushroom starter kit',
-    'starter kit',
-    '16.99',
-  ),
-  createData(
-    0,
-    'oyster mushroom starter kit',
-    'starter kit',
-    '16.99',
-  ),
-  createData(
-    0,
-    'oyster mushroom starter kit',
-    'starter kit',
-    '16.99',
+    'hydroponics',
+    '49.99',
   ),
 ];
 
-const AdminPageProductTable = () => (
+const AdminPageCourseTable = () => (
   <>
     <Typography
       variant="h5"
       component="h2"
+      sx={{ my: 3 }}
       textAlign="center"
     >
-      Visos prekės
+      Visi kursai
     </Typography>
-    <Paper sx={{ p: 1, display: 'flex', flexDirection: 'column' }}>
+    <Paper sx={{
+      p: 1,
+      display: 'flex',
+      flexDirection: 'column',
+    }}
+    >
       <TableContainer sx={{ my: 4 }}>
         <Table size="small">
           <TableHead>
             <TableRow>
               <TableCell>Prekė</TableCell>
-              <TableCell>Kategorija</TableCell>
               <TableCell align="right">Kaina</TableCell>
               <TableCell align="right">Veiksmai</TableCell>
             </TableRow>
@@ -69,8 +54,7 @@ const AdminPageProductTable = () => (
           <TableBody>
             {rows.map((row) => (
               <TableRow key={row.id}>
-                <TableCell>{row.product}</TableCell>
-                <TableCell>{row.category}</TableCell>
+                <TableCell>{row.course}</TableCell>
                 <TableCell align="right">{`${row.price}`}</TableCell>
                 <TableCell align="right">
                   <EditOutlinedIcon />
@@ -83,6 +67,7 @@ const AdminPageProductTable = () => (
       </TableContainer>
     </Paper>
   </>
+
 );
 
-export default AdminPageProductTable;
+export default AdminPageCourseTable;
