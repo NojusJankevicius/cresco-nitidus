@@ -34,8 +34,8 @@ const Navbar = () => {
 
   const settings = [
     { setting: 'Profilis', link: '/profile', onclick: { handleCloseNavMenu } },
-    { setting: 'Mėgstamos prekės', link: '/dashboard/wishlist', onclick: { handleCloseNavMenu } },
-    { setting: 'Mano kursai', link: '/dashboard/course/1', onclick: { handleCloseNavMenu } },
+    { setting: 'Mėgstamos prekės', link: '/wishlist', onclick: { handleCloseNavMenu } },
+    { setting: 'Mano kursai', link: '/course/1', onclick: { handleCloseNavMenu } },
   ];
   //! Ar reikia pakeisti links į routes? Kaip?
   return (
