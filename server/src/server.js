@@ -6,6 +6,8 @@ require('dotenv').config();
 const courseRouter = require('./routes/course-router');
 const authRouter = require('./routes/auth-router');
 const userRouter = require('./routes/user-router');
+const categoryRouter = require('./routes/category-router');
+const productRouter = require('./routes/product-router');
 
 const server = express();
 const { SERVER_PORT, DB_CONNECTION } = process.env;
@@ -25,6 +27,8 @@ server.use(cors(corsOptions));
 server.use('/api/courses', courseRouter);
 server.use('/api/auth', authRouter);
 server.use('/api/users', userRouter);
+server.use('/api/categories', categoryRouter);
+server.use('/api/products', productRouter);
 
 server.listen(SERVER_PORT, () => {
   console.log(`puslapis veikia ant http://localhost:${SERVER_PORT}/`);

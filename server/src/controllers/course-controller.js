@@ -21,9 +21,7 @@ const createCourse = async (req, res) => {
     res.status(200).json(course);
   } catch (error) {
     console.log(error)
-    res.status(400).json({
-      message: `klaida: pavadinimu '${name}' elementas jau yra`
-    })
+    res.status(400).json({ message: `klaida: pavadinimu '${name}' elementas jau yra` })
   }
 };
 
@@ -34,9 +32,7 @@ const getCourse = async (req, res) => {
     const course = new CourseViewModel(courseDoc);
     res.status(200).json(course);
   } catch (error) {
-    res.status(404).json({
-      message: `klaida: elementas nerastas, id: '${id}'`
-    });
+    res.status(404).json({ message: `klaida: kursas nerastas, id: ${id}` });
   }
 };
 
@@ -47,9 +43,7 @@ const deleteCourse = async (req, res) => {
     const course = new CourseViewModel(courseDoc)
     res.status(200).json(course);
   } catch (error) {
-    res.status(404).json({
-      message: 'Kursas nerastas'
-    })
+    res.status(404).json({ message: `klaida: kursas nerastas, id: ${id}` })
   }
 };
 
@@ -68,10 +62,10 @@ const updateCourse = async (req, res) => {
       res.status(200).json(course);
 
     } catch (error) {
-      res.status(40).json({ message: 'blogi duomenys' });
+      res.status(400).json({ message: 'blogi duomenys' });
     }
   } catch (error) {
-    res.status(404).json({ message: 'kursas nerastas' });
+    res.status(404).json({ message: `klaida: kursas nerastas, id: ${id}` });
   }
 };
 
@@ -102,7 +96,7 @@ const replaceCourse = async (req, res) => {
     }
 
   } catch (error) {
-    res.status(404).json({ message: 'kursas nerastas' });
+    res.status(404).json({ message: `klaida: kursas nerastas, id: ${id}` });
   }
 };
 
