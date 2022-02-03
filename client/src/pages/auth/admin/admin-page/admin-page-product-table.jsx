@@ -27,19 +27,19 @@ const rows = [
     '16.99',
   ),
   createData(
-    0,
+    1,
     'oyster mushroom starter kit',
     'starter kit',
     '16.99',
   ),
   createData(
-    0,
+    2,
     'oyster mushroom starter kit',
     'starter kit',
     '16.99',
   ),
   createData(
-    0,
+    3,
     'oyster mushroom starter kit',
     'starter kit',
     '16.99',
