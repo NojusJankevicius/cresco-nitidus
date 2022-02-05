@@ -3,6 +3,7 @@ import * as React from 'react';
 import {
   Box,
   Checkbox,
+  Divider,
   Drawer,
   List,
   ListItem,
@@ -19,9 +20,10 @@ const ShopPageDrawer = ({ drawerOpen, closeDrawer, categories }) => (
     <Box
       sx={{ width: 250, py: 4, pr: 2 }}
     >
-      <Box sx={{ px: '16px' }}>
+      <Box sx={{ px: 2 }}>
         <Typography variant="h5" textAlign="center">Kategorijos</Typography>
       </Box>
+      <Divider variant="middle" sx={{ pt: 2 }} />
       <List
         sx={{ width: '100%' }}
       >

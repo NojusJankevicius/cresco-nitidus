@@ -58,7 +58,7 @@ const ShopPageDesktop = ({ categories }) => (
       </Box>
       <Box sx={{ ml: '1.5rem' }}>
         <Grid container spacing={2}>
-          <Grid item xs={12} sm={6} lg={4}>
+          <Grid item xs={12} sm={6} lg={4} sx={{ pr: 2 }}>
             <Card sx={{ maxWidth: { xs: 'auto', lg: 300 } }}>
               <CardActionArea>
                 <CardMedia
@@ -96,7 +96,7 @@ const ShopPageDesktop = ({ categories }) => (
               </CardActions>
             </Card>
           </Grid>
-          <Grid item xs={12} sm={6} lg={4}>
+          <Grid item xs={12} sm={6} lg={4} sx={{ pr: 2 }}>
             <Card sx={{ maxWidth: { xs: 'auto', lg: 300 } }}>
               <CardActionArea>
                 <CardMedia
@@ -134,7 +134,7 @@ const ShopPageDesktop = ({ categories }) => (
               </CardActions>
             </Card>
           </Grid>
-          <Grid item xs={12} sm={6} lg={4}>
+          <Grid item xs={12} sm={6} lg={4} sx={{ pr: 2 }}>
             <Card sx={{ maxWidth: { xs: 'auto', lg: 300 } }}>
               <CardActionArea>
                 <CardMedia
@@ -172,7 +172,7 @@ const ShopPageDesktop = ({ categories }) => (
               </CardActions>
             </Card>
           </Grid>
-          <Grid item xs={12} sm={6} lg={4}>
+          <Grid item xs={12} sm={6} lg={4} sx={{ pr: 2 }}>
             <Card sx={{ maxWidth: { xs: 'auto', lg: 300 } }}>
               <CardActionArea>
                 <CardMedia
@@ -210,7 +210,7 @@ const ShopPageDesktop = ({ categories }) => (
               </CardActions>
             </Card>
           </Grid>
-          <Grid item xs={12} sm={6} lg={4}>
+          <Grid item xs={12} sm={6} lg={4} sx={{ pr: 2 }}>
             <Card sx={{ maxWidth: { xs: 'auto', lg: 300 } }}>
               <CardActionArea>
                 <CardMedia
@@ -248,7 +248,7 @@ const ShopPageDesktop = ({ categories }) => (
               </CardActions>
             </Card>
           </Grid>
-          <Grid item xs={12} sm={6} lg={4}>
+          <Grid item xs={12} sm={6} lg={4} sx={{ pr: 2 }}>
             <Card sx={{ maxWidth: { xs: 'auto', lg: 300 } }}>
               <CardActionArea>
                 <CardMedia
