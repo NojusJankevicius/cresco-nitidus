@@ -10,54 +10,18 @@ import {
   CardActionArea,
   CardActions,
   Checkbox,
-  ListItem,
-  List,
-  ListItemButton,
-  ListItemText,
 } from '@mui/material';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
+import DesktopFilters from './shop-page-desktop-filters';
 
 const ShopPageGrid = ({ categories }) => (
   <Box>
     <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-      <Box sx={{
-        width: 180,
-        display: { xs: 'none', md: 'block' },
-      }}
-      >
-        <Box sx={{ mb: '1rem' }}>
-          <Box sx={{ px: '16px' }}>
-            <Typography variant="h5">Kategorijos</Typography>
-          </Box>
-          <List
-            dense
-            sx={{ width: '100%' }}
-          >
-            {categories.map(({ name }) => {
-              const labelId = `checkbox-list-secondary-label-${name}`;
-              return (
-                <ListItem
-                  key={name}
-                  secondaryAction={(
-                    <Checkbox
-                      edge="end"
-                    />
-                  )}
-                  disablePadding
-                >
-                  <ListItemButton>
-                    <ListItemText id={labelId} primary={name} />
-                  </ListItemButton>
-                </ListItem>
-              );
-            })}
-          </List>
-        </Box>
-      </Box>
+      <DesktopFilters categories={categories} />
       <Box sx={{ ml: '1.5rem' }}>
         <Grid container spacing={2}>
-          <Grid item xs={12} sm={6} lg={4} sx={{ pr: 2 }}>
+          <Grid item xs={12} sm={6} lg={4} sx={{ pr: 2, mb: 2 }}>
             <Card sx={{ maxWidth: { xs: 'auto', lg: 300 } }}>
               <CardActionArea>
                 <CardMedia
@@ -95,7 +59,7 @@ const ShopPageGrid = ({ categories }) => (
               </CardActions>
             </Card>
           </Grid>
-          <Grid item xs={12} sm={6} lg={4} sx={{ pr: 2 }}>
+          <Grid item xs={12} sm={6} lg={4} sx={{ pr: 2, mb: 2 }}>
             <Card sx={{ maxWidth: { xs: 'auto', lg: 300 } }}>
               <CardActionArea>
                 <CardMedia
@@ -133,7 +97,7 @@ const ShopPageGrid = ({ categories }) => (
               </CardActions>
             </Card>
           </Grid>
-          <Grid item xs={12} sm={6} lg={4} sx={{ pr: 2 }}>
+          <Grid item xs={12} sm={6} lg={4} sx={{ pr: 2, mb: 2 }}>
             <Card sx={{ maxWidth: { xs: 'auto', lg: 300 } }}>
               <CardActionArea>
                 <CardMedia
@@ -171,7 +135,7 @@ const ShopPageGrid = ({ categories }) => (
               </CardActions>
             </Card>
           </Grid>
-          <Grid item xs={12} sm={6} lg={4} sx={{ pr: 2 }}>
+          <Grid item xs={12} sm={6} lg={4} sx={{ pr: 2, mb: 2 }}>
             <Card sx={{ maxWidth: { xs: 'auto', lg: 300 } }}>
               <CardActionArea>
                 <CardMedia
@@ -209,7 +173,7 @@ const ShopPageGrid = ({ categories }) => (
               </CardActions>
             </Card>
           </Grid>
-          <Grid item xs={12} sm={6} lg={4} sx={{ pr: 2 }}>
+          <Grid item xs={12} sm={6} lg={4} sx={{ pr: 2, mb: 2 }}>
             <Card sx={{ maxWidth: { xs: 'auto', lg: 300 } }}>
               <CardActionArea>
                 <CardMedia
@@ -247,7 +211,7 @@ const ShopPageGrid = ({ categories }) => (
               </CardActions>
             </Card>
           </Grid>
-          <Grid item xs={12} sm={6} lg={4} sx={{ pr: 2 }}>
+          <Grid item xs={12} sm={6} lg={4} sx={{ pr: 2, mb: 2 }}>
             <Card sx={{ maxWidth: { xs: 'auto', lg: 300 } }}>
               <CardActionArea>
                 <CardMedia
