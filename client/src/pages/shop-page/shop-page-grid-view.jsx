@@ -18,16 +18,15 @@ import {
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
 
-const ShopPageDesktop = ({ categories }) => (
+const ShopPageGrid = ({ categories }) => (
   <Box>
     <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
       <Box sx={{
         width: 180,
         display: { xs: 'none', md: 'block' },
-        boxShadow: '0 0 0 1px',
       }}
       >
-        <Box sx={{ p: '1rem 0', mb: '1rem' }}>
+        <Box sx={{ mb: '1rem' }}>
           <Box sx={{ px: '16px' }}>
             <Typography variant="h5">Kategorijos</Typography>
           </Box>
@@ -292,4 +291,4 @@ const ShopPageDesktop = ({ categories }) => (
   </Box>
 );
 
-export default ShopPageDesktop;
+export default ShopPageGrid;
