@@ -18,8 +18,6 @@ import ProfilePage from '../pages/auth/profile-page';
 import WishlistPage from '../pages/auth/user/wishlist-page';
 // admin
 import AdminPage from '../pages/auth/admin/admin-page';
-// import ProductPanelPage from '../pages/auth/admin/product-panel-page';
-// import UserPanelPage from '../pages/auth/admin/user-panel-page';
 
 export default {
   PageLayout,
@@ -36,6 +34,4 @@ export default {
   ProfilePage,
   WishlistPage,
   AdminPage,
-  // ProductPanelPage,
-  // UserPanelPage,
 };
