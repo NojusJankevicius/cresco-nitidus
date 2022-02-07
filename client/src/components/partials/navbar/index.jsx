@@ -35,9 +35,8 @@ const Navbar = () => {
   const settings = [
     { setting: 'Profilis', link: '/profile', onclick: { handleCloseNavMenu } },
     { setting: 'Mėgstamos prekės', link: '/wishlist', onclick: { handleCloseNavMenu } },
-    { setting: 'Mano kursai', link: '/course/1', onclick: { handleCloseNavMenu } },
   ];
-  //! Ar reikia pakeisti links į routes? Kaip?
+  // ? Ar reikia pakeisti links į routes? Kaip?
   return (
     <AppBar position="static" sx={{ backgroundColor: 'white' }}>
       <Container maxWidth="xl">
