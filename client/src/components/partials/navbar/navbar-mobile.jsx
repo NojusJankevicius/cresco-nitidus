@@ -9,6 +9,7 @@ import {
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import LinkButton from './navbar-link-button';
+import routes from '../../../routing/routes';
 
 const NavbarMobile = ({
   handleOpenNavMenu,
@@ -64,7 +65,7 @@ const NavbarMobile = ({
       ))}
     </Menu>
     <LinkButton
-      to="/"
+      to={routes.HomePage}
     >
       <Typography
         variant="h6"

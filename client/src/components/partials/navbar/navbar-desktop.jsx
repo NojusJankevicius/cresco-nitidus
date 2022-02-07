@@ -2,13 +2,12 @@ import React from 'react';
 
 import {
   Box,
-  Button,
   Typography,
 } from '@mui/material';
 import LinkButton from './navbar-link-button';
+import routes from '../../../routing/routes';
 
 const NavbarDesktop = ({
-  handleCloseNavMenu,
   pages,
 }) => (
   <>
@@ -20,7 +19,7 @@ const NavbarDesktop = ({
     }}
     >
       <LinkButton
-        to="/"
+        to={routes.HomePage}
       >
         <Typography
           variant="h6"
@@ -44,12 +43,12 @@ const NavbarDesktop = ({
           to={link}
           key={page}
         >
-          <Button
-            onClick={handleCloseNavMenu}
+          <Typography
+            variant="button"
             sx={{ color: 'inherit', display: 'block' }}
           >
             {page}
-          </Button>
+          </Typography>
         </LinkButton>
       ))}
     </Box>
