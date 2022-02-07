@@ -20,7 +20,6 @@ const routeStructure = [
       { path: 'sign-up', pageName: 'SignUpPage', auth: PUBLIC_ONLY },
       { path: '*', pageName: 'ErrorPage' },
       { path: 'profile', pageName: 'ProfilePage', auth: AUTH },
-      { path: 'course/:id', pageName: 'CoursePage', auth: USER },
       { path: 'wishlist', pageName: 'WishlistPage', auth: USER },
     ],
   },

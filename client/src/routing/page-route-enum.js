@@ -15,7 +15,6 @@ import SignUpPage from '../pages/public-only/sign-up-page';
 // auth
 import ProfilePage from '../pages/auth/profile-page';
 // user
-import CoursePage from '../pages/auth/user/course-page';
 import WishlistPage from '../pages/auth/user/wishlist-page';
 // admin
 import AdminPage from '../pages/auth/admin/admin-page';
@@ -35,7 +34,6 @@ export default {
   SignInPage,
   SignUpPage,
   ProfilePage,
-  CoursePage,
   WishlistPage,
   AdminPage,
   // ProductPanelPage,
