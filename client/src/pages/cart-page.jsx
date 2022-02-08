@@ -26,7 +26,10 @@ const CartPage = () => (
             </Box>
             <Box>
               <Box sx={{
-                display: 'flex',
+                display: {
+                  xs: 'block',
+                  md: 'flex'
+                },
                 mb: '3rem',
                 boxShadow: '0 0 0 1px',
                 p: '1.5rem'
@@ -36,10 +39,20 @@ const CartPage = () => (
                 <Box
                   component="img"
                   src="https://i.etsystatic.com/29278440/r/il/e9387d/3427856889/il_794xN.3427856889_ifb2.jpg"
-                  width="160px"
+                  sx={{
+                    width: {
+                      xs: '100%',
+                      md: '160px'
+                    }
+                  }}
                 />
 
-                <Box sx={{ width: 'calc(100% - 230px)', pl: 2 }}>
+                <Box sx={{
+                  width: {
+                    xs: '100%',
+                    md: 'calc(100% - 230px)'
+                  }, pl: 2
+                }}>
                   <Typography gutterBottom variant="h6">
                     Grey Oyster Mushroom Grow Kit
                   </Typography>
@@ -48,13 +61,12 @@ const CartPage = () => (
                   </Typography>
                 </Box>
 
-                <Box sx={{ width: '80px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                <Box sx={{ width: { xs: '100%', md: '80px' }, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                   <Box sx={{ display: 'flex', flexDirection: 'column' }}>
                     <FormControl>
                       <TextField
                         value="1"
                         size="small"
-                        // inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
                         type="number"
                       />
                     </FormControl>
@@ -68,7 +80,6 @@ const CartPage = () => (
                     </Button>
                   </Box>
                 </Box>
-
               </Box>
             </Box>
           </Box>
