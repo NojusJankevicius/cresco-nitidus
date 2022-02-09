@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import {
   Box,
@@ -15,6 +15,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import GridView from './shop-page-grid-view';
 import Drawer from './shop-page-drawer';
 import RowView from './shop-page-row-view';
+// import { getProducts } from '../../services/product-service';
 
 const categories = [
   { name: 'Starteriai' },
@@ -23,12 +24,27 @@ const categories = [
   { name: 'Sėklos' },
 ];
 
+const items = [
+  { name: 'grybukai', subtitle: 'lorem lorem up up', price: 15 },
+  { name: 'žolytė', subtitle: 'lorem lorem up up', price: 10 },
+  { name: 'Grey Oyster Mushroom Grow Kit', subtitle: 'Grey Oyster mushroom (Pleurotus ostreatus)', price: 16.99 },
+]
+
+
 const ShopPage = () => {
+  // const [products, setProducts] = useState([]);
+
+  // useEffect(async () => {
+  //   // ! panaudoti product service parsitraukti visus duomenis
+  //   const productData = await getProducts();
+  //   setProducts(productData);
+  //   console.log(products);
+  //   // ! nustatyti gautus duomenis su funkcija setProducts
+  // }, []);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [productViewType, setProductViewType] = useState('grid')
   const ToggleDrawer = (open) => () => {
     setDrawerOpen(open);
-
   };
 
   const handleProductViewChange = (_, nextView) => {
@@ -36,9 +52,9 @@ const ShopPage = () => {
   };
 
   const ProductView = productViewType === 'row' ? (
-    <RowView categories={categories} />
+    <RowView categories={categories} items={items} />
   ) : (
-    <GridView categories={categories} />
+    <GridView categories={categories} items={items} />
   );
 
   return (
@@ -52,12 +68,12 @@ const ShopPage = () => {
         </Button>
         <Box>
           <ToggleButtonGroup
-          color='primary'
-          value={productViewType}
-          exclusive
-          size="small"
-          onChange={handleProductViewChange}
-          sx={{ pr: 2 }}
+            color='primary'
+            value={productViewType}
+            exclusive
+            size="small"
+            onChange={handleProductViewChange}
+            sx={{ pr: 2 }}
           >
             <ToggleButton value="grid">
               <GridViewRoundedIcon />

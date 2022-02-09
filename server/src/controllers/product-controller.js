@@ -2,7 +2,7 @@ const ProductModel = require('../models/product-model');
 const ProductViewModel = require('../view-models/product-view-model');
 
 const getProducts = async (req, res) => {
-  const productDocs = await ProductModel.find();
+  const productDocs = await ProductModel.find().populate("category");
   const products = productDocs.map(product => new ProductViewModel(product));
   res.status(200).json({ products });
 };
