@@ -22,8 +22,10 @@ const ShopPageGridView = ({ categories, items }) => (
       <DesktopFilters categories={categories} />
       <Box sx={{ ml: '1.5rem' }}>
         <Grid container spacing={2}>
-          {items.map(({ name, price, subtitle },) => (
-            <Grid item xs={12} sm={6} lg={4} sx={{ pr: 2, mb: 2 }} key={name}>
+          {items.map(({
+            id, name, price, subtitle,
+          },) => (
+            <Grid item xs={12} sm={6} lg={4} sx={{ pr: 2, mb: 2 }} key={id}>
               <Card sx={{ maxWidth: { xs: 'auto', lg: 300 } }}>
                 <CardActionArea>
                   <CardMedia

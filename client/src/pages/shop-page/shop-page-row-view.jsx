@@ -25,9 +25,11 @@ const ShopPageGrid = ({ categories, items }) => (
             p: 2,
           }}
           >
-            {items.map(({ name, subtitle, price }) => (
+            {items.map(({
+              id, name, subtitle, price,
+            }) => (
 
-              <Paper sx={{ mb: 2 }}>
+              <Paper sx={{ mb: 2 }} key={id}>
                 <Grid container sx={{ alignItems: 'center' }}>
                   <Grid item xs={12} md={2}>
                     <Box>

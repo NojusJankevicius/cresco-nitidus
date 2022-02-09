@@ -25,9 +25,10 @@ const categories = [
 ];
 
 const items = [
-  { name: 'grybukai', subtitle: 'lorem lorem up up', price: 15 },
-  { name: 'žolytė', subtitle: 'lorem lorem up up', price: 10 },
-  { name: 'Grey Oyster Mushroom Grow Kit', subtitle: 'Grey Oyster mushroom (Pleurotus ostreatus)', price: 16.99 },
+  { id: '1', name: 'grybukai', subtitle: 'lorem lorem up up', price: 15 },
+  { id: '2', name: 'žolytė', subtitle: 'lorem lorem up up', price: 10 },
+  { id: '3', name: 'Grey Oyster Mushroom Grow Kit', subtitle: 'Grey Oyster mushroom (Pleurotus ostreatus)', price: 16.99 },
+  { id: '4', name: 'Grey Oyster Mushroom Grow Kit', subtitle: 'Grey Oyster mushroom (Pleurotus ostreatus)', price: 16.99 },
 ]
 
 
