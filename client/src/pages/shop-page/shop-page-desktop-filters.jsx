@@ -1,6 +1,7 @@
 import {
   Box,
   Checkbox,
+  Divider,
   List,
   ListItem,
   ListItemButton,
@@ -16,9 +17,10 @@ const ShopPageDesktopFilters = ({ categories }) => (
   }}
   >
     <Box sx={{ mb: '1rem' }}>
-      <Box sx={{ px: '16px' }}>
-        <Typography variant="h5">Kategorijos</Typography>
+      <Box>
+        <Typography variant="h5" textAlign="center">Kategorijos</Typography>
       </Box>
+      <Divider variant="middle" sx={{ pt: 2 }} />
       <List
         dense
         sx={{ width: '100%' }}

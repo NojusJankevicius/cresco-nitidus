@@ -12,7 +12,7 @@ const routeStructure = [
     childRoutes: [
       { index: true, pageName: 'HomePage' },
       { path: 'shop', pageName: 'ShopPage' },
-      { path: 'product/:id', pageName: 'ProductPage' },
+      { path: 'shop/product/:id', pageName: 'ProductPage' },
       { path: 'cart', pageName: 'CartPage' },
       { path: 'checkout', pageName: 'CheckoutPage' },
       { path: 'courses', pageName: 'CoursesPage' },

@@ -42,7 +42,7 @@ const CartPage = () => (
                   sx={{
                     width: {
                       xs: '100%',
-                      md: '160px'
+                      md: '160px',
                     }
                   }}
                 />

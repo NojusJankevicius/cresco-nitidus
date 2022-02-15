@@ -5,18 +5,22 @@ import {
   Typography,
   Button,
   Checkbox,
-  Paper,
-  CardMedia,
+  // Paper,
+  Card,
+  // CardMedia,
 } from '@mui/material';
+import { Link } from 'react-router-dom';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
 import DesktopFilters from './shop-page-desktop-filters';
 
 const ShopPageGrid = ({ categories, items }) => (
   <Box>
-    <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-      <DesktopFilters categories={categories} />
-      <Box sx={{ ml: '1.5rem' }}>
+    <Grid container>
+      <Grid item md={3}>
+        <DesktopFilters categories={categories} />
+      </Grid>
+      <Grid item md={9}>
         <Grid container spacing={2}>
           <Box sx={{
             width: '100%',
@@ -26,29 +30,54 @@ const ShopPageGrid = ({ categories, items }) => (
           }}
           >
             {items.map(({
-              id, name, subtitle, price,
+              id, name, description, price,
             }) => (
 
-              <Paper sx={{ mb: 2 }} key={id}>
+              <Card sx={{ mb: 2, borderRadius: 0 }} key={id}>
                 <Grid container sx={{ alignItems: 'center' }}>
-                  <Grid item xs={12} md={2}>
-                    <Box>
-                      <CardMedia
+                  <Grid
+                    item
+                    xs={12}
+                    md={3}
+                    sx={{
+                      height: { md: '20vh' },
+                    }}
+                  >
+                    <Link to={`product/:${id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                      <Box
                         component="img"
-                        image="https://i.etsystatic.com/29278440/r/il/e9387d/3427856889/il_794xN.3427856889_ifb2.jpg"
+                        src="https://i.etsystatic.com/29278440/r/il/e9387d/3427856889/il_794xN.3427856889_ifb2.jpg"
                         alt="product"
+                        sx={{
+                          height: '100%',
+                          width: '100%',
+                          objectFit: 'cover',
+                          objectPosition: 'center',
+                        }}
                       />
-                    </Box>
+                    </Link>
                   </Grid>
-                  <Grid item xs={12} md={7}>
-                    <Box sx={{ p: 2 }}>
-                      <Typography gutterBottom variant="h5" component="div" sx={{ mb: 1 }}>
-                        {name}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        {subtitle}
-                      </Typography>
-                    </Box>
+                  <Grid item xs={12} md={6}>
+                    <Link to={`product/:${id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                      <Box sx={{ p: 2 }}>
+                        <Typography gutterBottom variant="h5" component="div" sx={{ mb: 1 }}>
+                          {name}
+                        </Typography>
+                        <Typography
+                          variant="body2"
+                          color="text.secondary"
+                          sx={{
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            display: '-webkit-box',
+                            '-webkit-line-clamp': '3',
+                            '-webkit-box-orient': 'vertical',
+                          }}
+                        >
+                          {description}
+                        </Typography>
+                      </Box>
+                    </Link>
                   </Grid>
                   <Grid item xs={12} md={3}>
                     <Box sx={{
@@ -64,7 +93,7 @@ const ShopPageGrid = ({ categories, items }) => (
                       </Box>
                       <Box>
                         <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 1.5 }}>
-                          <Typography variant="subtitle1">
+                          <Typography variant="h6">
                             {price}
                             {' '}
                             eur.
@@ -79,12 +108,12 @@ const ShopPageGrid = ({ categories, items }) => (
                     </Box>
                   </Grid>
                 </Grid>
-              </Paper>
+              </Card>
             ))}
           </Box>
         </Grid>
-      </Box>
-    </Box>
+      </Grid>
+    </Grid>
   </Box>
 );
 
