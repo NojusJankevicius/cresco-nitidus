@@ -23,7 +23,7 @@ const ShopPageGridView = ({ categories, items }) => (
       <Box sx={{ ml: '1.5rem' }}>
         <Grid container spacing={2}>
           {items.map(({
-            id, name, price, subtitle,
+            id, name, price, description,
           },) => (
             <Grid item xs={12} sm={6} lg={4} sx={{ pr: 2, mb: 2 }} key={id}>
               <Card sx={{ maxWidth: { xs: 'auto', lg: 300 } }}>
@@ -39,7 +39,7 @@ const ShopPageGridView = ({ categories, items }) => (
                       {name}
                     </Typography>
                     <Typography variant="body2" color="text.secondary" sx={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>
-                      {subtitle}
+                      {description}
                     </Typography>
                   </CardContent>
                 </CardActionArea>

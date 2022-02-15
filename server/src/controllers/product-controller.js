@@ -2,15 +2,24 @@ const ProductModel = require('../models/product-model');
 const ProductViewModel = require('../view-models/product-view-model');
 
 const getProducts = async (req, res) => {
-  const productDocs = await ProductModel.find().populate("category");
+  const { category } = req.query;
+  const filterObject = {};
+
+  if (category) {
+    filterObject.category = { $in: [].concat(category) }
+  }
+  const productDocs = await ProductModel
+    .find(filterObject)
+    .populate("category");
   const products = productDocs.map(product => new ProductViewModel(product));
   res.status(200).json({ products });
 };
 
 const createProduct = async (req, res) => {
-  const { name, category, price } = req.body;
+  const { name, description, category, price } = req.body;
   const productDoc = await ProductModel({
     name,
+    description,
     category,
     price
   });
@@ -49,13 +58,14 @@ const deleteProduct = async (req, res) => {
 
 const updateProduct = async (req, res) => {
   const { id } = req.params;
-  const { name, category, price } = req.body;
+  const { name, description, category, price } = req.body;
   try {
     await ProductModel.findById(id);
 
     try {
       const productDoc = await ProductModel.findByIdAndUpdate(id, {
         name,
+        description,
         category,
         price,
       });
@@ -72,7 +82,7 @@ const updateProduct = async (req, res) => {
 
 const replaceProduct = async (req, res) => {
   const { id } = req.params;
-  const { name, category, price } = req.body;
+  const { name, description, category, price } = req.body;
   try {
     await ProductModel.findById(id);
 
@@ -81,7 +91,7 @@ const replaceProduct = async (req, res) => {
 
         const productDoc = await ProductModel.findOneAndReplace(
           { _id: id },
-          { name, category, price },
+          { name, description, category, price },
           {
             new: true,
             runValidators: true

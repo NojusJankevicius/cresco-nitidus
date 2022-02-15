@@ -15,7 +15,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import GridView from './shop-page-grid-view';
 import Drawer from './shop-page-drawer';
 import RowView from './shop-page-row-view';
-// import { getProducts } from '../../services/product-service';
+import { getProducts } from '../../services/product-service';
 
 const categories = [
   { name: 'Starteriai' },
@@ -33,15 +33,17 @@ const items = [
 
 
 const ShopPage = () => {
-  // const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
 
-  // useEffect(async () => {
-  //   // ! panaudoti product service parsitraukti visus duomenis
-  //   const productData = await getProducts();
-  //   setProducts(productData);
-  //   console.log(products);
-  //   // ! nustatyti gautus duomenis su funkcija setProducts
-  // }, []);
+  useEffect(() => {
+    (async () => {
+      const fetchedProductsData = await getProducts();
+      const productsArray = Object.values(fetchedProductsData)
+      setProducts(productsArray[0]);
+
+    })()
+    console.log(products);
+  }, []);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [productViewType, setProductViewType] = useState('grid')
   const ToggleDrawer = (open) => () => {
@@ -53,9 +55,9 @@ const ShopPage = () => {
   };
 
   const ProductView = productViewType === 'row' ? (
-    <RowView categories={categories} items={items} />
+    <RowView categories={categories} items={products} />
   ) : (
-    <GridView categories={categories} items={items} />
+    <GridView categories={categories} items={products} />
   );
 
   return (
