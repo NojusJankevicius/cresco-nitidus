@@ -14,7 +14,7 @@ import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
 import DesktopFilters from './shop-page-desktop-filters';
 
-const ShopPageGrid = ({ categories, items }) => (
+const ShopPageGrid = ({ categories, products }) => (
   <Box>
     <Grid container>
       <Grid item md={3}>
@@ -29,7 +29,7 @@ const ShopPageGrid = ({ categories, items }) => (
             p: 2,
           }}
           >
-            {items.map(({
+            {products.map(({
               id, name, description, price,
             }) => (
 
@@ -70,8 +70,8 @@ const ShopPageGrid = ({ categories, items }) => (
                             overflow: 'hidden',
                             textOverflow: 'ellipsis',
                             display: '-webkit-box',
-                            '-webkit-line-clamp': '3',
-                            '-webkit-box-orient': 'vertical',
+                            WebkitLineClamp: '3',
+                            WebkitBoxOrient: 'vertical',
                           }}
                         >
                           {description}

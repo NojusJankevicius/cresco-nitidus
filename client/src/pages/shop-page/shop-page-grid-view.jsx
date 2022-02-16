@@ -17,7 +17,7 @@ import Favorite from '@mui/icons-material/Favorite';
 import DesktopFilters from './shop-page-desktop-filters';
 import { Link } from 'react-router-dom';
 
-const ShopPageGridView = ({ categories, items }) => (
+const ShopPageGridView = ({ categories, products }) => (
   <Box>
     <Grid container >
       <Grid item md={3}>
@@ -25,7 +25,7 @@ const ShopPageGridView = ({ categories, items }) => (
       </Grid>
       <Grid item md={9} >
         <Grid container spacing={2}>
-          {items.map(({
+          {products.map(({
             id, name, price, description,
           }) => (
             <Grid item xs={12} sm={6} lg={4} sx={{ pr: 2, mb: 2 }} key={id}>

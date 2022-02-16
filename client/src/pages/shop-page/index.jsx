@@ -1,4 +1,4 @@
-/* eslint-disable */
+// /* eslint-disable */
 import React, { useState, useEffect } from 'react';
 
 import {
@@ -15,49 +15,41 @@ import MenuIcon from '@mui/icons-material/Menu';
 import GridView from './shop-page-grid-view';
 import Drawer from './shop-page-drawer';
 import RowView from './shop-page-row-view';
-import { getProducts } from '../../services/product-service';
-
-const categories = [
-  { name: 'Starteriai' },
-  { name: 'Trąšos' },
-  { name: 'Matuokliai' },
-  { name: 'Sėklos' },
-];
-
-const items = [
-  { id: '1', name: 'grybukai', subtitle: 'lorem lorem up up', price: 15 },
-  { id: '2', name: 'žolytė', subtitle: 'lorem lorem up up', price: 10 },
-  { id: '3', name: 'Grey Oyster Mushroom Grow Kit', subtitle: 'Grey Oyster mushroom (Pleurotus ostreatus)', price: 16.99 },
-  { id: '4', name: 'Grey Oyster Mushroom Grow Kit', subtitle: 'Grey Oyster mushroom (Pleurotus ostreatus)', price: 16.99 },
-]
-
+import { getCategories, getProducts } from '../../services/product-service';
 
 const ShopPage = () => {
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     (async () => {
       const fetchedProductsData = await getProducts();
-      const productsArray = Object.values(fetchedProductsData)
+      const productsArray = Object.values(fetchedProductsData);
       setProducts(productsArray[0]);
+    })();
+  }, []);
 
-    })()
-    console.log(products);
+  useEffect(() => {
+    (async () => {
+      const fetchedCategoriesData = await getCategories();
+      const categoriesArray = Object.values(fetchedCategoriesData);
+      setCategories(categoriesArray[0]);
+    })();
   }, []);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [productViewType, setProductViewType] = useState('grid')
+  const [productViewType, setProductViewType] = useState('grid');
   const ToggleDrawer = (open) => () => {
     setDrawerOpen(open);
   };
 
   const handleProductViewChange = (_, nextView) => {
-    setProductViewType(nextView)
+    setProductViewType(nextView);
   };
 
   const ProductView = productViewType === 'row' ? (
-    <RowView categories={categories} items={products} />
+    <RowView categories={categories} products={products} />
   ) : (
-    <GridView categories={categories} items={products} />
+    <GridView categories={categories} products={products} />
   );
 
   return (
@@ -71,7 +63,7 @@ const ShopPage = () => {
         </Button>
         <Box>
           <ToggleButtonGroup
-            color='primary'
+            color="primary"
             value={productViewType}
             exclusive
             size="small"
@@ -88,7 +80,6 @@ const ShopPage = () => {
         </Box>
       </Box>
       {ProductView}
-      {/* <RowView categories={categories} /> */}
       <Drawer
         drawerOpen={drawerOpen}
         closeDrawer={ToggleDrawer(false)}
