@@ -12,41 +12,7 @@ import {
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 
-const createData = (id, product, category, price) => ({
-  id,
-  product,
-  category,
-  price,
-});
-
-const rows = [
-  createData(
-    0,
-    'oyster mushroom starter kit',
-    'starter kit',
-    '16.99',
-  ),
-  createData(
-    1,
-    'oyster mushroom starter kit',
-    'starter kit',
-    '16.99',
-  ),
-  createData(
-    2,
-    'oyster mushroom starter kit',
-    'starter kit',
-    '16.99',
-  ),
-  createData(
-    3,
-    'oyster mushroom starter kit',
-    'starter kit',
-    '16.99',
-  ),
-];
-
-const AdminPageProductTable = () => (
+const AdminPageProductTable = ({ products }) => (
   <>
     <Typography
       variant="h5"
@@ -67,11 +33,13 @@ const AdminPageProductTable = () => (
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <TableRow key={row.id}>
-                <TableCell>{row.product}</TableCell>
-                <TableCell>{row.category}</TableCell>
-                <TableCell align="right">{`${row.price}`}</TableCell>
+            {products.map(({
+              id, name, price, category,
+            }) => (
+              <TableRow key={id}>
+                <TableCell>{name}</TableCell>
+                <TableCell>{category.name}</TableCell>
+                <TableCell align="right">{`${price}`}</TableCell>
                 <TableCell align="right">
                   <EditOutlinedIcon />
                   <DeleteOutlineIcon color="error" />

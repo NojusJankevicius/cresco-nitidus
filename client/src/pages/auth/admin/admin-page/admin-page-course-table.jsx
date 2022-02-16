@@ -12,21 +12,7 @@ import {
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 
-const createData = (id, course, price) => ({
-  id,
-  course,
-  price,
-});
-
-const rows = [
-  createData(
-    0,
-    'hydroponics',
-    '49.99',
-  ),
-];
-
-const AdminPageCourseTable = () => (
+const AdminPageCourseTable = ({ courses }) => (
   <>
     <Typography
       variant="h5"
@@ -52,10 +38,10 @@ const AdminPageCourseTable = () => (
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <TableRow key={row.id}>
-                <TableCell>{row.course}</TableCell>
-                <TableCell align="right">{`${row.price}`}</TableCell>
+            {courses.map(({ id, name, price }) => (
+              <TableRow key={id}>
+                <TableCell>{name}</TableCell>
+                <TableCell align="right">{`${price}`}</TableCell>
                 <TableCell align="right">
                   <EditOutlinedIcon />
                   <DeleteOutlineIcon color="error" />
