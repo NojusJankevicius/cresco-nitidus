@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+/* eslint-disable */
+import React, { useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import {
   Autocomplete,
@@ -9,31 +10,43 @@ import {
   TextField,
   Typography,
 } from '@mui/material';
-
-const data = [
-  {
-    name: 'category',
-    title: 'kategorija',
-    options: [
-      { id: '1', label: ' starteriai ' },
-      { id: '2', label: ' sėklos ' },
-      { id: '3', label: ' sodinukai ' },
-      { id: '4', label: ' matuokliai ' },
-    ],
-  },
-];
+import { getCategories } from '../../../../services/product-service';
 
 const AdminPageAddProduct = () => {
+  const [categories, setCategories] = useState([]);
   const [selectedValue, setSelectedValue] = useState({
     category: null,
   });
 
+  useEffect(() => {
+    (async () => {
+      const fecthedCategoriesData = await getCategories();
+      const categoriesArray = Object.values(fecthedCategoriesData);
+      setCategories(categoriesArray[0]);
+    })();
+  }, []);
+  
   const handleChange = (option, name) => {
     setSelectedValue({
       ...selectedValue,
       [name]: option,
     });
   };
+  
+  const data = [
+    {
+      name: 'category',
+      title: 'kategorija',
+      // categories,
+      options: [
+        { id: '1', label: ' starteriai ' },
+        { id: '2', label: ' sėklos ' },
+        { id: '3', label: ' sodinukai ' },
+        { id: '4', label: ' matuokliai ' },
+      ],
+    },
+  ];
+  console.log(categories);
 
   return (
 
