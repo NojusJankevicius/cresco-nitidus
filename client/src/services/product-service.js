@@ -38,6 +38,7 @@ export const getProducts = async () => {
 export const getProduct = async (id) => {
   try {
     const product = await instance.get(`products/${id.slice(1)}`);
+    console.log(product.data)
     return product.data;
   } catch (error) {
     return error;

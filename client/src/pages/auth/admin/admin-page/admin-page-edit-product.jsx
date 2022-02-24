@@ -1,16 +1,20 @@
 /* eslint-disable */
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import * as yup from 'yup';
 import {
   Box,
   Button,
   Container,
+  FormControl,
   Grid,
+  InputLabel,
+  MenuItem,
+  Select,
   TextField,
 } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { useFormik } from 'formik';
-import { getProduct, updateProduct } from '../../../../services/product-service';
+import { getCategories, getProduct, updateProduct } from '../../../../services/product-service';
 
 const validationSchema = yup.object({
   name: yup.string()
@@ -25,6 +29,11 @@ const validationSchema = yup.object({
 const AdminPageEditProduct = () => {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(product.category);
+  const fileUploadRef = useRef(null);
+
+  console.log(product)
 
   useEffect(() => {
     (async () => {
@@ -35,13 +44,26 @@ const AdminPageEditProduct = () => {
 
   const initialValues = useMemo(() => ({
     name: product.name,
+    category: product.category,
     price: product.price,
     description: product.description,
   }), [product]);
 
   const onSubmit = async (values) => {
-    await updateProduct(id, values);
+    const files = Array.from(fileUploadRef.current.files);
+    if (files.length === 0) {
+      throw new Error('klaida būsiu matyt, rėksiu kad reikia nuotraukos');
+    }
+    await updateProduct(id, values, files);
   };
+
+  useEffect(() => {
+    (async () => {
+      const fetchedCategoriesData = await getCategories();
+      const categoriesArray = Object.values(fetchedCategoriesData);
+      setCategories(categoriesArray[0]);
+    })();
+  }, []);
 
   const {
     values,
@@ -60,6 +82,12 @@ const AdminPageEditProduct = () => {
     enableReinitialize: true,
   });
 
+
+  const handleCategoryChange = (e) => {
+    const newSelectedCategory = e.target.value;
+    setSelectedCategory(newSelectedCategory);
+    handleChange(e);
+  };
 
   return (
     <>
@@ -81,13 +109,13 @@ const AdminPageEditProduct = () => {
               </Grid>
               <Grid item xs={12} sm={5} sx={{ boxShadow: '0 0 0 1px', p: 2 }}>
 
-                <Box component="form" onSubmit={handleSubmit}>
-                  <Box sx={{
-                    display: 'flex',
-                    gap: 3,
-                    flexDirection: 'column',
-                  }}
-                  >
+                <Box component="form" onSubmit={handleSubmit} sx={{
+                  display: 'flex',
+                  gap: 3,
+                  flexDirection: 'column',
+                }}
+                >
+                  <FormControl>
                     <TextField
                       name="name"
                       label="Pavadinimas"
@@ -100,7 +128,29 @@ const AdminPageEditProduct = () => {
                       fullWidth
                       variant="outlined"
                     />
-                    
+                  </FormControl>
+                  <FormControl>
+                    <InputLabel id="category">Kategorija</InputLabel>
+                    <Select
+                      name="category"
+                      labelId="category"
+                      id="category"
+                      value={selectedCategory}
+                      label="Kategorija"
+                      onChange={handleCategoryChange}
+                    >
+                      {categories.map((category) => (
+                        <MenuItem
+                          key={category.id}
+                          value={category}
+                          disabled={category.disabled}
+                        >
+                          {category.name}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                  <FormControl>
                     <TextField
                       name="price"
                       label="Kaina"
@@ -113,6 +163,8 @@ const AdminPageEditProduct = () => {
                       fullWidth
                       variant="outlined"
                     />
+                  </FormControl>
+                  <FormControl>
                     <TextField
                       name="description"
                       label="Aprašymas"
@@ -125,18 +177,19 @@ const AdminPageEditProduct = () => {
                       fullWidth
                       variant="outlined"
                     />
-                    <Button
-                      variant="outlined"
-                      size="small"
-                      sx={{ textTransform: 'none' }}
-                      onClick={() => { }}
-                    >
-                      Įkelti Nuotraukas
-                    </Button>
-                    <Button variant="outlined" size="large" type="submit" disabled={!dirty || !isValid}>
-                      Išsaugoti pakeitimus
-                    </Button>
-                  </Box>
+                  </FormControl>
+
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    sx={{ textTransform: 'none' }}
+                    onClick={() => { }}
+                  >
+                    Įkelti Nuotraukas
+                  </Button>
+                  <Button variant="outlined" size="large" type="submit" disabled={!dirty || !isValid}>
+                    Išsaugoti pakeitimus
+                  </Button>
                 </Box>
               </Grid>
             </Grid>

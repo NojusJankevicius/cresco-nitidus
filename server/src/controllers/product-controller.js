@@ -27,7 +27,6 @@ const createProduct = async (req, res) => {
     price
   });
   
-
   try {
     await productDoc.save();
     const product = new ProductViewModel(productDoc);

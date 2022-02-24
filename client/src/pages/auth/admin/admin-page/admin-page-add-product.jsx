@@ -34,9 +34,7 @@ const AdminPageAddProduct = () => {
   const fileUploadRef = useRef(null);
 
   const onSubmit = async (values) => {
-    console.log(JSON.stringify(values, null, 2));
     const files = Array.from(fileUploadRef.current.files);
-    console.log(files);
     if (files.length === 0) {
       throw new Error('klaida būsiu matyt, rėksiu kad reikia nuotraukos');
     }
@@ -44,7 +42,7 @@ const AdminPageAddProduct = () => {
       ...values,
       files,
     });
-    // return addedProduct
+    console.log(addedProduct)
   };
 
   const {
@@ -60,10 +58,6 @@ const AdminPageAddProduct = () => {
     const newSelectedCategory = e.target.value;
     setSelectedCategory(newSelectedCategory);
     handleChange(e);
-  };
-
-  const handleUploadFiles = () => {
-    fileUploadRef.current.click();
   };
 
   useEffect(() => {
