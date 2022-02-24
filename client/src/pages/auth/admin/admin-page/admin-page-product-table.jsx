@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import { Link } from 'react-router-dom';
 
 const AdminPageProductTable = ({ products }) => (
   <>
@@ -41,7 +42,9 @@ const AdminPageProductTable = ({ products }) => (
                 <TableCell>{category.name}</TableCell>
                 <TableCell align="right">{`${price}`}</TableCell>
                 <TableCell align="right">
-                  <EditOutlinedIcon />
+                  <Link to={`product/:${id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <EditOutlinedIcon />
+                  </Link>
                   <DeleteOutlineIcon color="error" />
                 </TableCell>
               </TableRow>

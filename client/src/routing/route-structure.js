@@ -28,6 +28,7 @@ const routeStructure = [
     pageName: 'DashboardLayout',
     childRoutes: [
       { path: 'admin', pageName: 'AdminPage', auth: ADMIN },
+      { path: 'admin/product/:id', pageName: 'AdminPageEditProduct', auth: ADMIN },
     ],
   },
 ];
