@@ -7,6 +7,7 @@ const {
   updateProduct,
   replaceProduct,
 } = require('../controllers/product-controller');
+const { uploadManyMiddleware } = require('../middlewares/upload-middleware');
 
 const router = express.Router();
 
@@ -14,7 +15,7 @@ const router = express.Router();
 router.get('/', getProducts);
 
 // POST   '/products/'    -> sukurti vieną produktą
-router.post('/', createProduct);
+router.post('/', uploadManyMiddleware('files'), createProduct);
 
 // GET    '/products/:id' -> gauti vieną produktą
 router.get('/:id', getProduct);

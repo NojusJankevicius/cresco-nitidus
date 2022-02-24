@@ -10,19 +10,23 @@ const getProducts = async (req, res) => {
   }
   const productDocs = await ProductModel
     .find(filterObject)
-    .populate("category");
+    .populate("category")
+    .populate("images");
   const products = productDocs.map(product => new ProductViewModel(product));
   res.status(200).json({ products });
 };
 
 const createProduct = async (req, res) => {
+  console.log(req.files)
   const { name, description, category, price } = req.body;
+  res.send('kk')
   const productDoc = await ProductModel({
     name,
     description,
     category,
     price
   });
+  
 
   try {
     await productDoc.save();

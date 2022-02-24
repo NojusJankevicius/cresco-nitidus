@@ -1,4 +1,4 @@
-const Mongoose= require('mongoose');
+const Mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 
 const productSchema = new Mongoose.Schema({
@@ -18,7 +18,11 @@ const productSchema = new Mongoose.Schema({
   price: {
     type: 'number',
     required: true,
-  }
+  },
+  images: [{
+    type: Mongoose.Schema.Types.ObjectId,
+    ref: 'Image',
+  }],
 }, {
   timestamps: true,
 });
