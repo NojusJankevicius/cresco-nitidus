@@ -20,8 +20,7 @@ const productSchema = new Mongoose.Schema({
     required: true,
   },
   images: [{
-    type: Mongoose.Schema.Types.ObjectId,
-    ref: 'Image',
+    src: 'string',
   }],
 }, {
   timestamps: true,

@@ -18,13 +18,14 @@ const getProducts = async (req, res) => {
 
 const createProduct = async (req, res) => {
   console.log(req.files)
-  const { name, description, category, price } = req.body;
+  const { name, description, category, price, images } = req.body;
   res.send('kk')
   const productDoc = await ProductModel({
     name,
     description,
     category,
-    price
+    price,
+    images
   });
   
   try {
