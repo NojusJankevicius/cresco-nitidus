@@ -19,8 +19,31 @@ import WishlistPage from '../pages/auth/user/wishlist-page';
 // admin
 import AdminPage from '../pages/auth/admin/admin-page';
 import AdminPageEditProduct from '../pages/auth/admin/admin-page/admin-page-edit-product';
+import React from 'react';
 
-export default {
+export type LayoutPageName = 'PageLayout' | 'DashboardLayout';
+
+export type DynamicPageName = 'ProductPage' | 'ErrorPage';
+
+export type ConcretePageName = 'HomePage'
+  | 'ShopPage'
+  | 'CartPage'
+  | 'CheckoutPage'
+  | 'CoursesPage'
+  | 'SignInPage'
+  | 'SignUpPage'
+  | 'ProfilePage'
+  | 'WishlistPage'
+  | 'AdminPage'
+  | 'AdminPageEditProduct';
+
+export type PageName = LayoutPageName | ConcretePageName | DynamicPageName;
+
+export type PageRouteMap = {
+  [key in PageName]: React.FC
+};
+
+const pageRouteMap: PageRouteMap = {
   PageLayout,
   DashboardLayout,
   HomePage,
@@ -37,3 +60,5 @@ export default {
   AdminPage,
   AdminPageEditProduct,
 };
+
+export default pageRouteMap;

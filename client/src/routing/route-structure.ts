@@ -1,11 +1,47 @@
+import { ConcretePageName, DynamicPageName, PageName } from './page-route-map';
 import {
   AUTH,
   USER,
   ADMIN,
   PUBLIC_ONLY,
+  AuthType,
 } from './auth-types';
 
-const routeStructure = [
+export type RoutePageData = {
+  index?: true,
+  path?: string,
+  auth?: AuthType
+};
+
+export type ConcreteRoutePageData = RoutePageData & {
+  pageName: ConcretePageName,
+};
+
+export type DynamicRoutePageData = RoutePageData & {
+  pageName: DynamicPageName,
+};
+
+export type RouteData = RouteLayoutData | ConcreteRoutePageData | DynamicRoutePageData;
+
+export type RouteLayoutData = {
+  path: string,
+  pageName: PageName,
+  childRoutes: Array<RouteData>
+};
+
+const dynamicSymbols = ['*', ':'];
+
+export const isConcretePath = (path?: RoutePageData['path']): boolean => {
+  if (path) {
+    return dynamicSymbols.every((dynamicSymbol) => !path.includes(dynamicSymbol));
+  }
+
+  return false;
+};
+
+export const isIndexPage = (index: RoutePageData['index']): boolean => Boolean(index);
+
+const routeStructure: Array<RouteData> = [
   {
     path: '/',
     pageName: 'PageLayout',
