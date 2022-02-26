@@ -1,13 +1,14 @@
-import { Button } from '@mui/material';
+import { Button, ButtonProps } from '@mui/material';
 import React from 'react';
 
-const FormButton = ({ children, ...rest }) => (
+type FormButtonProps = Omit<ButtonProps, 'type' | 'fullWidth' | 'variant' >;
+
+const FormButton: React.FC<FormButtonProps>  = ({ children, sx, ...rest }) => (
   <Button
     type="submit"
     fullWidth
     variant="contained"
-    color="primary"
-    sx={{ height: 56, mb: 1 }}
+    sx={{ height: 56, mb: 1, ...sx }}
     {...rest}
   >
     {children}

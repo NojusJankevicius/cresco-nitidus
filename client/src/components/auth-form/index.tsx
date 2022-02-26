@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FormEventHandler } from 'react';
 import {
   Box,
   CircularProgress,
@@ -9,14 +9,23 @@ import {
 import { Link } from 'react-router-dom';
 import FormButton from './auth-form-button';
 
-const AuthForm = ({
+type AuthFromProps = {
+  title: string,
+  linkTo: string,
+  linkTitle: string,
+  loading: boolean,
+  isValid: boolean,
+  onSubmit: FormEventHandler<HTMLFormElement>,
+};
+
+const AuthForm: React.FC<AuthFromProps> = ({
   children,
   title,
   linkTo,
   linkTitle,
   loading,
-  onSubmit,
   isValid,
+  onSubmit,
 }) => (
   <Container
     maxWidth="xs"
