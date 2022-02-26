@@ -1,10 +1,26 @@
-import axios from 'axios';
+import axios, { AxiosInstance } from 'axios';
 import SessionService from './session-service';
 import reduxStore from '../store/index';
 import { authFailed, signIn, signOut } from '../store/auth';
+import User from '../types/User';
+import Crudentials from '../types/crudentials';
+import UserSigning from '../types/user-signing';
+
+type AuthResponse = {
+  user: User,
+  token: string,
+};
+
+type CheckEmailResponse = {
+  available: boolean,
+};
 
 // Singleton
 const AuthService = new (class AuthService {
+  private requester: AxiosInstance;
+
+  private token?: string;
+
   constructor() {
     const token = SessionService.get('auth_token');
 
@@ -19,61 +35,75 @@ const AuthService = new (class AuthService {
     }
   }
 
-  setAuth(token) {
+  public setAuth(token: string): void {
     this.token = token;
     this.requester.defaults.headers.common.Authorization = `Bearer ${token}`;
   }
 
-  getToken() {
+  public getToken(): typeof this.token {
     return this.token;
   }
 
-  async signIn({ email, password }) {
+  public async signIn({ email, password }: Crudentials): Promise<User | string> {
     try {
-      const response = await this.requester.post('/sign-in', { email, password });
+      const response = await this.requester.post<AuthResponse>('/sign-in', { email, password });
       const { user, token } = response.data;
       SessionService.set('auth_token', token);
       this.setAuth(token);
+
       return user;
     } catch (error) {
-      throw new Error(error.response.data.message);
+      if (error instanceof Error) return error.message;
+
+      return error as any as string;
     }
   }
 
-  signOut() {
+  public signOut(): void {
     SessionService.clear('auth_token');
     delete this.requester.defaults.headers.common.Authorization;
     reduxStore.dispatch(signOut());
   }
 
-  async signUp(formData) {
+  public async signUp(formData: UserSigning): Promise<User | string> {
     try {
-      const response = await this.requester.post('/sign-up', formData);
+      const response = await this.requester.post<AuthResponse>('/sign-up', formData);
       const { user, token } = response.data;
       SessionService.set('auth_token', token);
       this.setAuth(token);
+
       return user;
     } catch (error) {
-      throw new Error(error.response.data.message);
+      if (error instanceof Error) return error.message;
+
+      return error as any as string;
     }
   }
 
-  async authenticate(token) {
+  async authenticate(token: string): Promise<string | true> {
     try {
-      const { data: user } = await this.requester.post('/', { token });
-      reduxStore.dispatch(signIn({ user }));
+      const { data } = await this.requester.post<AuthResponse>('/', { token });
+      reduxStore.dispatch(signIn({ user: data.user }));
       this.setAuth(token);
+
+      return true;
     } catch (error) {
       reduxStore.dispatch(authFailed());
+      if (error instanceof Error) return error.message;
+
+      return error as any as string;
     }
   }
 
-  async checkEmail(email) {
+  async checkEmail(email: string): Promise<boolean | string> {
     try {
-      const { data } = await this.requester.get(`/check-email?email=${email}`);
+      const { data } = await this.requester.get<CheckEmailResponse>(`/check-email?email=${email}`);
+
       return data.available;
     } catch (error) {
-      return error.message;
+      if (error instanceof Error) return error.message;
+
+      return error as any as string;
     }
   }
 })();

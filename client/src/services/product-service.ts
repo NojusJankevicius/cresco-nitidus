@@ -1,5 +1,8 @@
 /* eslint-disable */
 import axios from 'axios';
+import Image from '../types/image';
+import Product from '../types/product';
+import ProductPatch from '../types/product-patch';
 
 const instance = axios.create({
   baseURL: 'http://localhost:5000/api',
@@ -35,7 +38,7 @@ export const getProducts = async () => {
   }
 };
 
-export const getProduct = async (id) => {
+export const getProduct = async (id: string) => {
   try {
     const product = await instance.get(`products/${id.slice(1)}`);
     console.log(product.data)
@@ -45,7 +48,7 @@ export const getProduct = async (id) => {
   }
 };
 
-export const updateProduct = async (id, body) => {
+export const updateProduct = async (id: string, body: ProductPatch) => {
   try {
     const updatedProduct = await instance.patch(`products/${id.slice(1)}`, body);
     return updatedProduct.data;
@@ -54,7 +57,7 @@ export const updateProduct = async (id, body) => {
   }
 };
 
-export const addProduct = async (product) => {
+export const addProduct = async (product: Product): Promise<void> => {
   try {
     const data = new FormData();
     Object.entries(product).forEach(([name, value]) => {
@@ -76,22 +79,22 @@ export const addProduct = async (product) => {
     console.log(addedProduct);
     // return addedProduct.data;
   } catch (error) {
-    return error;
+    throw error;
   }
 };
 
-export const uploadImages = async (files) => {
+export const uploadImages = async (files: FileList): Promise<Image[]> => {
   const formData = new FormData();
   for (let i = 0; i < files.length; i += 1) {
     formData.append('files', files[i]);
   }
 
-  const { data } = await instance.post('/images/', formData, {
+  const { data } = await instance.post<Image[]>('/images/', formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },
   });
-  return data.images;
+  return data;
 };
 
 export default {
