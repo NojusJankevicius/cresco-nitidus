@@ -1,44 +1,66 @@
 /* eslint-disable no-param-reassign */
-import { createSlice } from '@reduxjs/toolkit';
+import { CaseReducer, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { State } from '.';
+import User from '../types/User';
 
-const initialState = {
+type AuthState = {
+
+  signedIn: boolean | null,
+  user: User | null,
+  redirectTo?: string,
+};
+
+const initialState: AuthState = {
   signedIn: null,
   user: null,
-  redirectTo: null,
+};
+
+type SignInReducer = CaseReducer<AuthState, PayloadAction<{ user: User, redirectTo?: string }>>;
+const signInReducer: SignInReducer = (state, { payload }) => {
+  state.signedIn = true;
+  state.user = payload.user;
+  if (payload.redirectTo) {
+    state.redirectTo = payload.redirectTo;
+  }
+};
+
+type AuthFailedReducer = CaseReducer<AuthState>;
+const authFailedReducer: AuthFailedReducer = (state) => {
+  state.signedIn = false;
+};
+
+type SignOutReducer = CaseReducer<AuthState>;
+const signOutReducer: SignOutReducer = (state) => {
+  state.signedIn = true;
+  state.user = null;
+  state.redirectTo = undefined;
+};
+
+type UpdateUserReducer = CaseReducer<AuthState, PayloadAction<{ user: User }>>;
+const updateUserReducer: UpdateUserReducer = (state, { payload }) => {
+  state.user = payload.user;
 };
 
 const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    authFailed(state) {
-      state.signedIn = false;
-    },
-    signIn(state, { payload }) {
-      state.signedIn = true;
-      state.user = payload.user;
-      state.redirectTo = payload.redirectTo;
-    },
-    signOut(state) {
-      state.signedIn = false;
-      state.user = null;
-      state.redirectTo = null;
-    },
-    updateUser(state, { payload }) {
-      state.user = payload.user;
-    },
+    signInReducer,
+    authFailedReducer,
+    signOutReducer,
+    updateUserReducer,
   },
 });
 
 export const {
-  authFailed,
-  signIn,
-  signOut,
-  updateUser,
+  signInReducer: signIn,
+  authFailedReducer: authFailed,
+  signOutReducer: signOut,
+  updateUserReducer: updateUser,
 } = authSlice.actions;
 
-export const authSelector = (state) => state.auth;
-export const signedInSelector = (state) => state.auth.signedIn;
-export const userSelector = (state) => state.auth.user;
+export const authSelector = (state: State) => state.auth;
+export const signedInSelector = (state: State) => state.auth.signedIn;
+export const userSelector = (state: State) => state.auth.user;
 
 export default authSlice.reducer;
