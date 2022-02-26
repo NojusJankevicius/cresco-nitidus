@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 
 import {
   Box,
@@ -11,7 +11,18 @@ import MenuIcon from '@mui/icons-material/Menu';
 import LinkButton from './navbar-link-button';
 import routes from '../../../routing/routes';
 
-const NavbarMobile = ({
+export type NavbarMobileProps = {
+
+  handleOpenNavMenu: MouseEventHandler<HTMLButtonElement>,
+  handleCloseNavMenu: MouseEventHandler<HTMLLIElement>,
+  anchorElNav: Element | null,
+  pages: {
+    page: string,
+    link: string,
+  }[]
+};
+
+const NavbarMobile: React.FC<NavbarMobileProps> = ({
   handleOpenNavMenu,
   handleCloseNavMenu,
   anchorElNav,
@@ -28,7 +39,7 @@ const NavbarMobile = ({
   >
     <IconButton
       size="large"
-      aria-label="account of current user"
+      aria-label="menu"
       aria-controls="menu-appbar"
       aria-haspopup="true"
       onClick={handleOpenNavMenu}

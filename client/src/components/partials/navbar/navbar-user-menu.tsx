@@ -14,7 +14,14 @@ import AuthService from '../../../services/auth-service';
 import StyledLink from '../../../styles/styled-link';
 import LinkButton from './navbar-link-button';
 
-const NavbarUserMenu = ({ settings }) => {
+export type NavbarUserMenu = {
+  settings: {
+    setting: string,
+    link: string,
+  }[]
+};
+
+const NavbarUserMenu: React.FC<NavbarUserMenu> = ({ settings }) => {
   const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenUserMenu = (event) => {
@@ -62,9 +69,9 @@ const NavbarUserMenu = ({ settings }) => {
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}
       >
-        {settings.map(({ setting, link, onClick }) => (
+        {settings.map(({ setting, link }) => (
           <StyledLink key={setting} to={link}>
-            <MenuItem key={setting} onClick={onClick}>
+            <MenuItem key={setting} onClick={handleCloseNavMenu}>
               <Typography textAlign="center">{setting}</Typography>
             </MenuItem>
           </StyledLink>

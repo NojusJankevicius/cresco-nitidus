@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme, Theme } from '@mui/material/styles';
 import { responsiveFontSizes } from '@mui/material';
 
 const theme = createTheme({
@@ -23,7 +23,7 @@ const theme = createTheme({
   },
 });
 
-export const customTheme = createTheme(theme, {
+export const customTheme: Theme = createTheme(theme, {
   mixins: {
     toolbar: {
       [theme.breakpoints.up('xs')]: {
@@ -32,6 +32,7 @@ export const customTheme = createTheme(theme, {
       [theme.breakpoints.up('md')]: {
         height: 76.5,
       },
+      height: 64,
     },
   },
 });

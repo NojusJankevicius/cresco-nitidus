@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { MouseEvent, MouseEventHandler, SetStateAction, useState } from 'react';
 import { useSelector } from 'react-redux';
 import {
   AppBar,
@@ -7,6 +7,7 @@ import {
   Box,
   Divider,
   Typography,
+  MenuItemProps,
 } from '@mui/material';
 import routes from '../../../routing/routes';
 import { authSelector } from '../../../store/auth';
@@ -17,32 +18,32 @@ import LinkButton from './navbar-link-button';
 
 const pages = [
   { page: 'Kursai', link: '/courses' },
-  { page: 'Parduotuvė', link: '/shop' }, //! Ar reikia pakeisti links į routes? Kaip patogiau, kai neleidžia masyve išrašyt?
+  { page: 'Parduotuvė', link: '/shop' },
 ];
 
-const Navbar = () => {
-  const auth = useSelector(authSelector);
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
+const Navbar: React.FC = () => {
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
+  const auth = useSelector(authSelector);
+  const [anchorElNav, setAnchorElNav] = useState(null);
+
+  const handleOpenNavMenu = (event: MouseEvent<MouseEvent>) => {
+    setAnchorElNav(event.currentTarget); //!!!!!!
   };
 
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu: MenuItemProps['onClick'] = () => {
     setAnchorElNav(null);
   };
 
   const settings = [
-    { setting: 'Profilis', link: '/profile', onclick: { handleCloseNavMenu } },
-    { setting: 'Mėgstamos prekės', link: '/wishlist', onclick: { handleCloseNavMenu } },
+    { setting: 'Profilis', link: '/profile' },
+    { setting: 'Mėgstamos prekės', link: '/wishlist' },
   ];
-  // ? Ar reikia pakeisti links į routes? Kaip?
+
   return (
     <AppBar position="static" sx={{ backgroundColor: 'white' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Desktop
-            handleCloseNavMenu={handleCloseNavMenu}
             pages={pages}
           />
           <Mobile

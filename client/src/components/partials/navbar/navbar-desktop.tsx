@@ -7,7 +7,14 @@ import {
 import LinkButton from './navbar-link-button';
 import routes from '../../../routing/routes';
 
-const NavbarDesktop = ({
+export type NavbarDesktopProps = {
+  pages: {
+    page: string,
+    link: string,
+  }[]
+};
+
+const NavbarDesktop: React.FC<NavbarDesktopProps> = ({
   pages,
 }) => (
   <>
