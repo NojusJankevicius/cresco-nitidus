@@ -5,7 +5,7 @@ import { responsiveFont } from '../../styles/theme';
 import Hero from './home-page-hero';
 import Courses from './home-page-courses';
 
-const HomePage = () => (
+const HomePage: React.FC = () => (
   <ThemeProvider theme={responsiveFont}>
     <Hero />
     <Courses />

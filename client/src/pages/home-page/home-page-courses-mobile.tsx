@@ -6,8 +6,9 @@ import {
 } from '@mui/material';
 import React from 'react';
 import StyledLink from '../../styles/styled-link';
+import { HomePageCourseProps } from './home-page-courses';
 
-const HomePageCoursesMobile = ({ courses }) => (
+const HomePageCoursesMobile: React.FC<HomePageCourseProps> = ({ courses }) => (
   <Container sx={{
     height: '80vh',
     display: {

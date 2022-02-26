@@ -3,7 +3,7 @@ import { Typography, Container } from '@mui/material';
 
 import BackgroundImageContainer from '../../components/containers/background-image-container';
 
-const Hero = () => (
+const Hero: React.FC = () => (
 
   <BackgroundImageContainer sx={{
     backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/home-page.jfif)',

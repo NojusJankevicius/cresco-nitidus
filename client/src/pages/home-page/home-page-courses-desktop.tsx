@@ -9,8 +9,9 @@ import {
   Typography,
 } from '@mui/material';
 import StyledLink from '../../styles/styled-link';
+import { HomePageCourseProps } from './home-page-courses';
 
-const HomePageCoursesDesktop = ({ courses }) => (
+const HomePageCoursesDesktop: React.FC<HomePageCourseProps> = ({ courses }) => (
   <Container sx={{
     height: '80vh',
     display: {
