@@ -26,7 +26,7 @@ const Navbar: React.FC = () => {
   const auth = useSelector(authSelector);
   const [anchorElNav, setAnchorElNav] = useState(null);
 
-  const handleOpenNavMenu = (event: MouseEvent<MouseEvent>) => {
+  const handleOpenNavMenu: React.MouseEventHandler = (event: MouseEvent<Element>) => {
     setAnchorElNav(event.currentTarget); //!!!!!!
   };
 
