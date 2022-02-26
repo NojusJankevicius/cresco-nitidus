@@ -5,6 +5,9 @@ import {
   Box,
   Button,
   Container,
+  MenuItem,
+  // Pagination,
+  TextField,
   ToggleButton,
   ToggleButtonGroup,
   Typography,
@@ -16,6 +19,13 @@ import GridView from './shop-page-grid-view';
 import Drawer from './shop-page-drawer';
 import RowView from './shop-page-row-view';
 import { getCategories, getProducts } from '../../services/product-service';
+
+const options = [
+  { title: 'A - Z', value: 'a-z' },
+  { title: 'Z - A', value: 'z-a' },
+  { title: 'Price ↑', value: 'price-asc' },
+  { title: 'Price ↓', value: 'price-desc' },
+];
 
 const ShopPage = () => {
   const [products, setProducts] = useState([]);
@@ -57,11 +67,29 @@ const ShopPage = () => {
       <Typography variant="h4" sx={{ my: 4 }}>
         Parduotuvė
       </Typography>
-      <Box sx={{ display: 'flex', justifyContent: { xs: 'space-between', md: 'flex-end' }, my: 2 }}>
+      <Box sx={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: { xs: 'space-between', md: 'flex-end' },
+        my: 2,
+      }}
+      >
         <Button sx={{ display: { md: 'none' } }} onClick={ToggleDrawer(true)}>
           <MenuIcon />
         </Button>
-        <Box>
+        {/* <Pagination sx={{ pr: { md: 2 } }} count={5} variant="outlined" shape="rounded" /> */}
+        <Box sx={{ display: 'flex' }}>
+          <Box sx={{ pr: 2 }}>
+            <TextField
+              select
+              value={options[0].value}
+              size="small"
+            >
+              {options.map((option) => (
+                <MenuItem key={option.title} value={option.value}>{option.title}</MenuItem>
+              ))}
+            </TextField>
+          </Box>
           <ToggleButtonGroup
             color="primary"
             value={productViewType}
