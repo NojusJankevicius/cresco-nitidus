@@ -1,5 +1,4 @@
 import React, { MouseEvent, MouseEventHandler, SetStateAction, useState } from 'react';
-import { useSelector } from 'react-redux';
 import {
   AppBar,
   Toolbar,
@@ -15,6 +14,7 @@ import Mobile from './navbar-mobile';
 import Desktop from './navbar-desktop';
 import UserMenu from './navbar-user-menu';
 import LinkButton from './navbar-link-button';
+import { useSelector } from '../../../store/hooks';
 
 const pages = [
   { page: 'Kursai', link: '/courses' },
@@ -24,10 +24,10 @@ const pages = [
 const Navbar: React.FC = () => {
 
   const auth = useSelector(authSelector);
-  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElNav, setAnchorElNav] = useState<Element | null>(null);
 
   const handleOpenNavMenu: React.MouseEventHandler = (event: MouseEvent<Element>) => {
-    setAnchorElNav(event.currentTarget); //!!!!!!
+    setAnchorElNav(event.currentTarget);
   };
 
   const handleCloseNavMenu: MenuItemProps['onClick'] = () => {

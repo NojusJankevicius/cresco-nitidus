@@ -1,10 +1,10 @@
 import React from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { signedInSelector } from '../store/auth';
 import routeStructure, { RouteData, RouteLayoutData, RoutePageData } from './route-structure';
 import protectPageEnum from './auth-protectors/protect-page-enum';
 import pageRouteMap from './page-route-map';
+import { useSelector } from '../store/hooks';
 
 type RouteElement = ReturnType<typeof Route>;
 

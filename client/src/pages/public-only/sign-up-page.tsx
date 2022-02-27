@@ -8,7 +8,6 @@ import {
 } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ErrorIcon from '@mui/icons-material/Error';
-import { useDispatch } from 'react-redux';
 import * as yup from 'yup';
 import { FormikHelpers, useFormik } from 'formik';
 import { signIn } from '../../store/auth';
@@ -16,6 +15,7 @@ import AuthForm from '../../components/auth-form';
 import AuthService from '../../services/auth-service';
 import routes from '../../routing/routes';
 import BackgroundImageContainer from '../../components/containers/background-image-container';
+import { useDispatch } from '../../store/hooks';
 
 type InitialValues = {
   name: string,

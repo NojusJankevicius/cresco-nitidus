@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { FormikHelpers, useFormik } from 'formik';
 import * as yup from 'yup';
 import { useSearchParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 
 import { Alert, Grid, TextField } from '@mui/material';
 import AuthForm from '../../components/auth-form';
@@ -10,6 +9,7 @@ import routes from '../../routing/routes';
 import AuthService from '../../services/auth-service';
 import { signIn } from '../../store/auth';
 import BackgroundImageContainer from '../../components/containers/background-image-container';
+import { useDispatch } from '../../store/hooks';
 
 type InitialValues = {
   email: string,
