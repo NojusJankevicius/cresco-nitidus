@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useFormik } from 'formik';
+import { FormikHelpers, useFormik } from 'formik';
 import * as yup from 'yup';
 import { useSearchParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -11,6 +11,13 @@ import AuthService from '../../services/auth-service';
 import { signIn } from '../../store/auth';
 import BackgroundImageContainer from '../../components/containers/background-image-container';
 
+type InitialValues = {
+  email: string,
+  password: string,
+};
+
+type FormikOnSubmit = (values: InitialValues, formikHelpers: FormikHelpers<InitialValues>) => void | Promise<void>;
+
 const validationSchema = yup.object({
   email: yup
     .string()
@@ -21,7 +28,7 @@ const validationSchema = yup.object({
     .required('Privalomas laukas'),
 });
 
-const initialValues = {
+const initialValues: InitialValues = {
   email: '',
   password: '',
 };
@@ -29,24 +36,25 @@ const initialValues = {
 const SignInPage = () => {
   const [urlSearchParams] = useSearchParams();
   const dispatch = useDispatch();
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
-  const onSubmit = async ({ email, password }) => {
+  const onSubmit: FormikOnSubmit = async ({ email, password }) => {
     setError(null);
-    try {
-      const user = await AuthService.signIn({
+      const fetchedUser = await AuthService.signIn({
         email,
         password,
       });
+      if(typeof fetchedUser === 'string'){
+        setError(fetchedUser);
+        
+        return;
+      }
       const redirectTo = urlSearchParams.get('redirectTo');
       const signInSuccessAction = signIn({
-        user,
+        user: fetchedUser,
         redirectTo,
       });
       dispatch(signInSuccessAction);
-    } catch (err) {
-      setError(err.message);
-    }
   };
 
   const {
