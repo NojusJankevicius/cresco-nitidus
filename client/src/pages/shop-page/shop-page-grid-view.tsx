@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from 'react';
 import {
   Box,
@@ -17,7 +16,19 @@ import Favorite from '@mui/icons-material/Favorite';
 import DesktopFilters from './shop-page-desktop-filters';
 import { Link } from 'react-router-dom';
 
-const ShopPageGridView = ({ categories, products }) => (
+type ShopPageGridViewProps = {
+  categories: {
+    name: string,
+  }[],
+  products: {
+    id: string,
+    name: string,
+    price: number,
+    description: string,
+  }[]
+};
+
+const ShopPageGridView: React.FC<ShopPageGridViewProps> = ({ categories, products }) => (
   <Box>
     <Grid container >
       <Grid item md={3}>

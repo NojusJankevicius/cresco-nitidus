@@ -1,4 +1,3 @@
-// /* eslint-disable */
 import * as React from 'react';
 import {
   Box,
@@ -12,7 +11,15 @@ import {
 } from '@mui/material';
 import ListItemText from '@mui/material/ListItemText';
 
-const ShopPageDrawer = ({ drawerOpen, closeDrawer, categories }) => (
+type ShopPageDrawerProps = {
+  drawerOpen: boolean,
+  closeDrawer: () => void,
+  categories: {
+    name: string
+  }[]
+};
+
+const ShopPageDrawer: React.FC<ShopPageDrawerProps> = ({ drawerOpen, closeDrawer, categories }) => (
   <Drawer
     open={drawerOpen}
     onClose={closeDrawer}
@@ -29,6 +36,7 @@ const ShopPageDrawer = ({ drawerOpen, closeDrawer, categories }) => (
       >
         {categories.map(({ name }) => {
           const labelId = `checkbox-list-secondary-label-${name}`;
+
           return (
             <ListItem
               key={name}

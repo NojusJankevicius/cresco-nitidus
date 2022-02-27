@@ -10,7 +10,13 @@ import {
 } from '@mui/material';
 import React from 'react';
 
-const ShopPageDesktopFilters = ({ categories }) => (
+type ShopPageDesktopFiltersProps = {
+  categories: {
+    name: string,
+  }[]
+};
+
+const ShopPageDesktopFilters: React.FC<ShopPageDesktopFiltersProps> = ({ categories }) => (
   <Box sx={{
     width: 180,
     display: { xs: 'none', md: 'block' },
@@ -27,6 +33,7 @@ const ShopPageDesktopFilters = ({ categories }) => (
       >
         {categories.map(({ name }) => {
           const labelId = `checkbox-list-secondary-label-${name}`;
+
           return (
             <ListItem
               key={name}

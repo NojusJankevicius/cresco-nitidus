@@ -27,7 +27,7 @@ const options = [
   { title: 'Price ↓', value: 'price-desc' },
 ];
 
-const ShopPage = () => {
+const ShopPage: React.FC = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
 
@@ -46,13 +46,13 @@ const ShopPage = () => {
       setCategories(categoriesArray[0]);
     })();
   }, []);
-  const [drawerOpen, setDrawerOpen] = useState(false);
-  const [productViewType, setProductViewType] = useState('grid');
-  const ToggleDrawer = (open) => () => {
+  const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
+  const [productViewType, setProductViewType] = useState<'grid' | 'row'>('grid');
+  const ToggleDrawer = (open: boolean) => () => {
     setDrawerOpen(open);
   };
 
-  const handleProductViewChange = (_, nextView) => {
+  const handleProductViewChange = (_: any, nextView: ((prevState: 'grid' | 'row') => 'grid' | 'row')) => {
     setProductViewType(nextView);
   };
 

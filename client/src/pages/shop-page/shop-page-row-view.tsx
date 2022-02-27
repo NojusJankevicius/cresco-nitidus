@@ -5,16 +5,26 @@ import {
   Typography,
   Button,
   Checkbox,
-  // Paper,
   Card,
-  // CardMedia,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
 import DesktopFilters from './shop-page-desktop-filters';
 
-const ShopPageGrid = ({ categories, products }) => (
+type ShopPageRowView = {
+  categories: {
+    name: string,
+  }[],
+  products: {
+    id: string,
+    name: string,
+    price: number,
+    description: string,
+  }[]
+};
+
+const ShopPageRowView: React.FC<ShopPageRowView> = ({ categories, products }) => (
   <Box>
     <Grid container>
       <Grid item md={3}>
@@ -117,4 +127,4 @@ const ShopPageGrid = ({ categories, products }) => (
   </Box>
 );
 
-export default ShopPageGrid;
+export default ShopPageRowView;
