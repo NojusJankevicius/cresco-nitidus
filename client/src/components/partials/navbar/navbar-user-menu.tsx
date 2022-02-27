@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { MouseEvent, useState } from 'react';
 import {
   Box,
   IconButton,
@@ -22,9 +22,9 @@ export type NavbarUserMenu = {
 };
 
 const NavbarUserMenu: React.FC<NavbarUserMenu> = ({ settings }) => {
-  const [anchorElUser, setAnchorElUser] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState<Element | null>(null);
 
-  const handleOpenUserMenu = (event) => {
+  const handleOpenUserMenu: React.MouseEventHandler = (event: MouseEvent<Element>) => {
     setAnchorElUser(event.currentTarget);
   };
 

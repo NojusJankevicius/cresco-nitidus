@@ -1,4 +1,4 @@
-import React, { MouseEvent, MouseEventHandler, SetStateAction, useState } from 'react';
+import React, { MouseEvent, useState } from 'react';
 import {
   AppBar,
   Toolbar,
