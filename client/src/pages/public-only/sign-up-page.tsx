@@ -73,7 +73,7 @@ const initialValues: InitialValues = {
   emailAvailable: false,
 };
 
-const SignUpPage = () => {
+const SignUpPage: React.FC = () => {
   const dispatch = useDispatch();
   const [emailCheckLoading, setEmailCheckLoading] = useState(false);
 

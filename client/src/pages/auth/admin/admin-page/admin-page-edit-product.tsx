@@ -26,7 +26,7 @@ const validationSchema = yup.object({
   description: yup.string(),
 });
 
-const AdminPageEditProduct = () => {
+const AdminPageEditProduct: React.FC = () => {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
   const [categories, setCategories] = useState([]);

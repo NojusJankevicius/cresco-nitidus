@@ -33,7 +33,7 @@ const initialValues: InitialValues = {
   password: '',
 };
 
-const SignInPage = () => {
+const SignInPage: React.FC = () => {
   const [urlSearchParams] = useSearchParams();
   const dispatch = useDispatch();
   const [error, setError] = useState<string | null>(null);

@@ -5,7 +5,7 @@ import {
 import { Outlet } from 'react-router-dom';
 import Navbar from '../partials/navbar';
 
-const PageLayout = () => (
+const PageLayout: React.FC = () => (
   <Box>
     <Navbar />
     <Box component="main">
