@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 
-const CheckoutPageAddressForm = () => (
+const CheckoutPageAddressForm: React.FC = () => (
   <>
     <Typography variant="h6" gutterBottom>
       Užsakymo gavimo adresas

@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
-const CheckoutPagePaymentForm = () => (
+const CheckoutPagePaymentForm: React.FC = () => (
   <>
     <Typography variant="h6" gutterBottom>
       Mokėjimas

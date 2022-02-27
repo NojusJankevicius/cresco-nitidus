@@ -8,14 +8,14 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Check from '@mui/icons-material/Check';
-import { styled } from '@mui/material';
+import { styled, StepIconProps } from '@mui/material';
 import AddressForm from './checkout-page-address-form';
 import PaymentForm from './checkout-page-payment-form';
 import Review from './checkout-page-review';
 
 const steps = ['Adresas', 'Mokėjimo duomenys', 'Užsakymo peržiūra'];
 
-const getStepContent = (step) => {
+const getStepContent = (step: number) => {
   switch (step) {
     case 0:
       return <AddressForm />;
@@ -28,7 +28,7 @@ const getStepContent = (step) => {
   }
 };
 
-const QontoStepIconRoot = styled('div')(({ theme, ownerState }) => ({
+const QontoStepIconRoot = styled('div')<{ ownerState: { active?: boolean } }>(({ theme, ownerState }) => ({
   color: theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#eaeaf0',
   display: 'flex',
   height: 22,
@@ -49,7 +49,7 @@ const QontoStepIconRoot = styled('div')(({ theme, ownerState }) => ({
   },
 }));
 
-const QontoStepIcon = (props) => {
+const QontoStepIcon: React.FC<StepIconProps> = (props) => {
   const { active, completed, className } = props;
 
   return (
@@ -63,7 +63,7 @@ const QontoStepIcon = (props) => {
   );
 };
 
-const CheckoutPage = () => {
+const CheckoutPage: React.FC = () => {
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
