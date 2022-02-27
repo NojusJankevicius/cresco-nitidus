@@ -13,7 +13,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import StyledLink from '../styles/styled-link';
 import routes from '../routing/routes';
 
-const CartPage = () => (
+const CartPage: React.FC = () => (
   <Container>
     <Box>
       <Grid container spacing={4}>

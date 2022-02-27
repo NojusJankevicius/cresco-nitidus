@@ -15,7 +15,7 @@ import {
 } from '@mui/material';
 import React from 'react';
 
-const WishlistPage = () => (
+const WishlistPage: React.FC = () => (
   <Container>
     <Typography variant="h4" sx={{ my: 4 }}>
       Mėgstamos prekės

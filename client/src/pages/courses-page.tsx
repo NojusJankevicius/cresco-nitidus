@@ -54,7 +54,7 @@ const tiers = [
   },
 ];
 
-const CoursesPage = () => (
+const CoursesPage: React.FC = () => (
   <>
     <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
     {/* Hero unit */}

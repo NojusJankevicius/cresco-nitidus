@@ -31,6 +31,7 @@ const validationSchema = yup.object({
     .test('email-validator', 'Paštas jau užimtas', (_, context) => {
       const { emailChecked, emailAvailable } = context.parent;
       if (!emailChecked) return true;
+
       return emailAvailable;
     }),
   emailChecked: yup.boolean().oneOf([true]),
@@ -55,6 +56,7 @@ const ProfilePageUserInfo = ({ user }) => {
         if (values !== initialValues[name]) {
           newResult[name] = value;
         }
+        
         return newResult;
       }, {});
     await ProfileService.updateUserData(body);

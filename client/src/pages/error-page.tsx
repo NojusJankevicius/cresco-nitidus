@@ -1,7 +1,7 @@
 import { Container, Typography } from '@mui/material';
 import React from 'react';
 
-const ErrorPage = () => (
+const ErrorPage: React.FC = () => (
   <Container sx={{
     height: '70vh',
     display: 'flex',

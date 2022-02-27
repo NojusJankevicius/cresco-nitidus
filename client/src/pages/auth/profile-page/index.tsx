@@ -1,14 +1,15 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 
 import {
   Container,
 } from '@mui/material';
 import ProfilePageUserInfo from './profile-page-user-info';
 import { userSelector } from '../../../store/auth';
+import { useSelector } from '../../../store/hooks';
 
-const ProfilePage = () => {
+const ProfilePage: React.FC = () => {
   const user = useSelector(userSelector);
+
   return (
     <Container
       maxWidth="md"

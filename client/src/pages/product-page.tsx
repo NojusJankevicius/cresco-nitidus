@@ -5,17 +5,17 @@ import {
   Grid,
   Typography,
 } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { SetStateAction, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getProduct } from '../services/product-service';
 
-const ProductPage = () => {
+const ProductPage: React.FC = () => {
   const [product, setProduct] = useState(null);
   const { id } = useParams();
 
   useEffect(() => {
     (async () => {
-      const productData = await getProduct(id);
+      const productData: SetStateAction<null> = await getProduct(id);
       setProduct(productData);
     })();
   }, [id]);
