@@ -10,7 +10,7 @@ import CourseTable from './admin-page-course-table';
 import AddCourse from './admin-page-add-course';
 import { getCourses, getProducts } from '../../../../services/product-service';
 
-const AdminPage = () => {
+const AdminPage: React.FC = () => {
   const [products, setProducts] = useState([]);
   const [courses, setCourses] = useState([]);
 

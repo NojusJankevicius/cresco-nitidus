@@ -8,7 +8,7 @@ import {
   Typography,
 } from '@mui/material';
 
-const AdminPageAddCourse = () => (
+const AdminPageAddCourse: React.FC = () => (
 
   <Box sx={{
     my: 4,

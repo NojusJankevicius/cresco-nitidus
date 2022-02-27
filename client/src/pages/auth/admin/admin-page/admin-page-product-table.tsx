@@ -12,8 +12,18 @@ import {
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import { Link } from 'react-router-dom';
+import Category from '../../../../types/category';
 
-const AdminPageProductTable = ({ products }) => (
+type AdminPageProductTableProps = {
+  products: {
+    id: string,
+    name: string,
+    price: number,
+    category: Category
+  }[]
+};
+
+const AdminPageProductTable: React.FC<AdminPageProductTableProps> = ({ products }) => (
   <>
     <Typography
       variant="h5"

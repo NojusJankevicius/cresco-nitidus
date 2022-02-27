@@ -12,7 +12,15 @@ import {
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 
-const AdminPageCourseTable = ({ courses }) => (
+type AdminPageCourseTableProps = {
+  courses: {
+    id: string,
+    name: string,
+    price: number
+  }[]
+};
+
+const AdminPageCourseTable: React.FC<AdminPageCourseTableProps> = ({ courses }) => (
   <>
     <Typography
       variant="h5"
