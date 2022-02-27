@@ -64,7 +64,10 @@ const auth = async (req, res) => {
     const {email} = jwt.verify(token, process.env.TOKEN_SECRET);
     const userDoc = await UserModel.findOne({email});
     const user = new UserViewModel(userDoc);
-    res.status(200).json(user);
+    res.status(200).json({
+      user,
+      token
+    });
   } catch (error) {
     res.status(403).json({ message: 'token not valid' });
   }

@@ -23,7 +23,6 @@ type InitialValues = {
   email: string,
   password: string,
   passwordConfirmation: string,
-  subscribed: boolean,
   emailChecked: boolean,
   emailAvailable: boolean,
 
@@ -70,7 +69,6 @@ const initialValues: InitialValues = {
   email: '',
   password: '',
   passwordConfirmation: '',
-  subscribed: true,
   emailChecked: false,
   emailAvailable: false,
 };
@@ -82,14 +80,18 @@ const SignUpPage = () => {
   const onSubmit: FormikOnSubmit = async ({
     email, name, surname, password, passwordConfirmation,
   }) => {
-    const user = await AuthService.signUp({
+    const fetchedUser = await AuthService.signUp({
       email,
       name,
       surname,
       password,
       repeatPassword: passwordConfirmation,
     });
-    dispatch(signIn({ user }));
+    if (typeof fetchedUser === 'string') {
+      console.error(fetchedUser);
+    } else {
+      dispatch(signIn({ user: fetchedUser }));
+    }
   };
 
   const {

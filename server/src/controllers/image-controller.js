@@ -21,7 +21,7 @@ const uploadImage = async (req,res) => {
     product: productDoc.id,
   }));
 
-  const ImageDocs = await ImageModel.insertMany(imageData);
+  const imageDocs = await ImageModel.insertMany(imageData);
   const images = imageDocs.map(x => new ImageViewModel(x));
 
   res.statis(200).send({

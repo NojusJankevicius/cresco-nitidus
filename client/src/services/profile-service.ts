@@ -24,7 +24,7 @@ const ProfileService = new (class ProfileService {
     });
   }
 
-  async updateUserData(body: UserPatch): Promise<void> {
+  public async updateUserData(body: UserPatch): Promise<void> {
     const token = ProfileService.validateToken();
     const { data } = await this.requester.patch<User>('/users/', body, {
       headers: {

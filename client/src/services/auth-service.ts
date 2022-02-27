@@ -80,7 +80,7 @@ const AuthService = new (class AuthService {
     }
   }
 
-  async authenticate(token: string): Promise<string | true> {
+  public async authenticate(token: string): Promise<string | true> {
     try {
       const { data } = await this.requester.post<AuthResponse>('/', { token });
       reduxStore.dispatch(signIn({ user: data.user }));
@@ -95,7 +95,7 @@ const AuthService = new (class AuthService {
     }
   }
 
-  async checkEmail(email: string): Promise<boolean | string> {
+  public async checkEmail(email: string): Promise<boolean | string> {
     try {
       const { data } = await this.requester.get<CheckEmailResponse>(`/check-email?email=${email}`);
 

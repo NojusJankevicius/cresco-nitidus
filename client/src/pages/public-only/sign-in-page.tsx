@@ -49,7 +49,7 @@ const SignInPage = () => {
         
         return;
       }
-      const redirectTo = urlSearchParams.get('redirectTo');
+      const redirectTo = urlSearchParams.get('redirectTo') ?? undefined;
       const signInSuccessAction = signIn({
         user: fetchedUser,
         redirectTo,
