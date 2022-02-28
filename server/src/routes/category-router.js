@@ -5,8 +5,12 @@ const {
   getCategory,
   deleteCategory
 } = require('../controllers/category-controller');
+const adminMiddleware = require('../middlewares/admin-middleware');
+const authMiddleware = require('../middlewares/auth-middleware');
 
 const router = express.Router();
+
+router.use(authMiddleware, adminMiddleware)
 
 // GET    '/categories'     -> gauti visas kategorijas
 router.get('/', getCategories);

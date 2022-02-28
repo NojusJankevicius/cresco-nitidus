@@ -9,13 +9,9 @@ const getCategories = async ( req, res ) => {
 
 const createCategory = async ( req, res ) => {
   const { name } = req.body;
-  const categoryDoc = await CategoryModel({
-    name
-  });
   try {
-    await categoryDoc.save();
-    const category = new CategoryViewModel(categoryDoc);
-    res.status(200).json(category);
+    const categoryDoc = await CategoryModel.create({ name });
+    res.status(200).json(new CategoryViewModel(categoryDoc));
   } catch (error) {
     console.log(error);
     res.status(400).json({ message: `klaida: kategorija pavadinimu: '${name}' jau yra`})    
