@@ -15,10 +15,8 @@ const getImages = async (req, res) => {
 };
 
 const uploadImage = async (req,res) => {
-  const productDoc = await ProductModel.findById();
   const imageData = req.files.map(({ filename }) => ({
     src: filename,
-    product: productDoc.id,
   }));
 
   const imageDocs = await ImageModel.insertMany(imageData);

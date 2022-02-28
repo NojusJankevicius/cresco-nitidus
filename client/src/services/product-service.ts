@@ -57,31 +57,51 @@ export const updateProduct = async (id: string, body: ProductPatch) => {
   }
 };
 
-export const addProduct = async (product: Product): Promise<void> => {
+// export const addProduct = async (product: Product): Promise<void> => {
+//   try {
+//     const data = new FormData();
+//     Object.entries(product).forEach(([name, value]) => {
+//       data.append(name, value);
+//       if(value instanceof Array){
+//         value.forEach((el) => {
+//           console.log(name, value);
+//           data.append(name, el)
+//         });
+//       } else {
+//         data.append(name, value);
+//       }
+//     });
+//     const addedProduct = await instance.post('/products', data, {
+//       headers: {
+//         'Content-Type': 'multipart/form-data',
+//       },
+//     });
+//     console.log(addedProduct);
+//     return addedProduct.data;
+//   } catch (error) {
+//     throw error;
+//   }
+// };
+
+export const addProduct = async ({
+  name,
+  description,
+  category,
+  price,
+  images }: ProductPatch): Promise<Product | string> => {
   try {
-    const data = new FormData();
-    Object.entries(product).forEach(([name, value]) => {
-      data.append(name, value);
-      if(value instanceof Array){
-        value.forEach((el) => {
-          console.log(name, value);
-          data.append(name, el)
-        });
-      } else {
-        data.append(name, value);
-      }
-    });
-    const addedProduct = await instance.post('/products', data, {
+    const { data } = await instance.post<Product>('/products', {
+      name, description, category, price, images
+    }, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
-    });
-    console.log(addedProduct);
-    // return addedProduct.data;
+    })
+    return data;
   } catch (error) {
-    throw error;
+    throw error
   }
-};
+}
 
 export const uploadImages = async (files: FileList): Promise<Image[]> => {
   const formData = new FormData();

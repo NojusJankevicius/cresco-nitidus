@@ -23,7 +23,7 @@ import React from 'react';
 
 export type LayoutPageName = 'PageLayout' | 'DashboardLayout';
 
-export type DynamicPageName = 'ProductPage' | 'ErrorPage';
+export type DynamicPageName = 'ProductPage' | 'ErrorPage' | 'AdminPageEditProduct';
 
 export type ConcretePageName = 'HomePage'
   | 'ShopPage'
@@ -34,8 +34,7 @@ export type ConcretePageName = 'HomePage'
   | 'SignUpPage'
   | 'ProfilePage'
   | 'WishlistPage'
-  | 'AdminPage'
-  | 'AdminPageEditProduct';
+  | 'AdminPage';
 
 export type PageName = LayoutPageName | ConcretePageName | DynamicPageName;
 

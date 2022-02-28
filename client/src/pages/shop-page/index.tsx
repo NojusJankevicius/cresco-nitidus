@@ -28,7 +28,7 @@ const options = [
 ];
 
 const ShopPage: React.FC = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {

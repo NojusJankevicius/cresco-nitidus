@@ -6,10 +6,6 @@ const imageSchema = new Mongoose.Schema({
     type: 'string',
     unique: true,
   },
-  product: {
-    type: Mongoose.Schema.Types.ObjectId,
-    ref: 'Product',
-  },
 }, {
   timestamps: true,
 });

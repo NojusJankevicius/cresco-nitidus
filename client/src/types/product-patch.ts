@@ -1,8 +1,9 @@
-type ProductPatch = {
+type Product = {
   name: string,
   description: string,
   category: string,
   price: number,
+  images: string[],
 };
 
-export default ProductPatch;
+export default Product;
