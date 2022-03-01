@@ -1,11 +1,11 @@
 const express = require('express');
 const morgan = require('morgan');
 const Mongoose = require('mongoose');
-const cors = require('cors');
 require('dotenv').config();
-const courseRouter = require('./routes/course-router');
+const cors = require('cors');
 const authRouter = require('./routes/auth-router');
 const userRouter = require('./routes/user-router');
+const courseRouter = require('./routes/course-router');
 const categoryRouter = require('./routes/category-router');
 const productRouter = require('./routes/product-router');
 const imageRouter = require('./routes/image-router');
@@ -20,9 +20,8 @@ const corsOptions ={
 
 // middlewares
 server.use(morgan('tiny'));
-server.use(express.static('public'));
-server.use(express.json());
 server.use(cors(corsOptions));
+server.use(express.json());
 server.use(express.static(PUBLIC_PATH));
 
 //  response handlers
@@ -30,8 +29,8 @@ server.use('/api/auth', authRouter);
 server.use('/api/users', userRouter);
 server.use('/api/categories', categoryRouter);
 server.use('/api/products', productRouter);
-server.use('/api/images', imageRouter);
 server.use('/api/courses', courseRouter);
+server.use('/api/images', imageRouter);
 
 server.listen(SERVER_PORT, () => {
   console.log(`puslapis veikia ant ${SERVER_DOMAIN}:${SERVER_PORT}/`);
