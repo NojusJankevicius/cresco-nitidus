@@ -1,8 +1,12 @@
 import React from 'react';
+import { Container } from '@mui/material';
 
 const CoursePanelPage = () => {
   return (
-    <div>CoursePanelPage</div>
+    <Container
+      maxWidth="md">
+      <div>CoursePanelPage</div>
+    </Container>
   );
 };
 

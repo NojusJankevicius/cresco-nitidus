@@ -11,10 +11,9 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import routes from '../../../routing/routes';
 import PersonIcon from '@mui/icons-material/Person';
 import HistoryIcon from '@mui/icons-material/History';
-import ConstructionIcon from '@mui/icons-material/Construction';
-import GroupIcon from '@mui/icons-material/Group';
+import LocalActivityIcon from '@mui/icons-material/LocalActivity';
+import Inventory2Icon from '@mui/icons-material/Inventory2';
 import CategoryIcon from '@mui/icons-material/Category';
-import LocationCityIcon from '@mui/icons-material/LocationCity';
 import { authSelector } from '../../../store/auth';
 import { useSelector } from '../../../store/hooks';
 
@@ -30,9 +29,9 @@ const navigationItems = {
     { title: 'Patinkantys Produktai', path: routes.WishlistPage, Icon: HistoryIcon },
   ],
   admin: [
-    { title: 'Produktai', path: routes.ProductPanelPage, Icon: ConstructionIcon },
+    { title: 'Produktai', path: routes.ProductPanelPage, Icon: Inventory2Icon },
     { title: 'Kategorijos', path: routes.CategoryPanelPage, Icon: CategoryIcon },
-    { title: 'Kursai', path: routes.CoursePanelPage, Icon: GroupIcon },
+    { title: 'Kursai', path: routes.CoursePanelPage, Icon: LocalActivityIcon },
   ],
 };
 

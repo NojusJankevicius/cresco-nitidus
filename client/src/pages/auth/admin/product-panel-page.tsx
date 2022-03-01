@@ -1,8 +1,13 @@
+import { Container } from '@mui/material';
 import React from 'react';
 
 const ProductPanelPage = () => {
   return (
-    <div>ProductPanelPage</div>
+    <Container
+      maxWidth="md">
+      <div>ProductPanelPage</div>
+
+    </Container>
   );
 };
 

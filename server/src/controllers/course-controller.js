@@ -4,7 +4,6 @@ const CourseViewModel = require('../view-models/course-view-model');
 const getCourses = async (req, res) => {
   const courseDocuments = await CourseModel.find();
   const courses = courseDocuments.map(course => new CourseViewModel(course));
-  console.log(courses);
   res.status(200).json({ courses });
 };
 
