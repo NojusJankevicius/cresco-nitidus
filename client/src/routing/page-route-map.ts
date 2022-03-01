@@ -16,9 +16,14 @@ import SignUpPage from '../pages/public-only/sign-up-page';
 import ProfilePage from '../pages/auth/profile-page';
 // user
 import WishlistPage from '../pages/auth/user/wishlist-page';
+import OrdersPage from '../pages/auth/user/orders-page';
 // admin
 import AdminPage from '../pages/auth/admin/admin-page';
 import AdminPageEditProduct from '../pages/auth/admin/admin-page/admin-page-edit-product';
+import ProductPanelPage from '../pages/auth/admin/product-panel-page';
+import CoursePanelPage from '../pages/auth/admin/course-panel-page';
+import CategoryPanelPage from '../pages/auth/admin/category-panel-page';
+
 import React from 'react';
 
 export type LayoutPageName = 'PageLayout' | 'DashboardLayout';
@@ -34,7 +39,11 @@ export type ConcretePageName = 'HomePage'
   | 'SignUpPage'
   | 'ProfilePage'
   | 'WishlistPage'
-  | 'AdminPage';
+  | 'AdminPage'
+  | 'OrdersPage'
+  | 'ProductPanelPage'
+  | 'CoursePanelPage'
+  | 'CategoryPanelPage';
 
 export type PageName = LayoutPageName | ConcretePageName | DynamicPageName;
 
@@ -58,6 +67,10 @@ const pageRouteMap: PageRouteMap = {
   WishlistPage,
   AdminPage,
   AdminPageEditProduct,
+  OrdersPage,
+  ProductPanelPage,
+  CoursePanelPage,
+  CategoryPanelPage,
 };
 
 export default pageRouteMap;

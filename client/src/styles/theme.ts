@@ -1,6 +1,13 @@
 import { createTheme, Theme } from '@mui/material/styles';
 import { responsiveFontSizes } from '@mui/material';
 
+declare module '@mui/material/styles/createMixins' {
+  interface Mixins {
+    navbar: CSSProperties;
+    drawer: CSSProperties;
+  }
+}
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -33,6 +40,9 @@ export const customTheme: Theme = createTheme(theme, {
         height: 76.5,
       },
       height: 64,
+    },
+    drawer: {
+      width: 240
     },
   },
 });

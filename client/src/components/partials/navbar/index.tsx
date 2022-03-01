@@ -17,8 +17,8 @@ import LinkButton from './navbar-link-button';
 import { useSelector } from '../../../store/hooks';
 
 const pages = [
-  { page: 'Kursai', link: '/courses' },
-  { page: 'Parduotuvė', link: '/shop' },
+  { page: 'Kursai', link: routes.CoursesPage },
+  { page: 'Parduotuvė', link: routes.ShopPage },
 ];
 
 const Navbar: React.FC = () => {
@@ -35,8 +35,8 @@ const Navbar: React.FC = () => {
   };
 
   const settings = [
-    { setting: 'Profilis', link: '/profile' },
-    { setting: 'Mėgstamos prekės', link: '/wishlist' },
+    { setting: 'Profilis', link: routes.ProfilePage },
+    { setting: 'Mėgstamos prekės', link: routes.WishlistPage },
   ];
 
   return (
