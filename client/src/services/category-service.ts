@@ -74,14 +74,8 @@ const CategoryService = new (class CategoryService {
   };
 
   public getCategories = async (): Promise<Category[] | string> => {
-    const token = CategoryService.validateToken();
-    if (!token) return 'You are not authorized';
     try {
-      const { data } = await this.requester.get<Category[]>('/', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const { data } = await this.requester.get<Category[]>('/');
 
       return data;
     } catch (error) {

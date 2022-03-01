@@ -11,22 +11,20 @@ const {
 
 const router = express.Router();
 
-router.use(authMiddleware, adminMiddleware);
-
 // GET    '/categories'     -> gauti visas kategorijas
 router.get('/', getCategories);
 
 // POST   '/categories/'    -> sukurti vieną kategoriją
-router.post('/', createCategory);
+router.post('/', authMiddleware, adminMiddleware, createCategory);
 
 // GET    '/categories/:id' -> gauti vieną kategoriją
 router.get('/:id', getCategory);
 
 // PATCH  '/categories/:id'
-router.patch('/:id', updateCategory);
+router.patch('/:id', authMiddleware, adminMiddleware, updateCategory);
 
 // DELETE '/categories/:id' -> ištrinti vieną kategoriją
-router.delete('/:id', deleteCategory);
+router.delete('/:id', authMiddleware, adminMiddleware, deleteCategory);
 
 
 module.exports = router;
