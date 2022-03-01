@@ -14,7 +14,6 @@ const StyledDashboardLayoutMain = styled(Box, { shouldForwardProp: (prop) => pro
       duration: theme.transitions.duration.leavingScreen,
     }),
     [theme.breakpoints.up('md')]: {
-      // marginLeft: `-${theme.mixins.drawer.width}px`,
       ...(open && {
         transition: theme.transitions.create('margin', {
           easing: theme.transitions.easing.easeOut,
