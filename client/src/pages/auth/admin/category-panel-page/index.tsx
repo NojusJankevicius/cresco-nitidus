@@ -83,13 +83,14 @@ const CategoryPanelPage: React.FC = () => {
   useEffect(() => {
     (async () => {
       const fetchedCategories = await CategoryService.getCategories();
+      const categoryArray = Object.values(fetchedCategories);
       if (typeof fetchedCategories === 'string') {
         console.error(fetchedCategories);
 
         return;
       }
 
-      setCategories(fetchedCategories.categories);
+      setCategories(categoryArray[0]);
     })();
   }, []);
 
