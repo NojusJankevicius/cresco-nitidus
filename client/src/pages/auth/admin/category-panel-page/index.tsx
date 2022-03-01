@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import {
   Container,
   Box,
-  Typography,
   Alert,
 } from '@mui/material';
 import CategoryPanelPageForm, { CategoryPanelPageFormProps } from './category-panel-page-form';
@@ -96,7 +95,6 @@ const CategoryPanelPage: React.FC = () => {
 
   return (
     <Container maxWidth="md">
-      <Typography component="h1" variant="h2">Kategorijų panelė</Typography>
       <Box sx={{ width: 600, mt: 4, mb: 2 }}>
         <CategoryPanelPageForm
           onSubmit={handleSubmit}

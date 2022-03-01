@@ -1,8 +1,9 @@
 import React from 'react';
 import {
   TextField,
-  Paper,
   Button,
+  Box,
+  Typography,
 } from '@mui/material';
 
 export type CategoryPanelPageFormProps = {
@@ -18,21 +19,29 @@ const CategoryPanelPageForm: React.FC<CategoryPanelPageFormProps> = ({
   onSubmit,
   setTitle
 }) => (
-  <Paper component="form" sx={{ display: 'flex' }} onSubmit={onSubmit}>
-    <TextField
-      value={title}
-      onChange={(e) => setTitle(e.target.value)}
-      sx={{ flexGrow: 1 }}
-      color={editMode ? 'warning' : 'secondary'}
-      label={editMode ? 'Atnaujinti' : 'Sukurti'}
-    />
-    <Button
-      variant="contained"
-      color={editMode ? 'warning' : 'secondary'}
-      type="submit">
-      {editMode ? 'Atnaujinti' : 'Sukurti'}
-    </Button>
-  </Paper>
+  <>
+    <Typography
+      variant="h5"
+      component="h2"
+      sx={{ mb: 3 }}
+    >
+      {editMode ? 'Atnaujinti kategoriją' : 'Pridėti kategoriją'}
+    </Typography>
+    <Box component="form" sx={{ display: 'flex' }} onSubmit={onSubmit}>
+      <TextField
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        label={editMode ? 'Atnaujinti' : 'Sukurti'}
+      />
+      <Button
+        variant="outlined"
+        sx={{ ml: 2 }}
+        type="submit">
+        {editMode ? 'Atnaujinti' : 'Sukurti'}
+      </Button>
+    </Box>
+  </>
+
 );
 
 export default CategoryPanelPageForm;

@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  alpha,
   Paper,
   Table,
   TableBody,
@@ -11,16 +12,23 @@ import {
 } from '@mui/material';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import DoNotDisturbAltIcon from '@mui/icons-material/DoNotDisturbAlt';
+import Course from '../../../../types/course';
 
-type CoursePanelPageTableProps = {
-  courses: {
-    id: string,
-    name: string,
-    price: number
-  }[]
+type EditedCourse = Course & {
+  edited: boolean,
 };
 
-const CoursePanelPageTable: React.FC<CoursePanelPageTableProps> = ({ courses }) => (
+export type CoursePanelPageTableProps = {
+  data: EditedCourse[],
+  onDelete: (id: string) => void,
+  onEdit: (id: string) => void,
+};
+
+const CoursePanelPageTable: React.FC<CoursePanelPageTableProps> = ({
+  data,
+  onEdit,
+  onDelete, }) => (
   <>
     <Typography
       variant="h5"
@@ -30,13 +38,8 @@ const CoursePanelPageTable: React.FC<CoursePanelPageTableProps> = ({ courses }) 
     >
       Visi kursai
     </Typography>
-    <Paper sx={{
-      p: 1,
-      display: 'flex',
-      flexDirection: 'column',
-    }}
-    >
-      <TableContainer sx={{ my: 4 }}>
+    <Paper sx={{ p: 1, }} >
+      <TableContainer sx={{ my: 2 }}>
         <Table size="small">
           <TableHead>
             <TableRow>
@@ -50,17 +53,30 @@ const CoursePanelPageTable: React.FC<CoursePanelPageTableProps> = ({ courses }) 
             </TableRow>
           </TableHead>
           <TableBody>
-            {courses.map(({ id, name, price }) => (
-              <TableRow key={id}>
-                <TableCell>{name}</TableCell>
+            {data.map(({ id, title, price, descLine1, descLine2, descLine3, descLine4, edited }) => (
+              <TableRow key={id}
+                sx={(theme) => ({
+                  bgcolor: edited ? alpha(theme.palette.warning.main, 0.1) : undefined,
+                  '&:last-child td, &:last-child th': { border: 0 },
+                })}
+              >
+                <TableCell>{title}</TableCell>
                 <TableCell align="right">{`${price}`}</TableCell>
-                <TableCell align="right">{`${price}`}</TableCell>
-                <TableCell align="right">{`${price}`}</TableCell>
-                <TableCell align="right">{`${price}`}</TableCell>
-                <TableCell align="right">{`${price}`}</TableCell>
+                <TableCell align="right">{`${descLine1}`}</TableCell>
+                <TableCell align="right">{`${descLine2}`}</TableCell>
+                <TableCell align="right">{`${descLine3}`}</TableCell>
+                <TableCell align="right">{`${descLine4}`}</TableCell>
                 <TableCell align="right">
-                  <EditOutlinedIcon />
-                  <DeleteOutlineIcon color="error" />
+                  <Typography
+                    variant="button"
+                    color={edited ? 'warning' : 'secondary'}
+                    onClick={() => onEdit(id)}
+                  >
+                    {edited ? <DoNotDisturbAltIcon /> : <EditOutlinedIcon />}
+                  </Typography>
+                  <Typography variant="button" color="error" onClick={() => onDelete(id)}>
+                    <DeleteOutlineIcon />
+                  </Typography>
                 </TableCell>
               </TableRow>
             ))}

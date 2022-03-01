@@ -4,6 +4,7 @@ type CourseDta = {
   descLine2: string,
   descLine3: string,
   descLine4: string,
+  price: number,
 };
 
 export default CourseDta;

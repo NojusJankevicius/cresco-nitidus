@@ -1,11 +1,12 @@
 const express = require('express');
+const authMiddleware = require('../middlewares/auth-middleware');
+const adminMiddleware = require('../middlewares/admin-middleware');
 const {
   getCourses,
   createCourse,
   getCourse,
   deleteCourse,
   updateCourse,
-  replaceCourse,
 } = require('../controllers/course-controller');
 
 const router = express.Router();
@@ -17,18 +18,16 @@ const router = express.Router();
 router.get('/', getCourses);
 
 // POST   '/courses/'    -> sukurti vieną kursą
-router.post('/', createCourse);
+router.post('/', authMiddleware, adminMiddleware, createCourse);
 
 // GET    '/courses/:id' -> gauti vieną kursą
 router.get('/:id', getCourse);
 
 // DELETE '/courses/:id' -> ištrinti vieną kursą
-router.delete('/:id', deleteCourse);
+router.delete('/:id', authMiddleware, adminMiddleware, deleteCourse);
 
 // PATCH  '/courses/:id' -> ATNAUJINTI vieną kursą
-router.patch('/:id', updateCourse);
+router.patch('/:id', authMiddleware, adminMiddleware, updateCourse);
 
-// PUT    '/courses/:id' -> Perrašo vieną kursą
-router.put('/:id', replaceCourse);
 
 module.exports = router;

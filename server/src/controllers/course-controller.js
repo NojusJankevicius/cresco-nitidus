@@ -8,19 +8,22 @@ const getCourses = async (req, res) => {
 };
 
 const createCourse = async (req, res) => {
-  const { name, price } = req.body;
-  const courseDoc = await CourseModel({
-    name,
-    price
-  });
+  const { title, price, descLine1, descLine2, descLine3, descLine4 } = req.body;
 
   try {
-    await courseDoc.save();
+    const courseDoc = await CourseModel.create({
+      title,
+      descLine1,
+      descLine2,
+      descLine3,
+      descLine4,
+      price,
+    });
     const course = new CourseViewModel(courseDoc);
     res.status(200).json(course);
   } catch (error) {
     console.log(error)
-    res.status(400).json({ message: `klaida: pavadinimu '${name}' elementas jau yra` })
+    res.status(400).json({ message: `klaida: pavadinimu '${title}' kursai jau yra` })
   }
 };
 
@@ -48,54 +51,22 @@ const deleteCourse = async (req, res) => {
 
 const updateCourse = async (req, res) => {
   const { id } = req.params;
-  const { name, price } = req.body;
+  const data = req.body;
   try {
-    await CourseModel.findById(id);
-
-    try {
-      const courseDoc = await CourseModel.findByIdAndUpdate(id, {
-        name,
-        price
-      });
-      const course = new CourseViewModel(courseDoc);
-      res.status(200).json(course);
-
-    } catch (error) {
-      res.status(400).json({ message: 'blogi duomenys' });
-    }
-  } catch (error) {
-    res.status(404).json({ message: `klaida: kursas nerastas, id: ${id}` });
-  }
-};
-
-const replaceCourse = async (req, res) => {
-  const { id } = req.params;
-  const { name, price } = req.body;
-
-  try {
-    await CourseModel.findById(id);
-
-    try {
-      if (name && price) {
-
-        const courseDoc = await CourseModel.findOneAndReplace(
-          { _id: id },
-          { name, price },
-          {
-            new: true,
-            runValidators: true
-          });
-        const course = new CourseViewModel(courseDoc);
-        res.status(200).json(course);
-      } else {
-        throw new Error;
-      }
-    } catch (error) {
-      res.status(400).json({ message: 'blogi duomenys' });
-    }
+    const courseDoc = await CourseModel.findByIdAndUpdate(id, data, {
+      new: true,
+      runValidators: true,
+    });
+    const course = new CourseViewModel(courseDoc);
+    res.status(200).json(course);
 
   } catch (error) {
-    res.status(404).json({ message: `klaida: kursas nerastas, id: ${id}` });
+    console.log(error);
+    res.status(400).json({
+      message: error instanceof Mongoose.Error.ValidationError
+        ? `klaida: kursas pavadinimu:'${data.title}' jau yra`
+        : error.message
+    });
   }
 };
 
@@ -105,5 +76,4 @@ module.exports = {
   getCourse,
   deleteCourse,
   updateCourse,
-  replaceCourse,
 };
