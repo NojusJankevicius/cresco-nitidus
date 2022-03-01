@@ -32,7 +32,7 @@ const NavbarDesktop: React.FC<NavbarDesktopProps> = ({
           variant="h6"
           noWrap
           component="div"
-          sx={{ mr: 2 }}
+          sx={{ ml: '35vw' }}
         >
           cresco - nitidus
         </Typography>

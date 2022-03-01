@@ -95,7 +95,7 @@ const CategoryPanelPage = () => {
   }, []);
 
   return (
-    <Container maxWidth="xl">
+    <Container maxWidth="md">
       <Typography component="h1" variant="h2">Kategorijų panelė</Typography>
       <Box sx={{ width: 600, mt: 4, mb: 2 }}>
         <CategoryPanelPageForm

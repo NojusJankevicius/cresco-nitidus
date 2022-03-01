@@ -14,14 +14,7 @@ import AuthService from '../../../services/auth-service';
 import StyledLink from '../../../styles/styled-link';
 import LinkButton from './navbar-link-button';
 
-export type NavbarUserMenu = {
-  settings: {
-    setting: string,
-    link: string,
-  }[]
-};
-
-const NavbarUserMenu: React.FC<NavbarUserMenu> = ({ settings }) => {
+const NavbarUserMenu: React.FC = () => {
   const [anchorElUser, setAnchorElUser] = useState<Element | null>(null);
 
   const handleOpenUserMenu: React.MouseEventHandler = (event: MouseEvent<Element>) => {
@@ -69,13 +62,11 @@ const NavbarUserMenu: React.FC<NavbarUserMenu> = ({ settings }) => {
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}
       >
-        {settings.map(({ setting, link }) => (
-          <StyledLink key={setting} to={link}>
-            <MenuItem key={setting} onClick={handleCloseNavMenu}>
-              <Typography textAlign="center">{setting}</Typography>
+          <StyledLink to={routes.ProfilePage}>
+            <MenuItem  onClick={handleCloseNavMenu}>
+              <Typography textAlign="center">Profilis</Typography>
             </MenuItem>
           </StyledLink>
-        ))}
         <MenuItem onClick={handleSignOut}>
           <Typography>Atsijungti</Typography>
         </MenuItem>

@@ -6,6 +6,8 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Outlet } from 'react-router-dom';
 import Navbar from '../../partials/navbar';
 import DashboardLayoutDrawer from './dashboard-layout-drawer';
+import DashboardLayoutDrawerHeader from './dashboard-layout-drawer-header';
+import DashboardLayoutMain from './dashboard-layout-main';
 
 const PageLayout: React.FC = () => {
   const [open, setOpen] = useState(false);
@@ -21,9 +23,10 @@ const PageLayout: React.FC = () => {
         handleDrawerClose={handleDrawerToggle}
         isSmallScreen={isSmallScreen}
       />
-      <Box component="main">
+      <DashboardLayoutMain open={open}>
+        <DashboardLayoutDrawerHeader />
         <Outlet />
-      </Box>
+      </DashboardLayoutMain>
       {isSmallScreen && (
         <IconButton
           color="inherit"

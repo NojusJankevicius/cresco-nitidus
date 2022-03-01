@@ -34,11 +34,6 @@ const Navbar: React.FC = () => {
     setAnchorElNav(null);
   };
 
-  const settings = [
-    { setting: 'Profilis', link: routes.ProfilePage },
-    { setting: 'Mėgstamos prekės', link: routes.WishlistPage },
-  ];
-
   return (
     <AppBar position="static" sx={{ backgroundColor: 'white' }}>
       <Container maxWidth="xl">
@@ -64,9 +59,7 @@ const Navbar: React.FC = () => {
                 </LinkButton>
               </Box>
             ) : (
-              <UserMenu
-                settings={settings}
-              />
+              <UserMenu />
             )
           }
         </Toolbar>
