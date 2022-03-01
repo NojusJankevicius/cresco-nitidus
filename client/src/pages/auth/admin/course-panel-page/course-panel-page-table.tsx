@@ -12,7 +12,7 @@ import {
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 
-type AdminPageCourseTableProps = {
+type CoursePanelPageTableProps = {
   courses: {
     id: string,
     name: string,
@@ -20,7 +20,7 @@ type AdminPageCourseTableProps = {
   }[]
 };
 
-const AdminPageCourseTable: React.FC<AdminPageCourseTableProps> = ({ courses }) => (
+const CoursePanelPageTable: React.FC<CoursePanelPageTableProps> = ({ courses }) => (
   <>
     <Typography
       variant="h5"
@@ -42,6 +42,10 @@ const AdminPageCourseTable: React.FC<AdminPageCourseTableProps> = ({ courses }) 
             <TableRow>
               <TableCell>Prekė</TableCell>
               <TableCell align="right">Kaina</TableCell>
+              <TableCell align="right">1 eilutė</TableCell>
+              <TableCell align="right">2 eilutė</TableCell>
+              <TableCell align="right">3 eilutė</TableCell>
+              <TableCell align="right">4 eilutė</TableCell>
               <TableCell align="right">Veiksmai</TableCell>
             </TableRow>
           </TableHead>
@@ -49,6 +53,10 @@ const AdminPageCourseTable: React.FC<AdminPageCourseTableProps> = ({ courses }) 
             {courses.map(({ id, name, price }) => (
               <TableRow key={id}>
                 <TableCell>{name}</TableCell>
+                <TableCell align="right">{`${price}`}</TableCell>
+                <TableCell align="right">{`${price}`}</TableCell>
+                <TableCell align="right">{`${price}`}</TableCell>
+                <TableCell align="right">{`${price}`}</TableCell>
                 <TableCell align="right">{`${price}`}</TableCell>
                 <TableCell align="right">
                   <EditOutlinedIcon />
@@ -64,4 +72,4 @@ const AdminPageCourseTable: React.FC<AdminPageCourseTableProps> = ({ courses }) 
 
 );
 
-export default AdminPageCourseTable;
+export default CoursePanelPageTable;

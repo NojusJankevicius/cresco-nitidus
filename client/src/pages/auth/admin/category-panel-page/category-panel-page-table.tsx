@@ -11,6 +11,7 @@ import {
   Button,
   styled,
   alpha,
+  Typography,
 } from '@mui/material';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import CachedIcon from '@mui/icons-material/Cached';
@@ -27,16 +28,6 @@ export type CategoryPanelPageTableProps = {
   onEdit: (id: string) => void,
 };
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.primary.contrastText,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
-
 export const CategoryPanelPageTable: React.FC<CategoryPanelPageTableProps> = ({
   data,
   onEdit,
@@ -48,11 +39,11 @@ export const CategoryPanelPageTable: React.FC<CategoryPanelPageTableProps> = ({
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Id</StyledTableCell>
-            <StyledTableCell>Pavadinimas</StyledTableCell>
-            <StyledTableCell align="right">Sukurta:</StyledTableCell>
-            <StyledTableCell align="right">Atnaujinta:</StyledTableCell>
-            <StyledTableCell align="right">Veiksmai:</StyledTableCell>
+            <TableCell>Id</TableCell>
+            <TableCell>Pavadinimas</TableCell>
+            <TableCell align="right">Sukurta:</TableCell>
+            <TableCell align="right">Atnaujinta:</TableCell>
+            <TableCell align="right">Veiksmai:</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -64,24 +55,24 @@ export const CategoryPanelPageTable: React.FC<CategoryPanelPageTableProps> = ({
                 '&:last-child td, &:last-child th': { border: 0 },
               })}
             >
-              <StyledTableCell component="th" scope="row">
+              <TableCell component="th" scope="row">
                 {category.id}
-              </StyledTableCell>
-              <StyledTableCell>{category.title}</StyledTableCell>
-              <StyledTableCell align="right">{category.createdAt}</StyledTableCell>
-              <StyledTableCell align="right">{category.updatedAt}</StyledTableCell>
-              <StyledTableCell sx={{ display: 'flex', gap: 1, justifyContent: 'flex-end' }}>
-                <Button
-                  variant="contained"
+              </TableCell>
+              <TableCell>{category.title}</TableCell>
+              <TableCell align="right">{category.createdAt}</TableCell>
+              <TableCell align="right">{category.updatedAt}</TableCell>
+              <TableCell align="right">
+                <Typography
+                  variant="button"
                   color={category.edited ? 'warning' : 'secondary'}
                   onClick={() => onEdit(category.id)}
                 >
                   {category.edited ? <DoNotDisturbAltIcon /> : <CachedIcon />}
-                </Button>
-                <Button variant="contained" color="error" onClick={() => onDelete(category.id)}>
+                </Typography>
+                <Typography variant="button" color="error" onClick={() => onDelete(category.id)}>
                   <DeleteForeverIcon />
-                </Button>
-              </StyledTableCell>
+                </Typography>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

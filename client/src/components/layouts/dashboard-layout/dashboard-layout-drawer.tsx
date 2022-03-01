@@ -17,7 +17,6 @@ import CategoryIcon from '@mui/icons-material/Category';
 import { authSelector } from '../../../store/auth';
 import { useSelector } from '../../../store/hooks';
 
-import DashboardLayoutDrawerHeader from './dashboard-layout-drawer-header';
 import DashboardLayoutDrawerLink from './dashboard-layout-drawer-link';
 
 const navigationItems = {
@@ -37,13 +36,11 @@ const navigationItems = {
 
 export type DashboardLayoutDrawerProps = {
   open: boolean,
-  handleDrawerClose: () => void,
   isSmallScreen: boolean,
 };
 
 const DashboardLayoutDrawer: React.FC<DashboardLayoutDrawerProps> = ({
   open,
-  handleDrawerClose,
   isSmallScreen,
 }) => {
   const theme = useTheme();
@@ -63,14 +60,8 @@ const DashboardLayoutDrawer: React.FC<DashboardLayoutDrawerProps> = ({
       anchor="left"
       open={open}
     >
-      <DashboardLayoutDrawerHeader>
-        {isSmallScreen && (
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-          </IconButton>
-        )}
-      </DashboardLayoutDrawerHeader>
-      <List>
+
+      <List sx={{mt: 8 }}>
         {navigationItems.common.map(({ path, title, Icon }) => (
           <DashboardLayoutDrawerLink
             key={path}

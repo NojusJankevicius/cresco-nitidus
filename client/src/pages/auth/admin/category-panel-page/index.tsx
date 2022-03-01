@@ -10,7 +10,7 @@ import CategoryPanelPageTable, { CategoryPanelPageTableProps } from './category-
 import CategoryService from '../../../../services/category-service';
 import Category from '../../../../types/category';
 
-const CategoryPanelPage = () => {
+const CategoryPanelPage: React.FC = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [titleField, setTitleField] = useState<string>('');

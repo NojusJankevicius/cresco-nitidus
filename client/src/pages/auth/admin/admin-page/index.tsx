@@ -6,8 +6,8 @@ import {
 } from '@mui/material';
 import ProductTable from './admin-page-product-table';
 import AddProduct from './admin-page-add-product';
-import CourseTable from './admin-page-course-table';
-import AddCourse from './admin-page-add-course';
+import CourseTable from '../course-panel-page/course-panel-page-table';
+import AddCourse from '../course-panel-page/course-panel-page-form';
 import { getCourses, getProducts } from '../../../../services/product-service';
 
 const AdminPage: React.FC = () => {

@@ -6,7 +6,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Outlet } from 'react-router-dom';
 import Navbar from '../../partials/navbar';
 import DashboardLayoutDrawer from './dashboard-layout-drawer';
-import DashboardLayoutDrawerHeader from './dashboard-layout-drawer-header';
 import DashboardLayoutMain from './dashboard-layout-main';
 
 const PageLayout: React.FC = () => {
@@ -20,11 +19,9 @@ const PageLayout: React.FC = () => {
       <Navbar />
       <DashboardLayoutDrawer
         open={open}
-        handleDrawerClose={handleDrawerToggle}
         isSmallScreen={isSmallScreen}
       />
       <DashboardLayoutMain open={open}>
-        <DashboardLayoutDrawerHeader />
         <Outlet />
       </DashboardLayoutMain>
       {isSmallScreen && (
