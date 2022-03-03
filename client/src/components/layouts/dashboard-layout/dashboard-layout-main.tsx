@@ -13,14 +13,18 @@ const StyledDashboardLayoutMain = styled(Box, { shouldForwardProp: (prop) => pro
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('xs')]: {
+      marginLeft: 0,
       ...(open && {
         transition: theme.transitions.create('margin', {
           easing: theme.transitions.easing.easeOut,
           duration: theme.transitions.duration.enteringScreen,
         }),
-        marginLeft: theme.mixins.drawer.width
+        marginLeft: `${theme.mixins.drawer.width}px`,
       }),
+    },
+    [theme.breakpoints.up('lg')]: {
+      marginLeft: `${theme.mixins.drawer.width}px`,
     },
   }),
 );

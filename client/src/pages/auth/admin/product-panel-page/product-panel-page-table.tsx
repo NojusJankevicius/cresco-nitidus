@@ -14,7 +14,7 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import { Link } from 'react-router-dom';
 import Category from '../../../../types/category';
 
-type AdminPageProductTableProps = {
+type ProductPanelPageTableProps = {
   products: {
     id: string,
     name: string,
@@ -23,7 +23,7 @@ type AdminPageProductTableProps = {
   }[]
 };
 
-const AdminPageProductTable: React.FC<AdminPageProductTableProps> = ({ products }) => (
+const ProductPanelPageTable: React.FC<ProductPanelPageTableProps> = ({ products }) => (
   <>
     <Typography
       variant="h5"
@@ -49,7 +49,7 @@ const AdminPageProductTable: React.FC<AdminPageProductTableProps> = ({ products 
             }) => (
               <TableRow key={id}>
                 <TableCell>{name}</TableCell>
-                <TableCell>{category.name}</TableCell>
+                <TableCell>{category.title}</TableCell>
                 <TableCell align="right">{`${price}`}</TableCell>
                 <TableCell align="right">
                   <Link to={`product/:${id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
@@ -66,4 +66,4 @@ const AdminPageProductTable: React.FC<AdminPageProductTableProps> = ({ products 
   </>
 );
 
-export default AdminPageProductTable;
+export default ProductPanelPageTable;

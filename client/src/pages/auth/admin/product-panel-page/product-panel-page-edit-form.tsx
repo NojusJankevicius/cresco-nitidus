@@ -14,7 +14,7 @@ import {
 } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { useFormik } from 'formik';
-import { getCategories, getProduct, updateProduct } from '../../../../services/product-service';
+import ProductService from '../../../../services/product-service';
 
 const validationSchema = yup.object({
   name: yup.string()
@@ -26,7 +26,7 @@ const validationSchema = yup.object({
   description: yup.string(),
 });
 
-const AdminPageEditProduct: React.FC = () => {
+const ProductPanelPageEditForm: React.FC = () => {
   const { id } = useParams();
   const [product, setProduct] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -37,7 +37,7 @@ const AdminPageEditProduct: React.FC = () => {
 
   useEffect(() => {
     (async () => {
-      const productData = await getProduct(id);
+      const productData = await ProductService.getProduct(id);
       setProduct(productData);
     })();
   }, []);
@@ -200,4 +200,4 @@ const AdminPageEditProduct: React.FC = () => {
   );
 };
 
-export default AdminPageEditProduct;
+export default ProductPanelPageEditForm;

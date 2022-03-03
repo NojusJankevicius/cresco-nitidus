@@ -18,8 +18,7 @@ import ProfilePage from '../pages/auth/profile-page';
 import WishlistPage from '../pages/auth/user/wishlist-page';
 import OrdersPage from '../pages/auth/user/orders-page';
 // admin
-import AdminPage from '../pages/auth/admin/admin-page';
-import AdminPageEditProduct from '../pages/auth/admin/admin-page/admin-page-edit-product';
+import ProductPanelPageEditForm from '../pages/auth/admin/product-panel-page/product-panel-page-edit-form';
 import ProductPanelPage from '../pages/auth/admin/product-panel-page';
 import CoursePanelPage from '../pages/auth/admin/course-panel-page';
 import CategoryPanelPage from '../pages/auth/admin/category-panel-page';
@@ -39,7 +38,6 @@ export type ConcretePageName = 'HomePage'
   | 'SignUpPage'
   | 'ProfilePage'
   | 'WishlistPage'
-  | 'AdminPage'
   | 'OrdersPage'
   | 'ProductPanelPage'
   | 'CoursePanelPage'
@@ -65,8 +63,7 @@ const pageRouteMap: PageRouteMap = {
   SignUpPage,
   ProfilePage,
   WishlistPage,
-  AdminPage,
-  AdminPageEditProduct,
+  AdminPageEditProduct: ProductPanelPageEditForm,
   OrdersPage,
   ProductPanelPage,
   CoursePanelPage,

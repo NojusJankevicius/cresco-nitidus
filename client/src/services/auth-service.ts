@@ -48,8 +48,8 @@ const AuthService = new (class AuthService {
     try {
       const response = await this.requester.post<AuthResponse>('/sign-in', { email, password });
       const { user, token } = response.data;
-      SessionService.set('auth_token', token);
       this.setAuth(token);
+      SessionService.set('auth_token', token);
 
       return user;
     } catch (error) {
@@ -69,8 +69,8 @@ const AuthService = new (class AuthService {
     try {
       const response = await this.requester.post<AuthResponse>('/sign-up', formData);
       const { user, token } = response.data;
-      SessionService.set('auth_token', token);
       this.setAuth(token);
+      SessionService.set('auth_token', token);
 
       return user;
     } catch (error) {
@@ -83,8 +83,8 @@ const AuthService = new (class AuthService {
   public async authenticate(token: string): Promise<string | true> {
     try {
       const { data } = await this.requester.post<AuthResponse>('/', { token });
-      reduxStore.dispatch(signIn({ user: data.user }));
       this.setAuth(token);
+      reduxStore.dispatch(signIn({ user: data.user }));
 
       return true;
     } catch (error) {
