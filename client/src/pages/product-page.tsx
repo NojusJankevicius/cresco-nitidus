@@ -5,18 +5,24 @@ import {
   Grid,
   Typography,
 } from '@mui/material';
-import React, { SetStateAction, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getProduct } from '../services/product-service';
+import ProductService from '../services/product-service';
+import Product from '../types/product';
 
 const ProductPage: React.FC = () => {
-  const [product, setProduct] = useState(null);
+  const [product, setProduct] = useState<Product>();
   const { id } = useParams();
 
   useEffect(() => {
     (async () => {
-      const productData: SetStateAction<null> = await getProduct(id);
-      setProduct(productData);
+      const productData = await ProductService.getProduct(id);
+      if (typeof id != 'string') {
+        console.error(id);
+
+        return;
+      }
+      setProduct(productData as Product);
     })();
   }, [id]);
 
@@ -26,7 +32,7 @@ const ProductPage: React.FC = () => {
         <Grid item xs={12} sm={7}>
           <Box
             component="img"
-            src="https://i.etsystatic.com/29278440/r/il/e9387d/3427856889/il_794xN.3427856889_ifb2.jpg"
+            src={product?.images[0] ?? '/error-page.jpg'}
             sx={{
               maxWidth: { xs: '100%', sm: '50vw', md: 450 },
               objectFit: 'cover',
@@ -36,7 +42,7 @@ const ProductPage: React.FC = () => {
         </Grid>
         <Grid item xs={12} sm={5} sx={{ boxShadow: '0 0 0 1px', p: 2 }}>
           <Typography gutterBottom variant="h4" component="h1" textAlign="center">
-            {product?.name}
+            {product?.title}
           </Typography>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Box sx={{
