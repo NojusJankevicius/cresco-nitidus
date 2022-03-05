@@ -2,7 +2,7 @@ const Mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 
 const productSchema = new Mongoose.Schema({
-  name: {
+  title: {
     type: 'string',
     required: true,
     unique: true,
@@ -11,7 +11,7 @@ const productSchema = new Mongoose.Schema({
     type: 'string',
   },
   category: {
-    type: Mongoose.Schema.Types.ObjectId,
+    type: Mongoose.Types.ObjectId,
     ref: 'Category',
     required: true,
   },
@@ -20,7 +20,6 @@ const productSchema = new Mongoose.Schema({
     required: true,
   },
   images: [{
-    id: Mongoose.Types.ObjectId,
     src: 'string',
   }],
 }, {

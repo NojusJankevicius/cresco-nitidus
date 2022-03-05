@@ -1,8 +1,9 @@
+const { Mongoose } = require('mongoose');
 const ProductModel = require('../models/product-model');
 const ProductViewModel = require('../view-models/product-view-model');
 
 const getProducts = async (req, res) => {
-  const { category } = req.query;
+  const { category, images } = req.query;
   const filterObject = {};
 
   if (category) {
@@ -18,30 +19,35 @@ const getProducts = async (req, res) => {
 
 const createProduct = async (req, res) => {
   console.log(req.files)
-  const { name, description, category, price, images } = req.body;
-  res.send('kk')
-  const productDoc = await ProductModel({
-    name,
-    description,
-    category,
-    price,
-    images
-  });
-  
+  const images = req.files.map(({ filename }) => ({
+    src: filename
+  }))
+  console.log(images)
+  const { title, description, category, price } = req.body;
+
   try {
-    await productDoc.save();
+    const productDoc = await ProductModel.create({
+      title,
+      description,
+      category,
+      price,
+      images
+    });
     const product = new ProductViewModel(productDoc);
     res.status(200).json(product);
   } catch (error) {
     console.log(error)
-    res.status(400).json({ message: `klaida: produktas pavadinimu: '${name}' jau yra` });
+    res.status(400).json({ message: `klaida: produktas pavadinimu: '${title}' jau yra` });
   };
 };
 
 const getProduct = async (req, res) => {
   const { id } = req.params;
   try {
-    const productDoc = await ProductModel.findById(id);
+    const productDoc = await ProductModel
+      .findById(id)
+      .populate('category')
+      .populate('images');
     const product = new ProductViewModel(productDoc);
     res.status(200).json(product);
   } catch (error) {
@@ -62,17 +68,21 @@ const deleteProduct = async (req, res) => {
 
 const updateProduct = async (req, res) => {
   const { id } = req.params;
-  const { name, description, category, price } = req.body;
+  const { title, description, category, price } = req.body;
   try {
     await ProductModel.findById(id);
 
     try {
       const productDoc = await ProductModel.findByIdAndUpdate(id, {
-        name,
+        title,
         description,
         category,
         price,
-      });
+      },
+        {
+          new: true,
+        }
+      );
       const product = new ProductViewModel(productDoc);
       res.status(200).json(product);
     } catch (error) {
@@ -86,16 +96,16 @@ const updateProduct = async (req, res) => {
 
 const replaceProduct = async (req, res) => {
   const { id } = req.params;
-  const { name, description, category, price } = req.body;
+  const { title, description, category, price } = req.body;
   try {
     await ProductModel.findById(id);
 
     try {
-      if (name && category && price) {
+      if (title && category && price) {
 
         const productDoc = await ProductModel.findOneAndReplace(
           { _id: id },
-          { name, description, category, price },
+          { title, description, category, price },
           {
             new: true,
             runValidators: true
