@@ -1,138 +1,135 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardHeader from '@mui/material/CardHeader';
-import Grid from '@mui/material/Grid';
-import StarIcon from '@mui/icons-material/StarBorder';
-import Typography from '@mui/material/Typography';
-import GlobalStyles from '@mui/material/GlobalStyles';
-import Container from '@mui/material/Container';
+import React, { useEffect, useState } from 'react';
+import {
+  Box,
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  CardHeader,
+  Grid,
+  Typography,
+  GlobalStyles,
+  Container,
+} from '@mui/material';
+import Course from '../types/course';
+import CourseService from '../services/course-service';
 
-const tiers = [
-  {
-    title: 'Hidroponika',
-    price: '39.99',
-    description: [
-      'Kaip pasidaryti savo sistemą',
-      'Kaip prižiūrėti',
-      '"Micro greens"',
-      'Privati konsultacija',
-    ],
-    buttonText: 'Registruotis',
-    buttonVariant: 'outlined',
-    buttonColor: 'inherit',
-  },
-  {
-    title: 'Visi kursai',
-    subheader: 'Populiariausias pasiūlymas',
-    price: '69.99',
-    description: [
-      'Hidroponika',
-      '"Micro greens"',
-      'Grybų auginimas',
-      'Viskas kartu už mažesnę kainą',
-    ],
-    buttonText: 'Registruotis',
-    buttonVariant: 'contained',
-    buttonColor: 'primary',
-  },
-  {
-    title: 'Grybų auginimas',
-    price: '49.99',
-    description: [
-      'Sterilizacija',
-      'Ciklo ir vietos planas',
-      'Verslo planas',
-      'Privati konsultacija',
-    ],
-    buttonText: 'Registruotis',
-    buttonVariant: 'outlined',
-    buttonColor: 'inherit',
-  },
-];
+const CoursesPage: React.FC = () => {
+  const [courses, setCourses] = useState<Course[]>([]);
 
-const CoursesPage: React.FC = () => (
-  <>
-    <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
-    {/* Hero unit */}
-    <Container disableGutters maxWidth="sm" component="main" sx={{ pt: 8, pb: 6 }}>
-      <Typography
-        component="h1"
-        variant="h2"
-        align="center"
-        color="text.primary"
-        gutterBottom
-      >
-        Kursai
-      </Typography>
-      <Typography variant="h5" align="center" color="text.secondary" component="p">
-        Greitai ir efektyviai išnaudokite laisvą namų erdvę nuosavų žalumynų auginimui
-        ir gaukite veslo planus užauginto pertekliaus pardavimui.
-      </Typography>
-    </Container>
-    {/* End hero unit */}
-    <Container maxWidth="md" component="main">
-      <Grid container spacing={5} alignItems="flex-end">
-        {tiers.map((tier) => (
-          // Enterprise card is full width at sm breakpoint
-          <Grid
-            item
-            key={tier.title}
-            xs={12}
-            md={4}
-          >
-            <Card>
-              <CardHeader
-                title={tier.title}
-                subheader={tier.subheader}
-                titleTypographyProps={{ align: 'center' }}
-                action={tier.title === 'Visi kursai' ? <StarIcon /> : null}
-                subheaderTypographyProps={{
-                  align: 'center',
-                }}
-              />
-              <CardContent>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'baseline',
-                    mb: 2,
-                  }}
-                >
-                  <Typography component="h2" variant="h3" color="text.primary">
-                    {tier.price}
-                  </Typography>
-                  <Typography variant="h6" color="text.secondary">
-                    eur.
-                  </Typography>
-                </Box>
-                <ul>
-                  {tier.description.map((line) => (
+  useEffect(() => {
+    (async () => {
+      const fetchedCoursesData = await CourseService.getCourses();
+      const coursesArray = Object.values(fetchedCoursesData);
+      if (typeof coursesArray === 'string') {
+        console.error(coursesArray);
+
+        return;
+      }
+      setCourses(coursesArray[0]);
+    })();
+  }, []);
+
+  return (
+    <>
+      <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
+      <Container disableGutters maxWidth="sm" component="main" sx={{ pt: 8, pb: 6 }}>
+        <Typography
+          component="h1"
+          variant="h2"
+          align="center"
+          color="text.primary"
+          gutterBottom
+        >
+          Kursai
+        </Typography>
+        <Typography variant="h5" align="center" color="text.secondary" component="p">
+          Greitai ir efektyviai išnaudokite laisvą namų erdvę nuosavų žalumynų auginimui
+          ir gaukite veslo planus užauginto pertekliaus pardavimui.
+        </Typography>
+      </Container>
+      <Container maxWidth="md" component="main">
+        <Grid container spacing={5} alignItems="flex-end">
+          {courses.map((course) => (
+            <Grid
+              item
+              key={course.title}
+              xs={12}
+              md={4}
+            >
+              <Card>
+                <CardHeader
+                  title={course.title}
+                  titleTypographyProps={{ align: 'center' }}
+                />
+                <CardContent>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'baseline',
+                      mb: 2,
+                    }}
+                  >
+                    <Typography component="h2" variant="h3" color="text.primary">
+                      {course.price}
+                    </Typography>
+                    <Typography variant="h6" color="text.secondary">
+                      eur.
+                    </Typography>
+                  </Box>
+                  <ul>
                     <Typography
                       component="li"
                       variant="subtitle1"
                       align="center"
-                      key={line}
+                      key={course.descLine1}
                     >
-                      {line}
+                      {course.descLine1}
                     </Typography>
-                  ))}
-                </ul>
-              </CardContent>
-              <CardActions>
-                <Button fullWidth variant={tier.buttonVariant} color={tier.buttonColor}>
-                  {tier.buttonText}
-                </Button>
-              </CardActions>
-            </Card>
-          </Grid>
-        ))}
-      </Grid>
-    </Container>
-  </>
-);
+                  </ul>
+                  <ul>
+                    <Typography
+                      component="li"
+                      variant="subtitle1"
+                      align="center"
+                      key={course.descLine2}
+                    >
+                      {course.descLine2}
+                    </Typography>
+                  </ul>
+                  <ul>
+                    <Typography
+                      component="li"
+                      variant="subtitle1"
+                      align="center"
+                      key={course.descLine3}
+                    >
+                      {course.descLine3}
+                    </Typography>
+                  </ul>
+                  <ul>
+                    <Typography
+                      component="li"
+                      variant="subtitle1"
+                      align="center"
+                      key={course.descLine4}
+                    >
+                      {course.descLine4}
+                    </Typography>
+                  </ul>
+                </CardContent>
+                <CardActions>
+                  <Button fullWidth variant="outlined" color="primary">
+                    Registruotis
+                  </Button>
+                </CardActions>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+    </>
+  );
+};
 export default CoursesPage;
