@@ -41,12 +41,13 @@ const initialValues: InitialValues = {
 
 export type ProductPanelPageFormProps = {
   initialCategories: Category[],
+  onSubmit: (data: ProductData) => void,
 };
 
-const ProductPanelPageForm: React.FC<ProductPanelPageFormProps> = ({ initialCategories }) => {
+const ProductPanelPageForm: React.FC<ProductPanelPageFormProps> = ({ initialCategories, onSubmit }) => {
   const [categoryOptions, setCategoryOptions] = useState<Category[]>([defaultCategoryOption]);
 
-  const onSubmit: FormikOnSubmit = async ({ title, category, description, price, images }) => {
+  const onFormikSubmit: FormikOnSubmit = async ({ title, category, description, price, images }) => {
    
     const formattedData: ProductData = {
       title,
@@ -58,18 +59,7 @@ const ProductPanelPageForm: React.FC<ProductPanelPageFormProps> = ({ initialCate
         .filter((x) => x) as File[],
     };
     if (description) formattedData.description = description;
-    // if (files.length === 0) {
-    //   throw new Error('klaida būsiu matyt, rėksiu kad reikia nuotraukos');
-    // }
-    // const addedProduct = await ProductService.createProduct({
-    //   title,
-    //   category,
-    //   description,
-    //   price,
-    //   images: files,
-    // });
-    console.log(formattedData);
-    // console.log(addedProduct)
+    onSubmit(formattedData);
   };
   
   const {
@@ -79,7 +69,7 @@ const ProductPanelPageForm: React.FC<ProductPanelPageFormProps> = ({ initialCate
     handleSubmit,
   } = useFormik({
     initialValues,
-    onSubmit,
+    onSubmit: onFormikSubmit,
   });
 
   useEffect(() => {

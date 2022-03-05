@@ -11,29 +11,31 @@ import {
 } from '@mui/material';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
-import { Link } from 'react-router-dom';
-import Category from '../../../../types/category';
+import DoNotDisturbAltIcon from '@mui/icons-material/DoNotDisturbAlt';
+import Product from '../../../../types/product';
 
-type ProductPanelPageTableProps = {
-  products: {
-    id: string,
-    name: string,
-    price: number,
-    category: Category
-  }[]
+type EditedProduct = Product & {
+  edited: boolean,
 };
 
-const ProductPanelPageTable: React.FC<ProductPanelPageTableProps> = ({ products }) => (
+type ProductPanelPageTableProps = {
+  data: EditedProduct[],
+  onDelete: (id: string) => void,
+  onEdit: (id: string) => void,
+};
+
+const ProductPanelPageTable: React.FC<ProductPanelPageTableProps> = ({ data, onDelete, onEdit }) => (
   <>
     <Typography
       variant="h5"
       component="h2"
+      sx={{ my: 3 }}
       textAlign="center"
     >
       Visos prekės
     </Typography>
     <Paper sx={{ p: 1, display: 'flex', flexDirection: 'column' }}>
-      <TableContainer sx={{ my: 4 }}>
+      <TableContainer sx={{ my: 2 }}>
         <Table size="small">
           <TableHead>
             <TableRow>
@@ -44,18 +46,22 @@ const ProductPanelPageTable: React.FC<ProductPanelPageTableProps> = ({ products 
             </TableRow>
           </TableHead>
           <TableBody>
-            {products.map(({
-              id, name, price, category,
-            }) => (
-              <TableRow key={id}>
-                <TableCell>{name}</TableCell>
-                <TableCell>{category.title}</TableCell>
-                <TableCell align="right">{`${price}`}</TableCell>
+            {data.map((data) => (
+              <TableRow key={data.id}>
+                <TableCell>{data.title}</TableCell>
+                <TableCell>{data.category.title}</TableCell>
+                <TableCell align="right">{`${data.price}`}</TableCell>
                 <TableCell align="right">
-                  <Link to={`product/:${id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                    <EditOutlinedIcon />
-                  </Link>
-                  <DeleteOutlineIcon color="error" />
+                    <Typography
+                      variant="button"
+                      color={data.edited ? 'warning' : 'secondary'}
+                      onClick={() => onEdit(data.id)}
+                    >
+                      {data.edited ? <DoNotDisturbAltIcon /> : <EditOutlinedIcon />}
+                    </Typography>
+                    <Typography variant="button" color="error" onClick={() => onDelete(data.id)}>
+                      <DeleteOutlineIcon />
+                    </Typography>
                 </TableCell>
               </TableRow>
             ))}
