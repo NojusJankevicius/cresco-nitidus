@@ -15,17 +15,12 @@ import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
 import DesktopFilters from './shop-page-desktop-filters';
 import { Link } from 'react-router-dom';
+import Category from '../../types/category';
+import Product from '../../types/product';
 
 type ShopPageGridViewProps = {
-  categories: {
-    name: string,
-  }[],
-  products: {
-    id: string,
-    name: string,
-    price: number,
-    description: string,
-  }[]
+  categories: Category[],
+  products: Product[],
 };
 
 const ShopPageGridView: React.FC<ShopPageGridViewProps> = ({ categories, products }) => (
@@ -37,7 +32,7 @@ const ShopPageGridView: React.FC<ShopPageGridViewProps> = ({ categories, product
       <Grid item md={9} >
         <Grid container spacing={2}>
           {products.map(({
-            id, name, price, description,
+            id, title, price, description, images
           }) => (
             <Grid item xs={12} sm={6} lg={4} sx={{ pr: 2, mb: 2 }} key={id}>
               <Card sx={{
@@ -50,12 +45,12 @@ const ShopPageGridView: React.FC<ShopPageGridViewProps> = ({ categories, product
                     <CardMedia
                       component="img"
                       height="260"
-                      image="https://i.etsystatic.com/29278440/r/il/e9387d/3427856889/il_794xN.3427856889_ifb2.jpg"
+                      image={images[0] ?? '/error-page.jpg'}
                       alt="product"
                     />
                     <CardContent>
                       <Typography gutterBottom variant="h5" component="div" sx={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>
-                        {name}
+                        {title}
                       </Typography>
                       <Typography variant="body2" color="text.secondary" sx={{ textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>
                         {description}

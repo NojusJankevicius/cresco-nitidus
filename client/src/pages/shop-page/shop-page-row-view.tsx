@@ -11,17 +11,12 @@ import { Link } from 'react-router-dom';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
 import DesktopFilters from './shop-page-desktop-filters';
+import Category from '../../types/category';
+import Product from '../../types/product';
 
 type ShopPageRowView = {
-  categories: {
-    name: string,
-  }[],
-  products: {
-    id: string,
-    name: string,
-    price: number,
-    description: string,
-  }[]
+  categories: Category[],
+  products: Product[]
 };
 
 const ShopPageRowView: React.FC<ShopPageRowView> = ({ categories, products }) => (
@@ -40,7 +35,7 @@ const ShopPageRowView: React.FC<ShopPageRowView> = ({ categories, products }) =>
           }}
           >
             {products.map(({
-              id, name, description, price,
+              id, title, description, price, images
             }) => (
 
               <Card sx={{ mb: 2, borderRadius: 0 }} key={id}>
@@ -56,7 +51,7 @@ const ShopPageRowView: React.FC<ShopPageRowView> = ({ categories, products }) =>
                     <Link to={`product/:${id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                       <Box
                         component="img"
-                        src="https://i.etsystatic.com/29278440/r/il/e9387d/3427856889/il_794xN.3427856889_ifb2.jpg"
+                        src={images[0] ?? '/error-page.jpg'}
                         alt="product"
                         sx={{
                           height: '100%',
@@ -71,7 +66,7 @@ const ShopPageRowView: React.FC<ShopPageRowView> = ({ categories, products }) =>
                     <Link to={`product/:${id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                       <Box sx={{ p: 2 }}>
                         <Typography gutterBottom variant="h5" component="div" sx={{ mb: 1 }}>
-                          {name}
+                          {title}
                         </Typography>
                         <Typography
                           variant="body2"

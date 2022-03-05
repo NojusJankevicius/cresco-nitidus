@@ -6,7 +6,6 @@ import {
   Button,
   Container,
   MenuItem,
-  // Pagination,
   TextField,
   ToggleButton,
   ToggleButtonGroup,
@@ -18,7 +17,10 @@ import MenuIcon from '@mui/icons-material/Menu';
 import GridView from './shop-page-grid-view';
 import Drawer from './shop-page-drawer';
 import RowView from './shop-page-row-view';
-import { getCategories, getProducts } from '../../services/product-service';
+import ProductService from '../../services/product-service';
+import Product from '../../types/product';
+import CategoryService from '../../services/category-service';
+import Category from '../../types/category';
 
 const options = [
   { title: 'A - Z', value: 'a-z' },
@@ -29,11 +31,13 @@ const options = [
 
 const ShopPage: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
+  const [productViewType, setProductViewType] = useState<'grid' | 'row'>('grid');
 
   useEffect(() => {
     (async () => {
-      const fetchedProductsData = await getProducts();
+      const fetchedProductsData = await ProductService.getProducts();
       const productsArray = Object.values(fetchedProductsData);
       setProducts(productsArray[0]);
     })();
@@ -41,13 +45,17 @@ const ShopPage: React.FC = () => {
 
   useEffect(() => {
     (async () => {
-      const fetchedCategoriesData = await getCategories();
+      const fetchedCategoriesData = await CategoryService.getCategories();
       const categoriesArray = Object.values(fetchedCategoriesData);
+      if (typeof fetchedCategoriesData === 'string') {
+        console.error(fetchedCategoriesData);
+
+        return;
+      }
       setCategories(categoriesArray[0]);
     })();
   }, []);
-  const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
-  const [productViewType, setProductViewType] = useState<'grid' | 'row'>('grid');
+
   const ToggleDrawer = (open: boolean) => () => {
     setDrawerOpen(open);
   };
@@ -77,7 +85,6 @@ const ShopPage: React.FC = () => {
         <Button sx={{ display: { md: 'none' } }} onClick={ToggleDrawer(true)}>
           <MenuIcon />
         </Button>
-        {/* <Pagination sx={{ pr: { md: 2 } }} count={5} variant="outlined" shape="rounded" /> */}
         <Box sx={{ display: 'flex' }}>
           <Box sx={{ pr: 2 }}>
             <TextField

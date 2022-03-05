@@ -9,11 +9,10 @@ import {
   Typography,
 } from '@mui/material';
 import React from 'react';
+import Category from '../../types/category';
 
 type ShopPageDesktopFiltersProps = {
-  categories: {
-    name: string,
-  }[]
+  categories: Category[]
 };
 
 const ShopPageDesktopFilters: React.FC<ShopPageDesktopFiltersProps> = ({ categories }) => (
@@ -31,12 +30,12 @@ const ShopPageDesktopFilters: React.FC<ShopPageDesktopFiltersProps> = ({ categor
         dense
         sx={{ width: '100%' }}
       >
-        {categories.map(({ name }) => {
-          const labelId = `checkbox-list-secondary-label-${name}`;
+        {categories.map(({ title }) => {
+          const labelId = `checkbox-list-secondary-label-${title}`;
 
           return (
             <ListItem
-              key={name}
+              key={title}
               secondaryAction={(
                 <Checkbox
                   edge="end"
@@ -45,7 +44,7 @@ const ShopPageDesktopFilters: React.FC<ShopPageDesktopFiltersProps> = ({ categor
               disablePadding
             >
               <ListItemButton>
-                <ListItemText id={labelId} primary={name} />
+                <ListItemText id={labelId} primary={title} />
               </ListItemButton>
             </ListItem>
           );

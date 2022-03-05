@@ -10,13 +10,12 @@ import {
   Typography,
 } from '@mui/material';
 import ListItemText from '@mui/material/ListItemText';
+import Category from '../../types/category';
 
 type ShopPageDrawerProps = {
   drawerOpen: boolean,
   closeDrawer: () => void,
-  categories: {
-    name: string
-  }[]
+  categories: Category[]
 };
 
 const ShopPageDrawer: React.FC<ShopPageDrawerProps> = ({ drawerOpen, closeDrawer, categories }) => (
@@ -34,12 +33,12 @@ const ShopPageDrawer: React.FC<ShopPageDrawerProps> = ({ drawerOpen, closeDrawer
       <List
         sx={{ width: '100%' }}
       >
-        {categories.map(({ name }) => {
-          const labelId = `checkbox-list-secondary-label-${name}`;
+        {categories.map(({ title }) => {
+          const labelId = `checkbox-list-secondary-label-${title}`;
 
           return (
             <ListItem
-              key={name}
+              key={title}
               secondaryAction={(
                 <Checkbox
                   edge="end"
@@ -48,7 +47,7 @@ const ShopPageDrawer: React.FC<ShopPageDrawerProps> = ({ drawerOpen, closeDrawer
               disablePadding
             >
               <ListItemButton>
-                <ListItemText id={labelId} primary={name} />
+                <ListItemText id={labelId} primary={title} />
               </ListItemButton>
             </ListItem>
           );
