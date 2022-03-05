@@ -14,7 +14,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ErrorIcon from '@mui/icons-material/Error';
 import AuthService from '../../../services/auth-service';
 import ProfileService from '../../../services/profile-service';
-import User from '../../../types/User';
+import User from '../../../types/user';
 import UserPatch from '../../../types/user-patch';
 
 const validationSchema = yup.object({

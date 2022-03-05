@@ -2,7 +2,7 @@ import axios, { AxiosInstance } from 'axios';
 import AuthService from './auth-service';
 import store from '../store';
 import { updateUser } from '../store/auth';
-import User from '../types/User';
+import User from '../types/user';
 import UserPatch from '../types/user-patch';
 
 const ProfileService = new (class ProfileService {

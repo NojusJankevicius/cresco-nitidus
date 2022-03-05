@@ -2,7 +2,7 @@ import axios, { AxiosInstance } from 'axios';
 import SessionService from './session-service';
 import reduxStore from '../store/index';
 import { authFailed, signIn, signOut } from '../store/auth';
-import User from '../types/User';
+import User from '../types/user';
 import Crudentials from '../types/crudentials';
 import UserSigning from '../types/user-signing';
 

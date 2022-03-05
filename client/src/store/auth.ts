@@ -1,6 +1,6 @@
 import { CaseReducer, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { State } from '.';
-import User from '../types/User';
+import User from '../types/user';
 
 type AuthState = {
 
