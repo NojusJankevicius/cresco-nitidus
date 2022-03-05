@@ -67,7 +67,6 @@ const routeStructure: Array<RouteData> = [
       { path: 'admin/products', pageName: 'ProductPanelPage', auth: ADMIN },
       { path: 'admin/courses', pageName: 'CoursePanelPage', auth: ADMIN },
       { path: 'admin/categories', pageName: 'CategoryPanelPage', auth: ADMIN },
-      { path: 'admin/product/:id', pageName: 'AdminPageEditProduct', auth: ADMIN },
     ],
   },
 ];
