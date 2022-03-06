@@ -4,11 +4,11 @@
 * Node.js version 16 or greater
 
 # Client side
-## install libraries
+## Install libraries
 
 $ npm i
 
-## start project
+## Start project
 
 $ npm start
 
