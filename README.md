@@ -1,6 +1,7 @@
-## Required programs to run project
-REACT
-Node.js
+# Required programs to run project
+* Visual Studio Code or other source-code editor
+* REACT
+* Node.js version 16 or greater
 
 # Client side
 ## install libraries
@@ -11,13 +12,13 @@ $ npm i
 
 $ npm start
 
-# server side
-## Declare environments variables
-copy '.env-example' and rename it to '.env'
-fill variables in '.env' file
+# Server side
+## Declare environment variables
+* copy '.env-example' and rename it to '.env'
+* fill variables in '.env' file
 
 ## Install libraries
 $ npm i
 
-## Lounch server
+## Launch server
 $ npm start
