@@ -1,19 +1,23 @@
-## Client side
-# install libraries
+## Required programs to run project
+REACT
+Node.js
+
+# Client side
+## install libraries
 
 $ npm i
 
-# start project
+## start project
 
 $ npm start
 
-## server side
-# Declare environments variables
+# server side
+## Declare environments variables
 copy '.env-example' and rename it to '.env'
 fill variables in '.env' file
 
-# Install libraries
+## Install libraries
 $ npm i
 
-# Lounch server
+## Lounch server
 $ npm start
