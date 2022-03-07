@@ -16,12 +16,8 @@ const ProductPage: React.FC = () => {
 
   useEffect(() => {
     (async () => {
+      if(typeof id !== 'string') return null;
       const productData = await ProductService.getProduct(id);
-      if (typeof id != 'string') {
-        console.error(id);
-
-        return;
-      }
       setProduct(productData as Product);
     })();
   }, [id]);
