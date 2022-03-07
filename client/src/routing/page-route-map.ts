@@ -16,7 +16,6 @@ import SignUpPage from '../pages/public-only/sign-up-page';
 import ProfilePage from '../pages/auth/profile-page';
 // user
 import WishlistPage from '../pages/auth/user/wishlist-page';
-import OrdersPage from '../pages/auth/user/orders-page';
 // admin
 import ProductPanelPage from '../pages/auth/admin/product-panel-page';
 import CoursePanelPage from '../pages/auth/admin/course-panel-page';
@@ -37,7 +36,6 @@ export type ConcretePageName = 'HomePage'
   | 'SignUpPage'
   | 'ProfilePage'
   | 'WishlistPage'
-  | 'OrdersPage'
   | 'ProductPanelPage'
   | 'CoursePanelPage'
   | 'CategoryPanelPage';
@@ -62,7 +60,6 @@ const pageRouteMap: PageRouteMap = {
   SignUpPage,
   ProfilePage,
   WishlistPage,
-  OrdersPage,
   ProductPanelPage,
   CoursePanelPage,
   CategoryPanelPage,

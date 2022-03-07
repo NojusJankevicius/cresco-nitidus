@@ -63,7 +63,6 @@ const routeStructure: Array<RouteData> = [
     childRoutes: [
       { path: 'profile', pageName: 'ProfilePage', auth: AUTH },
       { path: 'wishlist', pageName: 'WishlistPage', auth: USER },
-      { path: 'orders', pageName: 'OrdersPage', auth: USER },
       { path: 'admin/products', pageName: 'ProductPanelPage', auth: ADMIN },
       { path: 'admin/courses', pageName: 'CoursePanelPage', auth: ADMIN },
       { path: 'admin/categories', pageName: 'CategoryPanelPage', auth: ADMIN },

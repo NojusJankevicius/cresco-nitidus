@@ -24,7 +24,6 @@ const navigationItems = {
     { title: 'Profilis', path: routes.ProfilePage, Icon: PersonIcon },
   ],
   user: [
-    { title: 'Užsakymai', path: routes.OrdersPage, Icon: HistoryIcon },
     { title: 'Patinkantys Produktai', path: routes.WishlistPage, Icon: HistoryIcon },
   ],
   admin: [

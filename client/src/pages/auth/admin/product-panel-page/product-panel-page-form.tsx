@@ -10,7 +10,6 @@ import {
 } from '@mui/material';
 import { FormikHelpers, useFormik } from 'formik';
 import Category from '../../../../types/category';
-import ProductService from '../../../../services/product-service';
 import ProductData from '../../../../types/product-data';
 import FileUploadField, { FileUploadFieldProps } from '../../../../components/file-upload-field';
 
